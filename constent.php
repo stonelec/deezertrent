@@ -1,5 +1,5 @@
 <?php
-    // Constantes à modifier
+    /// Constantes à modifier
     const DB_USER = '';
     const DB_PWD = '';
     const DB_NAME = ''; //pour Margot
