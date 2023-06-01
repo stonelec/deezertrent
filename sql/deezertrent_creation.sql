@@ -3,7 +3,6 @@
 ------------------------------------------------------------
 
 
-
 ------------------------------------------------------------
 -- Table: utilisateur
 ------------------------------------------------------------
@@ -12,7 +11,7 @@ CREATE TABLE public.utilisateur(
                                    id_user             SERIAL NOT NULL ,
                                    nom                 VARCHAR (50) NOT NULL ,
                                    prenom              VARCHAR (50) NOT NULL ,
-                                   date_de_naissance   TIMESTAMP  NOT NULL ,
+                                   date_de_naissance   DATE  NOT NULL ,
                                    email               VARCHAR (100) NOT NULL ,
                                    mot_de_passe        VARCHAR (200) NOT NULL ,
                                    image_user          VARCHAR (200) NOT NULL  ,

@@ -1,4 +1,5 @@
 <?php
+require_once ('../php/database.php');
 
 class Playlist{
     // Get the playlist's name
