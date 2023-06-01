@@ -1,4 +1,6 @@
 <?php
+    require_once ('../php/database.php');
+
     class Album{
         // Get the album's name
         public static function name($id){
@@ -94,6 +96,7 @@
 
         }
 
+
         // Get all the track of the album
         public static function liste_track($id){
             try {
@@ -111,4 +114,21 @@
                 return false;
             }
         }
+
+        // Get all the albums name
+        public static function albums(){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT titre_album FROM album a';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
     }

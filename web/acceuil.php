@@ -5,10 +5,10 @@
     <title>Titre de la page</title>
     <link href="style.css" rel="stylesheet">
 
-    <!--    Bootstrap    -->
+    <!--    Bootstrap
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
+    -->
 <!--    Icons google-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -42,6 +42,15 @@
             <div>
                 <a class="nom-page" href="../test.php"><h1>Acceuil</h1></a>
             </div>
+            <!-- Div avec form de recherche -->
+            <div>
+                <form method="post" action="">
+                    <input type="submit" name="recherche" value="🔍">
+                    <label for="bar"></label>
+                    <input type="text" id="bar" name="bar" placeholder="Recherche">
+                </form>
+            </div>
+
             <div>
                 <a class="profil d-flex flex-row" href="../test.php"  style="display:block;width:100%;height:100%;">
                     <h2>Profil</h2>
@@ -52,9 +61,24 @@
         </div>
         <!--    Contenu----------------------------------------------------------------------------------->
         <div class="contenu d-flex flex-column">
+            <!-- Resultats de la recherche -->
+            <!-- <select name="type" id="type_choice">
+                        <option value="type"> Type</option>
+                        <option value="titre"> Titre</option>
+                        <option value="artiste"> Artiste</option>
+                        <option value="album"> Album</option>
+                    </select>
+                    -->
+            <div>
+                <?php
+                require_once ('../class/Search.php');
 
+
+
+                ?>
+            </div>
         </div>
-        <!--    Sound----------------------------------------------------------------------------------->
+        <!-- Sound----------------------------------------------------------------------------------->
         <div class="sound d-flex flex-row">
             <div class="edit d-flex flex-column">
                 <div class="play d-flex flex-row">
