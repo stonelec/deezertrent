@@ -1,9 +1,9 @@
 <?php
 
-require_once("database.php");
+require_once ('../php/database.php');
 session_start();
 
-    class artiste {
+    class Artiste {
 
         // Get the artist's name
         public static function nom($id_artiste)
@@ -44,5 +44,48 @@ session_start();
             }
 
         }
+
+        // Get all the artists name
+        public static function artists(){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT nom_artiste FROM artiste a';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
+        // Get all the track of an artist
+        public static function track_artist($name)
+        {
+            try {
+                $list_final = [];
+                $conn = Database::connexionBD();
+                $sql = 'SELECT t.titre_track ar.nom_artiste FROM album a
+                        JOIN track t ON t.id_album = a.id_album
+                        JOIN artiste ar ON ar.id_artiste = a.id_artiste';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($result as $elt) {
+                    if (strtolower($elt['nom_artiste']) == strtolower($name)) {
+                        $list_final += $elt['nom_artiste'];
+                    }
+                }
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+            return false;
+        }
+
     }
 ?>
