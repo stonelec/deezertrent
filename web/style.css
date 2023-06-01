@@ -1,0 +1,131 @@
+/*general----------------------------------------------*/
+html, body, .global{
+    height: 100%;
+    background: black;
+    font-family: 'Marianne', sans-serif;
+    color: white;
+
+}
+/*lien----------------------------------------------*/
+body a{
+    text-decoration: none;
+    color: white;
+    outline: none;
+}
+/*navbar----------------------------------------------*/
+.menu {
+    background-color: #121212;
+    width: 25%;
+    height: 95%;
+    margin: 20px 10px 20px 20px;
+    padding: 5px;
+    border-radius: 15px;
+    position: sticky;
+}
+.menu .logo{
+    color : #DC3545;
+    font-weight: bolder;
+    font-size: 28px;
+}
+html .menu .logo-image{
+    width: 50%;
+}
+.menu .links{
+    color: white;
+    font-weight: bolder;
+    margin:  10px 0  0 10% ;
+}
+.menu .general{
+    font-size: 150%;
+}
+.menu .general-link:hover{
+    color: #696c6e;
+}
+.menu .playlist-link{
+    font-size: 18px;
+    margin-left: 20px;
+    color: #696c6e;
+}
+.menu .playlist-link:hover{
+    color: white;
+}
+/*partie droite ----------------------------------------------*/
+
+.right{
+    height: 97.5%;
+    width: 100%;
+    margin: 20px 20px 0 10px;
+}
+/*navbar TOP ----------------------------------------------*/
+.menu-top{
+    background-color: #121212;
+    height: 10%;
+    margin-bottom: 10px;
+    padding: 2px 40px;
+    border-radius: 15px;
+    font-weight: bolder;
+    align-items: center;
+    position: sticky;
+}
+.menu-top .nom-page:hover{
+    color: #696c6e;
+}
+.menu-top .profil{
+    color: #696c6e;
+}
+.menu-top .profil:hover{
+    color: white;
+}
+/*contenu ----------------------------------------------*/
+.contenu{
+    background-color: #121212;
+    height: 70%;
+    border-radius: 15px 15px 0 0 ;
+
+    margin-top: 10px;
+}
+/*responsive ----------------------------------------------*/
+.sound{
+    background-color: orange;
+    height: 20%;
+    margin-top: 10px;
+    padding: 10px;
+}
+.sound .edit{
+    background-color: yellow;
+    width: 75%;
+    height: 100%;
+}
+.sound .edit .play{
+    background-color: green;
+    height: 50%;
+}
+.sound .edit .progres{
+    background-color: green;
+    height: 50%;
+}
+.sound .volume{
+    background-color: blue;
+    width: 25%;
+}
+.sound .volume .volume-edit{
+    height: 25%;
+    background-color: cyan;
+}
+
+/*responsive ----------------------------------------------*/
+@media only screen and (max-width: 1200px) {
+    html .logo-text{
+        display: none;
+    }
+    html .logo-image{
+        width: 75%;
+    }
+
+}
+@media only screen and (max-width: 960px) {
+    .menu{
+        width: 40%;
+        /*background-color: #DC3545;*/
+    }
+}
