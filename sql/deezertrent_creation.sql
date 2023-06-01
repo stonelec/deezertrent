@@ -52,7 +52,7 @@ CREATE TABLE public.style(
 drop table if exists type CASCADE ;
 CREATE TABLE public.type(
                             id_type    SERIAL NOT NULL ,
-                            nom_type   VARCHAR (5) NOT NULL  ,
+                            nom_type   VARCHAR (50) NOT NULL  ,
                             CONSTRAINT type_PK PRIMARY KEY (id_type)
 )WITHOUT OIDS;
 
@@ -63,7 +63,7 @@ CREATE TABLE public.type(
 drop table if exists artiste CASCADE ;
 CREATE TABLE public.artiste(
                                id_artiste    SERIAL NOT NULL ,
-                               nom_artiste   VARCHAR (50) NOT NULL ,
+                               nom_artiste   VARCHAR (100) NOT NULL ,
                                id_type       INT  NOT NULL  ,
                                CONSTRAINT artiste_PK PRIMARY KEY (id_artiste)
 
@@ -77,7 +77,7 @@ CREATE TABLE public.artiste(
 drop table if exists album CASCADE ;
 CREATE TABLE public.album(
                              id_album        SERIAL NOT NULL ,
-                             titre_album     VARCHAR (50) NOT NULL ,
+                             titre_album     VARCHAR (100) NOT NULL ,
                              date_parution   TIMESTAMP  NOT NULL ,
                              image_album     VARCHAR (200) NOT NULL ,
                              id_artiste      INT  NOT NULL ,
@@ -95,8 +95,8 @@ CREATE TABLE public.album(
 drop table if exists track CASCADE ;
 CREATE TABLE public.track(
                              id_track      SERIAL NOT NULL ,
-                             titre_track   VARCHAR (50) NOT NULL ,
-                             duree         TIMESTAMP  NOT NULL ,
+                             titre_track   VARCHAR (100) NOT NULL ,
+                             duree         INT  NOT NULL ,
                              lien_track    VARCHAR (200) NOT NULL ,
                              id_album      INT  NOT NULL  ,
                              CONSTRAINT track_PK PRIMARY KEY (id_track)
