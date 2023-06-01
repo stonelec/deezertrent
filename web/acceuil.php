@@ -9,8 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-<!--    font-->
-    <link href="https://fonts.cdnfonts.com/css/marianne" rel="stylesheet">
 <!--    Icons google-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -60,9 +58,11 @@
         <div class="sound d-flex flex-row">
             <div class="edit d-flex flex-column">
                 <div class="play d-flex flex-row">
-                    <p>play</p>
-                    <p>play</p>
-                    <p>play</p>
+                    <span class="material-symbols-outlined">shuffle</span>
+                    <span class="material-symbols-outlined">skip_previous</span>
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <span class="material-symbols-outlined">skip_next</span>
+                    <span class="material-symbols-outlined">laps</span>
                 </div>
                 <div class="progres d-flex flex-row">
                     <p>progres</p>
@@ -70,8 +70,15 @@
                 </div>
             </div>
             <div class="volume d-flex flex-column">
-                <div class="volume-edit">
-                    <p>volume</p>
+                <div class="volume-edit d-flex flex-row align-items-center">
+                    <div class="volume-logo">
+                        <span class="material-symbols-outlined">volume_up</span>
+                    </div>
+                    <div class="volume-bar">
+                        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 12px">
+                            <div class="progress-bar bg-danger" style="width: 50%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -2,7 +2,6 @@
 html, body, .global{
     height: 100%;
     background: black;
-    font-family: 'Marianne', sans-serif;
     color: white;
 
 }
@@ -86,13 +85,13 @@ html .menu .logo-image{
 }
 /*responsive ----------------------------------------------*/
 .sound{
-    background-color: orange;
+    /*background-color: orange;*/
     height: 20%;
     margin-top: 10px;
     padding: 10px;
 }
 .sound .edit{
-    background-color: yellow;
+    /*background-color: yellow;*/
     width: 75%;
     height: 100%;
 }
@@ -105,14 +104,20 @@ html .menu .logo-image{
     height: 50%;
 }
 .sound .volume{
-    background-color: blue;
+    /*background-color: blue;*/
     width: 25%;
+    padding-left: 10px;
 }
 .sound .volume .volume-edit{
     height: 25%;
-    background-color: cyan;
+    /*background-color: cyan;*/
 }
-
+.sound .volume-edit .volume-logo{
+    width: 20%;
+}
+.sound .volume-edit .volume-bar{
+    width: 80%;
+}
 /*responsive ----------------------------------------------*/
 @media only screen and (max-width: 1200px) {
     html .logo-text{
