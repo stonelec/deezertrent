@@ -1,10 +1,10 @@
-INSERT INTO public.type (id_type, nom_type)
+INSERT INTO public.art (id_type, nom_type)
 VALUES
     (DEFAULT, 'Solo'),
     (DEFAULT, 'Groupe'),
     (DEFAULT, 'Musicien');
 
-INSERT INTO public.style (id_style, nom_style)
+INSERT INTO public.style_A (id_style, nom_style)
 VALUES
     (DEFAULT, 'variété'),
     (DEFAULT, 'pop rock'),

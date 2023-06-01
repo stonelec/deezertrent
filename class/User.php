@@ -5,7 +5,7 @@ session_start();
 
 class User{
 
-
+    // Get the user id
     public static function id(){
         if (isset($_SESSION['id_user'])) {
             return $_SESSION['id_user'];

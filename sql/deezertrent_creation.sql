@@ -36,24 +36,24 @@ CREATE TABLE public.playlist(
 
 
 ------------------------------------------------------------
--- Table: style
+-- Table: style_A
 ------------------------------------------------------------
-drop table if exists style CASCADE ;
-CREATE TABLE public.style(
+drop table if exists style_A CASCADE ;
+CREATE TABLE public.style_A(
                              id_style    SERIAL NOT NULL ,
                              nom_style   VARCHAR (50) NOT NULL  ,
-                             CONSTRAINT style_PK PRIMARY KEY (id_style)
+                             CONSTRAINT style_A_PK PRIMARY KEY (id_style)
 )WITHOUT OIDS;
 
 
 ------------------------------------------------------------
--- Table: type
+-- Table: art
 ------------------------------------------------------------
-drop table if exists type CASCADE ;
-CREATE TABLE public.type(
+drop table if exists art CASCADE ;
+CREATE TABLE public.art(
                             id_type    SERIAL NOT NULL ,
                             nom_type   VARCHAR (50) NOT NULL  ,
-                            CONSTRAINT type_PK PRIMARY KEY (id_type)
+                            CONSTRAINT art_PK PRIMARY KEY (id_type)
 )WITHOUT OIDS;
 
 
@@ -67,7 +67,7 @@ CREATE TABLE public.artiste(
                                id_type       INT  NOT NULL  ,
                                CONSTRAINT artiste_PK PRIMARY KEY (id_artiste)
 
-    ,CONSTRAINT artiste_type_FK FOREIGN KEY (id_type) REFERENCES public.type(id_type)
+    ,CONSTRAINT artiste_type_FK FOREIGN KEY (id_type) REFERENCES public.art(id_type)
 )WITHOUT OIDS;
 
 
@@ -85,7 +85,7 @@ CREATE TABLE public.album(
                              CONSTRAINT album_PK PRIMARY KEY (id_album)
 
     ,CONSTRAINT album_artiste_FK FOREIGN KEY (id_artiste) REFERENCES public.artiste(id_artiste)
-    ,CONSTRAINT album_style0_FK FOREIGN KEY (id_style) REFERENCES public.style(id_style)
+    ,CONSTRAINT album_style0_FK FOREIGN KEY (id_style) REFERENCES public.style_A(id_style)
 )WITHOUT OIDS;
 
 

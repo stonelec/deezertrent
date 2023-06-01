@@ -6,7 +6,7 @@
             if (self::$db != null) {
                 return self::$db;
             }
-            require_once ("config.php");
+            require_once ("constant.php");
 
             try {
                 self::$db = new PDO('pgsql:host='.DB_SERVER.';port='.DB_PORT.';dbname='.DB_NAME, DB_USER, DB_PWD);
