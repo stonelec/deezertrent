@@ -5,10 +5,10 @@
     <title>Titre de la page</title>
     <link href="style.css" rel="stylesheet">
 
-    <!--    Bootstrap
+    <!--    Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    -->
+
 <!--    Icons google-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -44,10 +44,10 @@
             </div>
             <!-- Div avec form de recherche -->
             <div>
-                <form method="post" action="">
-                    <input type="submit" name="recherche" value="🔍">
+                <form method="post" action="#">
+                    <button type="submit" class="btn btn-light"><span class="material-symbols-outlined">search</span></button>
                     <label for="bar"></label>
-                    <input type="text" id="bar" name="bar" placeholder="Recherche">
+                    <input type="text" id="bar" name="bar" class="form-control" placeholder="Recherche">
                 </form>
             </div>
 
@@ -72,8 +72,6 @@
             <div>
                 <?php
                 require_once ('../class/Search.php');
-
-
 
                 ?>
             </div>

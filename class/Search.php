@@ -40,10 +40,33 @@
             return $list_final;
         }
 
-
+        // Get all songs of an artist from the name entered in search
         public static function search_artiste_track($name){
             $list_art = self::search_artist($name);
+            $list_final = [];
+            for($i=0; $i<count($list_art); $i++){
+                $list_final += Artiste::track_artist($list_art[$i]);
+            }
+            return $list_final;
+        }
 
+
+        public static function search_album_track($name){
+            $list_al = self::search_album($name);
+            $list_final = [];
+            for($i=0; $i<count($list_al); $i++){
+                $list_final += Album::liste_track($list_al[$i]['id_album']);
+            }
+            return $list_final;
+        }
+
+        public static function search_artiste_album($name){
+            $list_art = self::search_artist($name);
+            $list_final = [];
+            for($i=0; $i<count($list_art); $i++){
+                $list_final += Artiste::album_artist($list_art[$i]['nom_artiste']);
+            }
+            return $list_final;
         }
     }
 

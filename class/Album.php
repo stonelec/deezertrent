@@ -119,7 +119,7 @@
         public static function albums(){
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT titre_album FROM album a';
+                $sql = 'SELECT titre_album, id_album FROM album a';
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
