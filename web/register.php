@@ -53,6 +53,51 @@ ob_start(); // Démarre la mise en tampon de sortie
     </style>
 </head>
 <body>
+
+<?php
+require_once('../php/database.php');
+
+if (isset($_POST['inscription'])) {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $datenaissance = $_POST['datenaissance'];
+    $email = $_POST['email'];
+    $emailconf = $_POST['emailconf'];
+    $password = $_POST['password'];
+    $passwordconf = $_POST['passwordconf'];
+    $hashpassword = password_hash($password, PASSWORD_DEFAULT);
+    $image = '';
+    //$id = $_SESSION['user_id'];
+    $date = date('d-m-y');
+    if ($password == $passwordconf && $email == $emailconf) {
+        $db = database::connexionBD();
+        $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
+              VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);
+        /*$query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
+                VALUE(('Historique', :jour, :id),
+                        ('Liste de lecture', :jour, :id )
+                        ('Favoris', :jour, :id))";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':jour', $date);
+        $stmt->execute();*/
+        header('Location: ../index.php');
+
+    }else{
+        echo '
+        <div class="card NoBorder">
+                <div class="card-header backBlack">
+                    <p class="text-center textColor-DC3545">Mot de passe ou Email non similaire !</p>
+                </div>
+                ';
+
+    }
+
+
+}
+?>
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-5">
@@ -103,49 +148,5 @@ ob_start(); // Démarre la mise en tampon de sortie
     </div>
 </div>
 
-<?php
-require_once('../php/database.php');
-
-if (isset($_POST['inscription'])) {
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $datenaissance = $_POST['datenaissance'];
-    $email = $_POST['email'];
-    $emailconf = $_POST['emailconf'];
-    $password = $_POST['password'];
-    $passwordconf = $_POST['passwordconf'];
-    $hashpassword = password_hash($password, PASSWORD_DEFAULT);
-    $image = '';
-    //$id = $_SESSION['user_id'];
-    $date = date('d-m-y');
-    if ($password == $passwordconf && $email == $emailconf) {
-        $db = database::connexionBD();
-        $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
-              VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $db->prepare($query);
-        $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);
-        /*$query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
-                VALUE(('Historique', :jour, :id),
-                        ('Liste de lecture', :jour, :id )
-                        ('Favoris', :jour, :id))";
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':jour', $date);
-        $stmt->execute();*/
-        header('Location: ../index.php');
-
-    }else{
-        echo '
-        <div class="card NoBorder">
-                <div class="card-header backBlack">
-                    <p class="text-center textColor-DC3545">Mot de passe ou Email non similaire !</p>
-                </div>
-                ';
-
-    }
-
-
-}
-?>
 </body>
 </html>
