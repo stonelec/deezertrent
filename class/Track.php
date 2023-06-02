@@ -2,6 +2,22 @@
 require_once ('../php/database.php');
 
     class Track{
+        // Get all the information about album
+        public static function track_info(){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT * FROM track';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
         // Get the track's name
         public static function name($id){
             try {

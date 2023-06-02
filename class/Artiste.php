@@ -5,6 +5,22 @@ session_start();
 
     class Artiste {
 
+        // Get all the information about artist
+        public static function artist_info(){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT * FROM artiste';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
         // Get the artist's name
         public static function nom($id_artiste)
         {

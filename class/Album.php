@@ -2,6 +2,22 @@
     require_once ('../php/database.php');
 
     class Album{
+        // Get all the information about album
+        public static function album_info(){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT * FROM album';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
         // Get the album's name
         public static function name($id){
             try {

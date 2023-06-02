@@ -2,6 +2,23 @@
 require_once ('../php/database.php');
 
 class Playlist{
+
+    // Get all the information about album
+    public static function playlist_info(){
+        try {
+            $conn = Database::connexionBD();
+            $sql = 'SELECT * FROM playlist';
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+
+        } catch (PDOException $exception) {
+            error_log('Connection error: ' . $exception->getMessage());
+            return false;
+        }
+    }
+
     // Get the playlist's name
     public static function name($id){
         try {
