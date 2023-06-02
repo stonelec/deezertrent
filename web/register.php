@@ -72,7 +72,7 @@ if (isset($_POST['inscription'])) {
     if ($password == $passwordconf && $email == $emailconf) {
         $db = database::connexionBD();
 
-        if(!$db){
+        if($db){
             echo 'connexion reussie';
             $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
               VALUES (:nom, :prenom, :daten, :mail, :mdp, :img )";
