@@ -114,7 +114,7 @@ if (isset($_POST['inscription'])) {
     $passwordconf = $_POST['passwordconf'];
     $hashpassword = password_hash($password, PASSWORD_DEFAULT);
     $image = '';
-    $id = $_SESSION['user_id'];
+    //$id = $_SESSION['user_id'];
     $date = date('d-m-y');
     if ($password == $passwordconf && $email == $emailconf) {
         $db = database::connexionBD();
@@ -122,14 +122,14 @@ if (isset($_POST['inscription'])) {
               VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($query);
         $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);
-        $query = "INSERT INTO playlist (nom_playlist, date_creation, id_user) 
+        /*$query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
                 VALUE(('Historique', :jour, :id),
                         ('Liste de lecture', :jour, :id )
                         ('Favoris', :jour, :id))";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':jour', $date);
-        $stmt->execute();
+        $stmt->execute();*/
         header('Location: ../index.php');
 
     }else{
