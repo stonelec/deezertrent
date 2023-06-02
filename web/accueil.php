@@ -122,7 +122,7 @@
                     </div>
                 </div>
                 <!--    Contenu----------------------------------------------------------------------------------->
-                <div id="contenu" class="contenu d-flex flex-column">
+                <div id="content" class="contenu d-flex flex-column">
 
 <!--                    <div id="search_result">-->
 <!--                         Resultats de la recherche -->
@@ -136,7 +136,8 @@
                     <?php
                     require_once ('../class/Search.php');
                     $test = Search::all_search('n');
-                    //var_dump($test);
+                    echo '<br>';
+                    var_dump($test);
                     ?>
                     <ul class="list-infos list-group justify-content-center">
 
