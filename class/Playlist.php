@@ -3,13 +3,14 @@ require_once ('../php/database.php');
 
 class Playlist{
 
-    // Get all the information about album
+    // Get all the information about user's playlist
 
-    public static function playlist_info(){
+    public static function playlist_info($id){
         try {
             $conn = Database::connexionBD();
-            $sql = 'SELECT * FROM playlist';
+            $sql = 'SELECT * FROM playlist WHERE id_user = :id';
             $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;

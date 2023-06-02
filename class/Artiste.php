@@ -84,7 +84,7 @@ session_start();
             try {
                 $list_final = [];
                 $conn = Database::connexionBD();
-                $sql = 'SELECT t.titre_track ar.nom_artiste FROM album a
+                $sql = 'SELECT t.titre_track ar.nom_artiste, t.id_track FROM album a
                         JOIN track t ON t.id_album = a.id_album
                         JOIN artiste ar ON ar.id_artiste = a.id_artiste';
                 $stmt = $conn->prepare($sql);
@@ -96,6 +96,29 @@ session_start();
                         $list_final += $elt['nom_artiste'];
                     }
                 }
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+            return false;
+        }
+
+
+        // Get all the album of an artist
+        public static function album_artist($id)
+        {
+            try {
+                $list_final = [];
+                $conn = Database::connexionBD();
+                $sql = 'SELECT * FROM album a
+                        JOIN artiste ar ON ar.id_artiste = a.id_artiste
+                        WHERE ar.id_artiste = :id';
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
             } catch (PDOException $exception) {
                 error_log('Connection error: ' . $exception->getMessage());
