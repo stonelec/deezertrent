@@ -57,7 +57,7 @@ ob_start(); // Démarre la mise en tampon de sortie
         <div class="col-md-5">
             <div class="card NoBorder">
                 <div class="card-header backBlack">
-                    <img class="d-block mx-auto logoSize" src="logo.png">
+                    <img class="d-block mx-auto logoSize" src="web/images/logo.png">
                     <h3 class="text-center">Bienvenue sur <br>Deezertrent</h3>
                     <p class="text-center">Content de te revoir !</p>
                     <p class="text-center">Veuillez entrer vos coordonnées.</p>
