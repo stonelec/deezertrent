@@ -146,6 +146,10 @@
                                 <div>
                                     <h7 class="infos-left-part overflow" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
                                     <h7 class="infos-left-part overflow">Imagines Dragons</h7>
+                    <div id="search_result">
+                        <!-- Resultats de la recherche -->
+
+
 
                                 </div>
                             </div>

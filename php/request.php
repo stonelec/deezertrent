@@ -3,12 +3,12 @@
     require_once('database.php');
 
 
-// Database connection.
-$db = dbConnect();
-if (!$db) {
-    header('HTTP/1.1 503 Service Unavailable');
-    exit;
-}
+    // Database connection.
+    $db = Database::connexionBD();
+    if (!$db) {
+        header('HTTP/1.1 503 Service Unavailable');
+        exit;
+    }
 
     $requestMethod = $_SERVER['REQUEST_METHOD'];
     $request = substr($_SERVER['PATH_INFO'], 1);
@@ -19,6 +19,10 @@ if (!$db) {
         $data = false;
         $id = array_shift($request);
 
+        if(isset($_GET['bar'])){
+
+            $data = Search::all_search($_GET['bar']);
+        }
 
 
         // Send data to the client.

@@ -71,6 +71,17 @@
             return $list_final;
         }
 
+        public static function all_search($name){
+            $list = self::search_track($name);
+            $list += self::search_album_track($name);
+            $list += self::search_artiste_track($name);
+            $list += self::search_album($name);
+            $list += self::search_artiste_album($name);
+            $list += self::search_artist($name);
+
+            return $list;
+        }
+
     }
 
     // Function to show results
