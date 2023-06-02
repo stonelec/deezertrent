@@ -4,6 +4,7 @@ require_once ('../php/database.php');
 session_start();
 
 class User{
+    // Get the user's data
 
     // Get all the information about user
     public static function user_info(){
@@ -20,8 +21,6 @@ class User{
             return false;
         }
     }
-
-    // Get the user's data
 
     // Get the user's name
     public static function name($id_user) {

@@ -6,6 +6,7 @@ session_start();
     class Artiste {
 
         // Get all the information about artist
+
         public static function artist_info(){
             try {
                 $conn = Database::connexionBD();

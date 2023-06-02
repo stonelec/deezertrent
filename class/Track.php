@@ -3,6 +3,7 @@ require_once ('../php/database.php');
 
     class Track{
         // Get all the information about album
+
         public static function track_info(){
             try {
                 $conn = Database::connexionBD();

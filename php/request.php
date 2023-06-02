@@ -30,6 +30,7 @@
         echo json_encode($data);
         exit;
 
+
     }else{
         header('HTTP/1.1 400 Bad request');
         exit;

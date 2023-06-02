@@ -4,6 +4,7 @@ require_once ('../php/database.php');
 class Playlist{
 
     // Get all the information about album
+
     public static function playlist_info(){
         try {
             $conn = Database::connexionBD();

@@ -3,6 +3,7 @@
 
     class Album{
         // Get all the information about album
+
         public static function album_info(){
             try {
                 $conn = Database::connexionBD();
