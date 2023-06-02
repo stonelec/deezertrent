@@ -55,10 +55,11 @@ function $_GET(param) {
 }
 
 function display_track(results){
+    console.log(results);
+    $('#content').append('LE TEST');
     for (let track of results){
         $('#search_result').append('un morceau de musique'+ track.titre_track);
     }
-
 }
 
 function display_artist(results){

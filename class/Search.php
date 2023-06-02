@@ -9,7 +9,7 @@
             $list_al = Album::album_info();
             $list_final = [];
             foreach ($list_al as $elt){
-                if(substr_compare(strtolower($name), strtolower($elt['titre_album']), 0, count($name))){
+                if(substr_compare(strtolower($name), strtolower($elt['titre_album']), 0, strlen($name))){
                     $list_final += $elt;
                 }
             }
@@ -21,7 +21,7 @@
             $list_art = Artiste::artist_info();
             $list_final = [];
             foreach ($list_art as $elt){
-                if(substr_compare(strtolower($name), strtolower($elt['nom_artiste']), 0, count($name))){
+                if(substr_compare(strtolower($name), strtolower($elt['nom_artiste']), 0, strlen($name))){
                     $list_final += $elt['nom_artiste'];
                 }
             }
@@ -33,7 +33,7 @@
             $list_track = Track::track_info();
             $list_final = [];
             foreach ($list_track as $elt){
-                if(substr_compare(strtolower($name), strtolower($elt['titre_track']), 0, count($name))){
+                if(substr_compare(strtolower($name), strtolower($elt['titre_track']), 0, strlen($name))){
                     $list_final += $elt;
                 }
             }
@@ -56,7 +56,8 @@
             $list_final = [];
 
             foreach ($list_al as $elt) {
-                $list_final += Album::liste_track($elt['id_album']);
+                var_dump($elt);
+                $list_final += Album::liste_track(intval($elt['id_album']));
             }
             return $list_final;
         }
@@ -64,7 +65,7 @@
         public static function search_artiste_album($name){
             $list_art = self::search_artist($name);
             $list_final = [];
-
+            var_dump($list_art);
             foreach ($list_art as $elt) {
                 $list_final += Artiste::album_artist($elt['id_artiste']);
             }
@@ -72,7 +73,8 @@
         }
 
         public static function all_search($name){
-            $list = self::search_track($name);
+            $list = [];
+            $list += self::search_track($name);
             $list += self::search_album_track($name);
             $list += self::search_artiste_track($name);
             $list += self::search_album($name);
