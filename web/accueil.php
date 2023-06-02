@@ -135,7 +135,7 @@
 <!--                    </div>-->
                     <ul class="list-infos list-group justify-content-center">
 
-                        <li class="infos d-flex justify-content-between align-items-center" click-stop-propagation onclick=" console.log('track');">
+                        <li class="infos d-flex justify-content-between align-items-center"  onclick=" console.log('track');">
                             <div class="infos-left-part d-flex align-items-center">
                                 <div>
                                     <img class="music-image infos-left-part " src="images/imaginedragons_nightvisions.png"  alt=".....">
@@ -143,14 +143,9 @@
                                 <div>
                                     <i class="bi bi-play-fill button button-track infos-left-part infos-left-play" onclick="console.log('play');"></i>
                                 </div>
-                                <div>
+                                <div class="d-flex flex-row">
                                     <h7 class="infos-left-part overflow" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
                                     <h7 class="infos-left-part overflow">Imagines Dragons</h7>
-                    <div id="search_result">
-                        <!-- Resultats de la recherche -->
-
-
-
                                 </div>
                             </div>
                             <div class="infos-right d-flex flex-row align-items-center">

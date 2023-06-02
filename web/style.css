@@ -156,7 +156,7 @@ html .menu .logo-image{
 .list-infos  .infos{
     background-color: black;
     border-radius: 100px;
-    padding-right: 2%;
+    padding-right: 20px;
     margin-bottom: 5px;
     height: 50px;
     cursor: pointer;
