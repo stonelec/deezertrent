@@ -133,12 +133,7 @@
 <!--                            <button id="artiste_search" class="btn btn-info">Artiste</button>-->
 <!--                        </div>-->
 <!--                    </div>-->
-                    <?php
-                    require_once ('../class/Search.php');
-                    $test = Search::all_search('n');
-                    echo '<br>';
-                    var_dump($test);
-                    ?>
+
                     <ul class="list-infos list-group justify-content-center">
 
                         <li class="infos d-flex justify-content-between align-items-center"  onclick=" console.log('track');">

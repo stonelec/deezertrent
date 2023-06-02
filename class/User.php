@@ -7,11 +7,13 @@ class User{
     // Get the user's data
 
     // Get all the information about user
-    public static function user_info(){
+    public static function user_info($id){
         try {
             $conn = Database::connexionBD();
-            $sql = 'SELECT * FROM utilisateur';
+            $sql = 'SELECT * FROM utilisateur
+                    WHERE id_user = :id';
             $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
