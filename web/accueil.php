@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <title>deezertrent</title>
     <link href="style.css" rel="stylesheet">
-    <script src="acceuil.js"></script>
-
 
     <!--    Bootstrap    -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -16,7 +14,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 </head>
-<!-- Simple lecture audio -->
 <!-- Simple lecture audio -->
 <audio src="https://cdns-preview-b.dzcdn.net/stream/c-b53be55456ff326e9c2a7bf1d0abe601-6.mp3" autoplay muted></audio>
 
@@ -165,12 +162,7 @@
             </div>
         </div>
     </div>
-
-
 </div>
-
-
-
-</html>
 </body>
+</html>
 <script src="accueil.js"></script>
