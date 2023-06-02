@@ -4,17 +4,23 @@ require_once ('../php/database.php');
 session_start();
 
 class User{
+    // Get the user's data
 
-    // Get the user id
-    public static function id(){
-        if (isset($_SESSION['id_user'])) {
-            return $_SESSION['id_user'];
-        }else{
+    // Get all the information about user
+    public static function user_info(){
+        try {
+            $conn = Database::connexionBD();
+            $sql = 'SELECT * FROM utilisateur';
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+
+        } catch (PDOException $exception) {
+            error_log('Connection error: ' . $exception->getMessage());
             return false;
         }
     }
-
-    // Get the user's data
 
     // Get the user's name
     public static function name($id_user) {
