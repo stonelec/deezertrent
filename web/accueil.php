@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header('Location: ../index.php');
+    echo 'test';
+}
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -122,7 +129,7 @@
                     </div>
                 </div>
                 <!--    Contenu----------------------------------------------------------------------------------->
-                <div id="content" class="contenu d-flex flex-column">
+                <div id="content" class="content d-flex flex-column">
 
 <!--                    <div id="search_result">-->
 <!--                         Resultats de la recherche -->
