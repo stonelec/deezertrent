@@ -76,6 +76,7 @@ if (isset($_POST['inscription'])) {
             echo 'connexion reussie';
             $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
               VALUES (:nom, :prenom, :daten, :mail, :mdp, :img )";
+            var_dump($db);
             $stmt = $db->prepare($query);
             $stmt->bindParam(':nom', $nom);
             echo 'nom';
