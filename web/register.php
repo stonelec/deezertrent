@@ -58,7 +58,9 @@ ob_start(); // Démarre la mise en tampon de sortie
         <div class="col-md-5">
             <div class="card NoBorder">
                 <div class="card-header backBlack">
-                    <img class="d-block mx-auto logoSize" src="images/logo.png" alt="Logo">
+                    <a href="../index.php">
+                        <img class="d-block mx-auto logoSize" src="images/logo.png" alt="Logo">
+                    </a>
                     <h3 class="text-center">Bienvenue parmi nous</h3>
                     <p class="text-center">Content de te revoir !</p>
                     <p class="text-center">Veuillez entrer vos coordonnées.</p>
@@ -114,7 +116,6 @@ if (isset($_POST['inscription'])) {
     $passwordconf = $_POST['passwordconf'];
     $hashpassword = password_hash($password, PASSWORD_DEFAULT);
     $image = '';
-    $id = $_SESSION['user_id'];
     $date = date('d-m-y');
     if ($password == $passwordconf && $email == $emailconf) {
         $db = database::connexionBD();
@@ -122,7 +123,7 @@ if (isset($_POST['inscription'])) {
               VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($query);
         $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);
-        $query = "INSERT INTO playlist (nom_playlist, date_creation, id_user) 
+        $query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
                 VALUE(('Historique', :jour, :id),
                         ('Liste de lecture', :jour, :id )
                         ('Favoris', :jour, :id))";
