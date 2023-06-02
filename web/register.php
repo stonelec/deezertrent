@@ -75,10 +75,22 @@ if (isset($_POST['inscription'])) {
         if(!$db){
             echo 'connexion reussie';
             $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
-              VALUES (?, ?, ?, ?, ?, ?)";
+              VALUES (:nom, :prenom, :daten, :mail, :mdp, :img )";
             $stmt = $db->prepare($query);
+            $stmt->bindParam(':nom', $nom);
+            echo 'nom';
+            $stmt->bindParam('prenom', $prenom);
+            echo 'prenom';
+            $stmt->bindParam(':daten', $datenaissance);
+            echo 'date';
+            $stmt->bindParam(':mail', $email);
+            echo 'mail';
+            $stmt->bindParam(':mdp', $hashpassword);
+            echo 'pwd';
+            $stmt->bindParam(':img',$image );
             echo'prepare';
-            $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);
+            $stmt->execute();
+            echo 'exec';
         }
 
         /*$query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
