@@ -7,11 +7,28 @@ require_once ('../php/database.php');
 
         // Get all the information about artist
 
-        public static function artist_info(){
+        public static function artists_info(){
             try {
                 $conn = Database::connexionBD();
                 $sql = 'SELECT * FROM artiste';
                 $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
+        // Get all the information about one artist
+        public static function artist_info($id){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT * FROM artiste WHERE id_artiste = :id';
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':id', $id);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $result;

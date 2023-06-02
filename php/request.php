@@ -23,9 +23,7 @@
                 echo json_encode(Playlist::playlist_info($_SESSION['user_id']));
             } elseif ($requestResource == "profil") {
                 echo json_encode(User::user_info($_SESSION['user_id']));
-            }
-
-            elseif($requestResource == 'search'){
+            } elseif($requestResource == 'search'){
                 $data = false;
                 $id = array_shift($request);
 
@@ -33,7 +31,16 @@
                     $data = Search::all_search($_GET['bar']);
                     echo json_encode($data);
                 //}
+
+                // Test pour les fiches infos
+            }elseif($requestMethod == "artiste"){
+                echo json_encode(Artiste::artist_info($_GET['id_artiste']));
+            }elseif ($requestMethod == "track"){
+                echo json_encode(Track::track_info($_GET['id_track'], $_GET['id_album']));
+            }elseif ($requestMethod == "album"){
+                echo json_encode(Album::album_info($_GET['id_album']));
             }
+
             else {
                 http_response_code(400); /* Bad request*/
                 exit();

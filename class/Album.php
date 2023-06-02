@@ -19,6 +19,23 @@
             }
         }
 
+        // Get all the information about album
+
+        public static function albums_info($id){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT * FROM album WHERE id_album';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
         // Get the album's name
         public static function name($id){
             try {

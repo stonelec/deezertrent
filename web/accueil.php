@@ -113,9 +113,10 @@ if(!isset($_SESSION['user_id'])){
                     </div>
                     <!-- Div avec form de recherche -->
                     <div>
-                        <button id="search_button"><span class="material-symbols-outlined" onclick="console.log()">search</span></button>
+                       <button id="search_button"><span class="material-symbols-outlined">search</span></button>
                         <label for="bar"></label>
                         <input type="text" id="bar" name="bar" placeholder="Recherche">
+
                     </div>
 
                     <div>
