@@ -101,7 +101,7 @@
             <!-- Div avec form de recherche -->
             <div>
                 <form method="post" action="">
-                    <input type="submit" name="recherche" value="🔍">
+                   <button type="submit"><span class="material-symbols-outlined">search</span></button>
                     <label for="bar"></label>
                     <input type="text" id="bar" name="bar" placeholder="Recherche">
                 </form>
