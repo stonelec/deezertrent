@@ -92,35 +92,11 @@ session_start();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 foreach ($result as $elt) {
-                    if (substr_compare(strtolower($name), strtolower($elt['nom_artiste']), 0, count($name))) {
+                    if (strtolower($elt['nom_artiste']) == strtolower($name)) {
                         $list_final += $elt['nom_artiste'];
                     }
                 }
 
-            } catch (PDOException $exception) {
-                error_log('Connection error: ' . $exception->getMessage());
-                return false;
-            }
-            return false;
-        }
-
-        // Get all the albums af an artist
-        public static function album_artist($name)
-        {
-            try {
-                $list_final = [];
-                $conn = Database::connexionBD();
-                $sql = 'SELECT  a.titre_album, ar.nom_artiste FROM album a
-                        JOIN artiste ar ON ar.id_artiste = a.id_artiste';
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach ($result as $elt) {
-                    if (substr_compare(strtolower($name), strtolower($elt['nom_artiste']), 0, count($name))) {
-                        $list_final += $elt['nom_artiste'];
-                    }
-                }
             } catch (PDOException $exception) {
                 error_log('Connection error: ' . $exception->getMessage());
                 return false;
