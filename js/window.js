@@ -8,7 +8,8 @@ let button = '<div class="d-flex flex-row">\n' +
 
 $('#search_button').click(()=>
     {
-        ajaxRequest('GET', '../php/request.php/search/', display_all);
+        let search = $('#bar').value;
+        ajaxRequest('GET', '../php/request.php/search/?bar='+ search, display_all);
     }
 );
 
@@ -47,7 +48,6 @@ function $_GET(param) {
             vars[key] = value !== undefined ? value : '';
         }
     );
-
     if ( param ) {
         return vars[param] ? vars[param] : null;
     }

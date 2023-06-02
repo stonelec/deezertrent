@@ -1,6 +1,8 @@
 <?php
 
     require_once('database.php');
+    require_once ('../class/Search.php');
+    require_once ('../class/Playlist.php');
 
 
     // Database connection.
@@ -27,10 +29,10 @@
                 $data = false;
                 $id = array_shift($request);
 
-                if(isset($_GET['bar'])){
+                //if(isset($_GET['bar'])){
                     $data = Search::all_search($_GET['bar']);
                     echo json_encode($data);
-                }
+                //}
             }
             else {
                 http_response_code(400); /* Bad request*/
