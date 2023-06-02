@@ -81,7 +81,7 @@ html .menu .logo-image{
 .playlist-flow .playlist{
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 165px;
+    height: 8rem;
 
 }
 .playlist-flow .playlist .playlist-link{
