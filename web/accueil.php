@@ -124,12 +124,44 @@
                 <!--    Contenu----------------------------------------------------------------------------------->
                 <div class="contenu d-flex flex-column">
 
-                    <div id="search_result">
-                        <!-- Resultats de la recherche -->
+<!--                    <div id="search_result">-->
+<!--                         Resultats de la recherche -->
+<!--                        <div class="d-flex flex-row">-->
+<!--                            <button id="all_search" class="btn btn-info">Tous</button>-->
+<!--                            <button id="track_search" class="btn btn-info">Morceaux</button>-->
+<!--                            <button id="album_search" class="btn btn-info">Albums</button>-->
+<!--                            <button id="artiste_search" class="btn btn-info">Artiste</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <ul class="list-infos list-group justify-content-center">
 
-
-
-                    </div>
+                        <li class="infos d-flex justify-content-between align-items-center"  onclick=" console.log('track');">
+                            <div class="infos-left-part d-flex align-items-center">
+                                <div>
+                                    <img class="music-image infos-left-part " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                                </div>
+                                <div>
+                                    <i class="bi bi-play-fill button button-track infos-left-part infos-left-play" onclick="console.log('play');event.stopPropagation();"></i>
+                                </div>
+                                <div class="d-flex flex-row align-items-center">
+                                    <div class="overflow">
+                                        <h7 class="infos-left-part" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
+                                    </div>
+                                    <div class="overflow">
+                                        <h7 class="infos-left-part">Imagines Dragons</h7>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="infos-right d-flex flex-row align-items-center">
+                                <div class="overflow">
+                                    <h7 class="infos-right-date infos-right-part ">28 mai 2023</h7>
+                                </div>
+                                <i class="bi bi-trash button button-track infos-right-part"></i>
+                                <i class="bi bi-plus-lg button button-track infos-right-part"></i>
+                                <i class="bi bi-heart button button-track infos-right-part"></i>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <!--    Sound----------------------------------------------------------------------------------->
                 <div class="sound d-flex flex-row">
