@@ -48,8 +48,8 @@ ob_start(); // Démarre la mise en tampon de sortie
 
         .textColor-DC3545 {
             color: #DC3545;
-
         }
+
     </style>
 </head>
 <body>

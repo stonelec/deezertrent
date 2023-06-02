@@ -18,9 +18,7 @@ ob_start(); // Démarre la mise en tampon de sortie
         .NoBorder{
             border:none;
         }
-        .cardSize{
-            width: 70%;
-        }
+
         body{
             background-color:#121212;
         }
@@ -36,6 +34,19 @@ ob_start(); // Démarre la mise en tampon de sortie
             background-color: white;
             transition: 0.4s ease-in-out;
             transform: scale(1.01);
+        }
+
+        .textColor-DC3545 {
+            color: #DC3545;
+
+        }
+        .textColor-DC3545:hover {
+            color: white;
+
+        }
+
+        .underline{
+            text-decoration: underline;
         }
 
     </style>
@@ -65,9 +76,14 @@ ob_start(); // Démarre la mise en tampon de sortie
                     </form>
                 </div>
             </div>
+            <div class="card NoBorder">
+                <div class="card-header backBlack">
+                    <p class="text-center textColor-DC3545"><a class="textColor-DC3545 underline" href="web/register.php">Creer un compte !</a></p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
 <?php
 // login
 session_start();
@@ -84,7 +100,9 @@ if (isset($_POST['submit'])) {
     if (count($result) == 1) {
         if (password_verify($password, $result[0]['mot_de_passe'])) {
             $_SESSION['user_id'] = $result[0]['id_user'];
-            echo "<h1 style='font-size: 100px;color: white'>".$_SESSION['user_id']."</h1>";
+            //echo "<h1 style='font-size: 100px;color: white'>".$_SESSION['user_id']."</h1>";
+            header("Location: web/acceuil.php");
+            exit;
         } else {
             echo "Mot de passe incorrect.";
         }

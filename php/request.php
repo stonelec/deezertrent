@@ -2,12 +2,13 @@
 
     require_once('database.php');
 
-    $db = database::connexionBD();
-    if (!$db)
-    {
-        header('HTTP/1.1 503 Service Unavailable');
-        exit;
-    }
+
+// Database connection.
+$db = dbConnect();
+if (!$db) {
+    header('HTTP/1.1 503 Service Unavailable');
+    exit;
+}
 
     $requestMethod = $_SERVER['REQUEST_METHOD'];
     $request = substr($_SERVER['PATH_INFO'], 1);
@@ -75,23 +76,9 @@
 
         echo json_encode($data);
         exit;
-    }
-    if($requestResource == 'playlists'){
-        $data = false;
-        $id = array_shift($request);
 
 
-
-        // Send data to the client.
-        header('Content-Type: application/json; charset=utf-8');
-        header('Cache-control: no-store, no-cache, must-revalidate');
-        header('Pragma: no-cache');
-        header('HTTP/1.1 201 Created');
-
-        echo json_encode($data);
-        exit;
-    }
-    else{
+    }else{
         header('HTTP/1.1 400 Bad request');
         exit;
     }

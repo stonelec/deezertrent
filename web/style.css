@@ -107,7 +107,7 @@ html .menu .logo-image{
 .menu .current-music .current-music-infos{
     margin-top: 10px;
 }
-    /*partie droite ----------------------------------------------*/
+/*partie droite ----------------------------------------------*/
 
 .right{
     /*height: 97%;*/
@@ -174,9 +174,9 @@ html .menu .logo-image{
     color: white;
 }
 .sound .edit .play .play-icon-third-click{
-     font-size : 2rem;
+    font-size : 2rem;
     color: #DC3545;
- }
+}
 
 .sound .edit .progres{
     /*background-color: green;*/
