@@ -144,7 +144,47 @@ html .menu .logo-image{
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.list-infos{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.list-infos .infos:hover{
+    background-color: white;
+    color: black;
+}
+.list-infos  .infos{
+    background-color: black;
+    border-radius: 100px;
+    padding-right: 2%;
+    margin-bottom: 5px;
+    height: 50px;
+    cursor: pointer;
 
+}
+.list-infos  .infos .infos-left-part{
+    margin-right: 20px;
+}
+.list-infos .overflow{
+    overflow: hidden;
+    height: 50px;
+}
+.list-infos  .infos .infos-left-play{
+     font-size: 30px;
+ }
+.list-infos  .infos .infos-left-part .music-image{
+    border-radius: 100px;
+    height: 50px;
+}
+.list-infos  .infos .infos-right .button-track{
+    font-size: 20px;
+}
+.list-infos .infos .infos-right .infos-right-part{
+    margin-left: 10px;
+}
+.list-infos  .infos .infos-right .infos-right-date{
+    color: #6c757d;
+}
 /*responsive ----------------------------------------------*/
 .sound{
     /*background-color: orange;*/
