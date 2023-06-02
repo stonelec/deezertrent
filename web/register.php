@@ -79,21 +79,21 @@ ob_start(); // Démarre la mise en tampon de sortie
                         </div>
                         <div class="form-group">
                             <label for="email">Email <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                         </div>
                         <div class="form-group">
                             <label for="emailconf">Confirmation de l'email <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>
-                            <input type="email" class="form-control" id="emailconf" name="emailconf" placeholder="Entrez à nouveau votre email" required>
+                            <input type="email" class="form-control" id="emailconf" name="emailconf" placeholder="Entrez à nouveau votre email" required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                         </div>
                         <div class="form-group">
                             <label for="password">Mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                         </div>
                         <div class="form-group">
                             <label for="passwordconf">Confirmation du mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>
-                            <input type="password" class="form-control" id="passwordconf" name="passwordconf" placeholder="Entrez à nouveau votre mot de passe" required>
+                            <input type="password" class="form-control" id="passwordconf" name="passwordconf" placeholder="Entrez à nouveau votre mot de passe" required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                         </div>
-                        <input type="submit" class="btn btn-primary btn-block color-DC3545" name="inscription" value="Se connecter">
+                        <input type="submit" class="btn btn-primary btn-block color-DC3545" name="inscription" value="Créer un compte">
                     </form>
                 </div>
             </div>
