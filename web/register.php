@@ -117,11 +117,11 @@ if (isset($_POST['inscription'])) {
     //$id = $_SESSION['user_id'];
     $date = date('d-m-y');
     if ($password == $passwordconf && $email == $emailconf) {
-        $db = database::connexionBD();
-        $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user) 
+        /*$db = database::connexionBD();
+        $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
               VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($query);
-        $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);
+        $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);*/
         /*$query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
                 VALUE(('Historique', :jour, :id),
                         ('Liste de lecture', :jour, :id )
