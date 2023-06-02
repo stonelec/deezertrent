@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>deezertrent</title>
     <link href="style.css" rel="stylesheet">
+    <script src="acceuil.js"></script>
 
 
     <!--    Bootstrap    -->
@@ -97,6 +98,15 @@
             <div>
                 <a class="nom-page" href="../test.php"><h2>Accueil</h2></a>
             </div>
+            <!-- Div avec form de recherche -->
+            <div>
+                <form method="post" action="">
+                    <input type="submit" name="recherche" value="🔍">
+                    <label for="bar"></label>
+                    <input type="text" id="bar" name="bar" placeholder="Recherche">
+                </form>
+            </div>
+
             <div>
                 <a class="profil d-flex flex-row" href="../test.php"  style="display:block;width:100%;height:100%;">
                     <h3>Profil</h3>
@@ -107,7 +117,22 @@
         </div>
         <!--    Contenu----------------------------------------------------------------------------------->
         <div class="contenu d-flex flex-column">
+            <!-- Resultats de la recherche -->
+            <!-- <select name="type" id="type_choice">
+                        <option value="type"> Type</option>
+                        <option value="titre"> Titre</option>
+                        <option value="artiste"> Artiste</option>
+                        <option value="album"> Album</option>
+                    </select>
+                    -->
+            <div>
+                <?php
+                require_once ('../class/Search.php');
 
+
+
+                ?>
+            </div>
         </div>
         <!--    Sound----------------------------------------------------------------------------------->
         <div class="sound d-flex flex-row">
@@ -140,6 +165,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 
