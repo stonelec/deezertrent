@@ -20,11 +20,13 @@
         public static function search_artist($name){
             $list_art = Artiste::artist_info();
             $list_final = [];
+            var_dump($list_art);
             foreach ($list_art as $elt){
                 if(substr_compare(strtolower($name), strtolower($elt['nom_artiste']), 0, strlen($name))){
-                    $list_final += $elt['nom_artiste'];
+                    $list_final += $elt;
                 }
             }
+            var_dump($list_final);
             return $list_final;
         }
 
@@ -40,7 +42,7 @@
             return $list_final;
         }
 
-
+        /*
         public static function search_artiste_track($name){
             $list_art = self::search_artist($name);
             $list_final = [];
@@ -70,15 +72,15 @@
                 $list_final += Artiste::album_artist($elt['id_artiste']);
             }
             return $list_final;
-        }
+        }*/
 
         public static function all_search($name){
             $list = [];
-            $list += self::search_track($name);
-            $list += self::search_album_track($name);
-            $list += self::search_artiste_track($name);
-            $list += self::search_album($name);
-            $list += self::search_artiste_album($name);
+            //$list += self::search_track($name);
+            //$list += self::search_album_track($name);
+            //$list += self::search_artiste_track($name);
+            //$list += self::search_album($name);
+            //$list += self::search_artiste_album($name);
             $list += self::search_artist($name);
 
             return $list;

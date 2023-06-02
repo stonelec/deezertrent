@@ -122,7 +122,7 @@
                     </div>
                 </div>
                 <!--    Contenu----------------------------------------------------------------------------------->
-                <div class="contenu d-flex flex-column">
+                <div id="contenu" class="contenu d-flex flex-column">
 
 <!--                    <div id="search_result">-->
 <!--                         Resultats de la recherche -->
@@ -133,6 +133,11 @@
 <!--                            <button id="artiste_search" class="btn btn-info">Artiste</button>-->
 <!--                        </div>-->
 <!--                    </div>-->
+                    <?php
+                    require_once ('../class/Search.php');
+                    $test = Search::all_search('n');
+                    //var_dump($test);
+                    ?>
                     <ul class="list-infos list-group justify-content-center">
 
                         <li class="infos d-flex justify-content-between align-items-center"  onclick=" console.log('track');">
@@ -194,7 +199,6 @@
                     </div>
                 </div>
             </div>
-
 
         </div>
 

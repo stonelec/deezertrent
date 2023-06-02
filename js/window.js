@@ -8,31 +8,31 @@ let button = '<div class="d-flex flex-row">\n' +
 
 $('#search_button').click(()=>
     {
-        ajaxRequest('GET', '../php/request.php/search', display_all);
+        ajaxRequest('GET', '../php/request.php/search/', display_all);
     }
 );
 
 $('#all_search').click(() =>
     {
-        ajaxRequest('GET', '../php/request.php/search', display_all);
+        ajaxRequest('GET', '../php/request.php/search/', display_all);
     }
 );
 
 $('#track_search').click(() =>
     {
-        ajaxRequest('GET', '../php/request.php/search/track', display_track);
+        ajaxRequest('GET', '../php/request.php/search/track/', display_track);
     }
 );
 
 $('#album_search').click(() =>
     {
-        ajaxRequest('GET', '../php/request.php/search/album', display_album);
+        ajaxRequest('GET', '../php/request.php/search/album/', display_album);
     }
 );
 
 $('#artiste_search').click(() =>
     {
-        ajaxRequest('GET', '../php/request.php/search/artist', display_artist);
+        ajaxRequest('GET', '../php/request.php/search/artist/', display_artist);
     }
 );
 
