@@ -126,12 +126,7 @@
 
                     <div id="search_result">
                         <!-- Resultats de la recherche -->
-                        <div class="d-flex flex-row">
-                            <button id="all_search" class="btn btn-info">Tous</button>
-                            <button id="track_search" class="btn btn-info">Morceaux</button>
-                            <button id="album_search" class="btn btn-info">Albums</button>
-                            <button id="artiste_search" class="btn btn-info">Artiste</button>
-                        </div>
+
 
 
                     </div>
