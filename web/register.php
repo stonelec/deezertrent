@@ -71,12 +71,16 @@ if (isset($_POST['inscription'])) {
     $date = date('d-m-y');
     if ($password == $passwordconf && $email == $emailconf) {
         $db = database::connexionBD();
-        echo 'connexion reussie';
-        $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
+
+        if(!$db){
+            echo 'connexion reussie';
+            $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
               VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $db->prepare($query);
-        echo'prepare';
-        $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);
+            $stmt = $db->prepare($query);
+            echo'prepare';
+            $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);
+        }
+
         /*$query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
                 VALUE(('Historique', :jour, :id),
                         ('Liste de lecture', :jour, :id )
