@@ -167,7 +167,8 @@ html .menu .logo-image{
 }
 .list-infos .overflow{
     overflow: hidden;
-    height: 50px;
+    height: 25px;
+    align-content: center;
 }
 .list-infos  .infos .infos-left-play{
      font-size: 30px;
@@ -175,6 +176,7 @@ html .menu .logo-image{
 .list-infos  .infos .infos-left-part .music-image{
     border-radius: 100px;
     height: 50px;
+    vertical-align: middle;
 }
 .list-infos  .infos .infos-right .button-track{
     font-size: 20px;

@@ -141,15 +141,21 @@
                                     <img class="music-image infos-left-part " src="images/imaginedragons_nightvisions.png"  alt=".....">
                                 </div>
                                 <div>
-                                    <i class="bi bi-play-fill button button-track infos-left-part infos-left-play" onclick="console.log('play');"></i>
+                                    <i class="bi bi-play-fill button button-track infos-left-part infos-left-play" onclick="console.log('play');event.stopPropagation();"></i>
                                 </div>
-                                <div class="d-flex flex-row">
-                                    <h7 class="infos-left-part overflow" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
-                                    <h7 class="infos-left-part overflow">Imagines Dragons</h7>
+                                <div class="d-flex flex-row align-items-center">
+                                    <div class="overflow">
+                                        <h7 class="infos-left-part" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
+                                    </div>
+                                    <div class="overflow">
+                                        <h7 class="infos-left-part">Imagines Dragons</h7>
+                                    </div>
                                 </div>
                             </div>
                             <div class="infos-right d-flex flex-row align-items-center">
-                                <h7 class="infos-right-date infos-right-part  overflow">28 mai 2023</h7>
+                                <div class="overflow">
+                                    <h7 class="infos-right-date infos-right-part ">28 mai 2023</h7>
+                                </div>
                                 <i class="bi bi-trash button button-track infos-right-part"></i>
                                 <i class="bi bi-plus-lg button button-track infos-right-part"></i>
                                 <i class="bi bi-heart button button-track infos-right-part"></i>
