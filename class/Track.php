@@ -2,13 +2,33 @@
 require_once ('../php/database.php');
 
     class Track{
-        // Get all the information about album
-
-        public static function track_info(){
+        // Get all the information about tracks
+        public static function tracks_info(){
             try {
                 $conn = Database::connexionBD();
                 $sql = 'SELECT * FROM track';
                 $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
+        // Get all the information about one track on an album
+        public static function track_info($id_t, $id_a){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT * ar.nom_artiste FROM track t
+                        JOIN album a ON t.id_album = a.id_album
+                        JOIN artiste ar ON ar.id_artiste = a.id_artiste
+                        WHERE t.id_track = :idt AND a.id_album = :ida';
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':idt', $id_t);
+                $stmt->bindParam(':ida', $id_a);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $result;

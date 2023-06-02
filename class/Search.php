@@ -20,7 +20,7 @@
 
         // Get all the artist with a result for the search
         public static function search_artist($result){
-            $list_art = Artiste::artist_info();
+            $list_art = Artiste::artists_info();
             $list_final = [];
             foreach ($list_art as $elt){
                 $nom = preg_replace(' /\s+/', '', strtolower($elt['nom_artiste']));
