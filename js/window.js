@@ -15,7 +15,7 @@ $('#search_button').click(()=>
 
 $('#all_search').click(() =>
     {
-        ajaxRequest('GET', '../php/request.php/search/', display_all);
+        ajaxRequest('GET', '../php/request.php/search/', display_track);
     }
 );
 
@@ -40,21 +40,8 @@ $('#artiste_search').click(() =>
 
 
 // Search functions
-function $_GET(param) {
-    var vars = {};
-    window.location.href.replace( location.hash, '' ).replace(
-        /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-        function( m, key, value ) { // callback
-            vars[key] = value !== undefined ? value : '';
-        }
-    );
-    if ( param ) {
-        return vars[param] ? vars[param] : null;
-    }
-    return vars;
-}
-
 function display_track(results){
+    console.log('LE TEST');
     console.log(results);
     $('#content').append('LE TEST');
     for (let track of results){
@@ -76,7 +63,6 @@ function display_album(results){
 
 function display_all(results){
     console.log('LE TEST');
-    $('#search_result').append(button);
     display_track(results);
     display_artist(results);
     display_album(results);
