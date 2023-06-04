@@ -108,15 +108,12 @@ if(!isset($_SESSION['user_id'])){
             <div class="right d-flex flex-column" >
                 <!--    Navbar TOP ----------------------------------------------------------------------------------->
                 <div class="menu-top d-flex flex-row justify-content-between">
-                    <div>
-                        <a class="nom-page" href="../test.php"><h2>Accueil</h2></a>
-                    </div>
+<!--                    <div>-->
+<!--                        <a class="nom-page" href="../test.php"><h2>Accueil</h2></a>-->
+<!--                    </div>-->
                     <!-- Div avec form de recherche -->
                     <div>
-                       <button id="search_button"><span class="material-symbols-outlined">search</span></button>
-                        <label for="bar"></label>
-                        <input type="text" id="bar" name="bar" placeholder="Recherche">
-
+                        <input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">
                     </div>
 
                     <div>
@@ -130,17 +127,51 @@ if(!isset($_SESSION['user_id'])){
                 <!--    Contenu----------------------------------------------------------------------------------->
                 <div id="content" class="content d-flex flex-column">
 
-                    <div style="margin: 2% 5% 0 5%">
-                        <div class="btn-group" style="width:30%;"   >
-                            <a id="all_search" class="btn btn-danger ">Tous</a>
-                            <a id="track_search"  class="btn btn-danger active">Morceaux</a>
+                        <div class="btn-group" style="width:30%;">
+                            <a id="all_search" class="btn btn-danger active ">Tous</a>
+                            <a id="track_search"  class="btn btn-danger ">Morceaux</a>
                             <a id="album_search" class="btn btn-danger">Albums</a>
                             <a id="artiste_search" class="btn btn-danger">Artiste</a>
                         </div>
-                        <h2>Les titres</h2>
+                        <h2 style=" margin: 15px 0">Les titres</h2>
+                        <ul class="list-infos list-group justify-content-center">
 
-                    </div>
-                </div>
+                            <li class="infos d-flex justify-content-between align-items-center">
+                                <div class="infos-left-part d-flex align-items-center">
+                                    <div>
+                                        <img class="music-image infos-left-part " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="overflow">
+                                            <h7 class="infos-left-part" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
+                                        </div>
+                                        <div class="overflow">
+                                            <h7 class="infos-left-part">Imagines Dragons</h7>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="infos-right d-flex flex-row align-items-center">
+                                    <div class="overflow">
+                                        <h7 class="infos-right-date infos-right-part ">28 mai 2023</h7>
+                                    </div>
+                                    <i class="bi bi-trash button button-track infos-right-part"></i>
+                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>
+                                    <i class="bi bi-heart button button-track infos-right-part"></i>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="card-playlist d-flex flex-column">
+                            <div style="margin-left: auto; margin-right: auto;">
+                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                            </div>
+                            <div class="card-playlist-text">
+                                <p >Nothing Nothing Left To Say</p>
+                            </div>
+                        </div>
+s                </div>
                 <!--    Sound----------------------------------------------------------------------------------->
                 <div class="sound d-flex flex-row">
                     <div class="edit d-flex flex-column align-items-center">
@@ -166,7 +197,6 @@ if(!isset($_SESSION['user_id'])){
                             <div class="volume-logo button">
                                 <span class="material-symbols-outlined button_on_off" onclick="onOffTrack();">volume_off</span>
                             </div>
-
                             <input type="range" min="0" max="100" value="100" class="slider slider_volume" id="volume" onchange="setVolume();">
                         </div>
                     </div>
