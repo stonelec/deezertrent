@@ -48,54 +48,44 @@ if(!isset($_SESSION['user_id'])){
                     <div class="links d-flex flex-column justify-content-center" >
                         <!--    general----------------------------------------------------------------------------------->
                         <div class="general d-flex flex-column ">
-                            <a href="../test.php">
-                                <div class="general-link d-flex flex-row">
-                                    <span class="material-symbols-outlined">home</span>
-                                    <p class="general-link-text">Accueil</p>
-                                </div>
-                            </a>
-                            <a href="../test.php">
-                                <div class="general-link d-flex flex-row">
-                                    <span class="material-symbols-outlined">search</span>
-                                    <p class="general-link-text">Recherche</p>
-                                </div>
-                            </a>
-                            <a href="../test.php">
-                                <div class="general-link d-flex flex-row" >
-                                    <span class="material-symbols-outlined">format_list_bulleted</span>
-                                    <p class="general-link-text" style="margin-bottom: 5px">Playlist</p>
-                                </div>
-                            </a>
+                            <div id="accueil" class="general-link d-flex flex-row">
+                                <span class="material-symbols-outlined">home</span>
+                                <p class="general-link-text">Accueil</p>
+                            </div>
+                            <div id="recherche" class="general-link d-flex flex-row">
+                                <span class="material-symbols-outlined">search</span>
+                                <p class="general-link-text">Recherche</p>
+                            </div>
+                            <div id="playlist" class="general-link d-flex flex-row" >
+                                <span class="material-symbols-outlined">format_list_bulleted</span>
+                                <p class="general-link-text" style="margin-bottom: 5px">Playlist</p>
+                            </div>
                         </div>
                     </div>
                     <!--    playlist----------------------------------------------------------------------------------->
                     <div class="playlist-flow">
                         <div class="playlist d-flex flex-column ">
-                            <a href="../test.php"><p class="playlist-link">Favoris</p></a>
-                            <a href="../test.php"><p class="playlist-link">Playlist n°1</p></a>
-                            <a href="../test.php"><p class="playlist-link">Playlist n°1</p></a>
-                            <a href="../test.php"><p class="playlist-link">Playlist n°1</p></a>
-                            <a href="../test.php"><p class="playlist-link">Playlist n°1</p></a>
-                            <a href="../test.php"><p class="playlist-link">Playlist pour dormir</p></a>
+                            <p class="playlist-link">Favoris</p>
+                            <p class="playlist-link">Playlist n°1</p>
+                            <p class="playlist-link">Playlist n°1</p>
+                            <p class="playlist-link">Playlist n°1</p>
+                            <p class="playlist-link">Playlist n°1</p>
+                            <p class="playlist-link">Playlist pour dormir</p>
                         </div>
                     </div>
                 </div>
                 <!--    current music----------------------------------------------------------------------------------->
                 <div>
                     <div class="current-music d-flex justify-content-center">
-                        <div class="current-music-center d-flex flex-column ">
+                        <div class="current-music-center d-flex flex-column click">
                             <div class="text-center">
-                                <a href="../test.php">
-                                    <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
-                                </a>
+                                <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
                             </div>
                             <div class="current-music-infos d-flex justify-content-between">
-                                <a href="../test.php">
-                                    <div class="d-flex flex-column">
-                                        <h6>Nothing Left To Say</h6>
-                                        <p>Imagines Dragons</p>
-                                    </div>
-                                </a>
+                                <div class="d-flex flex-column">
+                                    <h6>Nothing Left To Say</h6>
+                                    <p>Imagines Dragons</p>
+                                </div>
                                 <div class="d-flex flex-column " style="font-size : 1.2rem;">
                                     <i class="bi bi-heart button"></i>
                                     <i class="bi bi-plus-lg button"></i>
@@ -107,17 +97,17 @@ if(!isset($_SESSION['user_id'])){
             </div>
             <div class="right d-flex flex-column" >
                 <!--    Navbar TOP ----------------------------------------------------------------------------------->
-                <div class="menu-top d-flex flex-row justify-content-between">
-<!--                    <div>-->
-<!--                        <a class="nom-page" href="../test.php"><h2>Accueil</h2></a>-->
-<!--                    </div>-->
-                    <!-- Div avec form de recherche -->
-                    <div>
-                        <input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">
+                <div class="click menu-top d-flex flex-row justify-content-between">
+                    <div id="title-page">
+                        <h2 class="nom-page" >Accueil</h2>
                     </div>
+                    <!-- Div avec form de recherche -->
+<!--                    <div>-->
+<!--                        <input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">-->
+<!--                    </div>-->
 
                     <div>
-                        <a class="profil d-flex flex-row" href="../test.php"  style="display:block;width:100%;height:100%;">
+                        <a class="profil d-flex flex-row" style="display:block;width:100%;height:100%;">
                             <h3>Profil</h3>
                             <span class="material-symbols-outlined" style="font-size: 2.5rem; margin-left: 10px">account_circle</span>
 
@@ -171,7 +161,7 @@ if(!isset($_SESSION['user_id'])){
                                 <p >Nothing Nothing Left To Say</p>
                             </div>
                         </div>
-s                </div>
+                </div>
                 <!--    Sound----------------------------------------------------------------------------------->
                 <div class="sound d-flex flex-row">
                     <div class="edit d-flex flex-column align-items-center">

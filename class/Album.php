@@ -7,7 +7,7 @@
         public static function album_info(){
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT * FROM album';
+                $sql = 'SELECT * FROM album JOIN artiste ON album.id_artiste = artiste.id_artiste JOIN style_A ON album.id_style = style_A.id_style';
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -12,11 +12,17 @@ html, body, .global{
 }
 .button:active{
     color: #121212;
+
 }
 ::selection {
     background-color: #DC3545;
 }
-
+.click:hover{
+    cursor: pointer;
+}
+.click:active{
+    color: black;
+}
 /*scrollbar----------------------------------------------*/
 ::-webkit-scrollbar {
     width: 10px;
@@ -71,6 +77,10 @@ html .menu .logo-image{
 }
 .menu .links .general-link:hover{
     color: #6c757d;
+    cursor: pointer;
+}
+.menu .links .general-link:active{
+    color: black;
 }
 .menu .links .general .general-link-text{
     margin : -2.5% 0 20px 15px;
@@ -93,6 +103,10 @@ html .menu .logo-image{
 }
 .playlist-flow .playlist  .playlist-link:hover{
     color: white;
+    cursor: pointer;
+}
+.playlist-flow .playlist  .playlist-link:active{
+    color: black;
 }
 .menu .current-music {
     height: 10%;

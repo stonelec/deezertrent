@@ -6,7 +6,9 @@ require_once ('../php/database.php');
         public static function tracks_info(){
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT * FROM track';
+                $sql = 'SELECT * FROM track t
+                        JOIN album a ON t.id_album = a.id_album
+                        JOIN artiste ar ON ar.id_artiste = a.id_artiste';
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

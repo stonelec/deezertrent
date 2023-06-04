@@ -28,7 +28,7 @@ function track_list(infos){
         '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_track ']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
-        '                                        <img class="music-image infos-left-part " src="images/imaginedragons_nightvisions.png"  alt=".....">\n' +
+        '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
         '                                    </div>\n' +
         '                                    <div>\n' +
         '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
@@ -38,7 +38,7 @@ function track_list(infos){
         '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
         '                                        </div>\n' +
         '                                        <div class="overflow">\n' +
-        '                                            <h7 class="infos-left-part">Imagines Dragons</h7>\n' +
+        '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
         '                                        </div>\n' +
         '                                    </div>\n' +
         '                                </div>\n' +
@@ -51,32 +51,29 @@ function track_list(infos){
 
 
 }
-function album_list(album){
-
-    let artist = album["nom_artiste"];
-    return'                        <ul class="list-album list-group justify-content-center">\n' +
-        '\n' +
-        '                            <li class="album d-flex justify-content-between align-items-center">\n' +
-        '                                <div class="album-left-part d-flex align-items-center">\n' +
+function album_list(infos){
+    return    '<ul class="list-infos list-group justify-content-center">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_album ']+'"   ">\n' +
+        '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
-        '                                        <img class="music-image album-left-part " src="images/albums/"'+album["image_album"]+' alt=".....">\n' +
+        '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
         '                                    </div>\n' +
         '                                    <div class="d-flex flex-row align-items-center">\n' +
         '                                        <div class="overflow">\n' +
-        '                                            <h7 class="album-left-part" style="font-weight: bolder;">'+album["titre_album"]+'</h7>\n' +
+        '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_album']+'</h7>\n' +
         '                                        </div>\n' +
         '                                        <div class="overflow">\n' +
-        '                                            <h7 class="album-left-part">test test</h7>\n' +
+        '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
         '                                        </div>\n' +
         '                                    </div>\n' +
         '                                </div>\n' +
-        '                                <div class="album-right d-flex flex-row align-items-center">\n' +
-        '                                    <div class="overflow">\n' +
-        '                                        <h7 class="album-right-date album-right-part ">'+album["date_parution"].slice(0, 10)+'</h7>\n' +
+        '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
+        '                                     <div class="overflow">\n' +
+        '                                        <h7 class="infos-right-date infos-right-part ">'+infos["date_parution"].slice(0,10)+'</h7>\n' +
         '                                    </div>'+
-        '                                </div>'+
+        '                                </div>\n' +
         '                            </li>\n' +
-        '                        </ul>';
+        '                        </ul>'
 }
 function artist_list(infos){
     // console.log('artist_list');
@@ -94,36 +91,45 @@ function artist_list(infos){
         '                            </li>\n' +
         '                        </ul>';
 }
-$('#bar').on("keydown",()=>
+$(document).on('click', '#recherche', () =>
+    {
+        $('#title-page').empty();
+        $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
+        let search = $('#bar').val();
+        ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_all);
+    }
+);
+$(document).on('keydown', '#bar', () =>
     {
         let search = $('#bar').val();
         ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_all);
     }
 );
 
-
-$('#all_search').click(() =>
+$(document).on('click', '#all_search', () =>
     {
         let search = $('#bar').val();
         ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_all);
+
     }
 );
 
-$('#track_search').click(() =>
+$(document).on('click', '#track_search', () =>
     {
-        ajaxRequest('GET', '../php/request.php/search/track/', display_track);
+        let search = $('#bar').val();
+        ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_track);
     }
 );
-
-$('#album_search').click(() =>
+$(document).on('click', '#album_search', () =>
     {
-        ajaxRequest('GET', '../php/request.php/search/album/', display_album);
+        let search = $('#bar').val();
+        ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_album);
     }
 );
-
-$('#artiste_search').click(() =>
+$(document).on('click', '#artiste_search', () =>
     {
-        ajaxRequest('GET', '../php/request.php/search/artist/', display_artist);
+        let search = $('#bar').val();
+        ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_artist);
     }
 );
 
@@ -142,14 +148,19 @@ function show_track(results) {
     results = JSON.parse(results);
     // console.log(results);
     let tracks = results[0];
-    for (let track of tracks) {
-        // console.log(track);
-        $('#content').append(track_list(track));
+    if (tracks.length === 0){
+        $('#content').append('<p style="margin: 15px 0">Aucun morceaux trouvé</p>');
+    }else {
+        for (let track of tracks) {
+            // console.log(track);
+            $('#content').append(track_list(track));
+        }
     }
 }
 function display_artist(results){
     $('#content').empty();
     $('#content').append( button_artiste);
+    show_artist(results);
 }
 function show_artist(results) {
     $('#content').append('<h2 style="margin: 15px 0">Les artistes</h2>');
@@ -157,14 +168,19 @@ function show_artist(results) {
     results = JSON.parse(results);
     // console.log(results);
     let artists = results[5];
-    for (let artist of artists) {
-        // console.log(artist);
-        $('#content').append(artist_list(artist));
+    if (artists.length === 0){
+        $('#content').append('<p style="margin: 15px 0">Aucun artiste trouvé</p>');
+    }else {
+        for (let artist of artists) {
+            // console.log(artist);
+            $('#content').append(artist_list(artist));
+        }
     }
 }
 function display_album(results){
     $('#content').empty();
     $('#content').append(button_album);
+    show_album(results)
 }
 function show_album(results) {
     $('#content').append('<h2 style="margin: 15px 0">Les albums</h2>');
@@ -172,15 +188,17 @@ function show_album(results) {
     results = JSON.parse(results);
     // console.log(results);
     let albums = results[3];
-    for (let album of albums) {
-        console.log("album");
-        console.log(album);
-        $('#content').append(album_list(album, ));
+    if (albums.length === 0){
+        $('#content').append('<p style="margin: 15px 0">Aucun album trouvé</p>');
+    }else {
+        for (let album of albums) {
+            // console.log("album");
+            console.log(album);
+            $('#content').append(album_list(album));
+        }
     }
 }
 function display_all(results){
-    $('#content').empty();
-    console.log('display_all');
     $('#content').empty();
     $('#content').append(button_all);
     show_track(results);
