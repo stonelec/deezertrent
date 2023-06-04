@@ -31,7 +31,7 @@ if(!isset($_SESSION['user_id'])){
 
     </head>
     <!-- Simple lecture audio -->
-    <audio src="https://cdns-preview-b.dzcdn.net/stream/c-b53be55456ff326e9c2a7bf1d0abe601-6.mp3" autoplay muted></audio>
+    <audio src="https://cdns-preview-b.dzcdn.net/stream/c-b53be55456ff326e9c2a7bf1d0abe601-6.mp3" autoplay muted controls></audio>
 
 
     <body>
