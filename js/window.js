@@ -1,4 +1,5 @@
 'use strict';
+///////////////////   BUTTONS SEARCH   ///////////////////////////
 let button_all = '<div class="btn-group" style="width:30%;"   >\n' +
     '            <a id="all_search" class="btn btn-danger active">Tous</a>\n' +
 '                <a id="track_search"  class="btn btn-danger">Morceaux</a>\n' +
@@ -26,8 +27,7 @@ let button_artiste = '<div class="btn-group" style="width:30%;"   >\n' +
     '                <a id="album_search" class="btn btn-danger">Albums</a>\n' +
     '                <a id="artiste_search" class="btn btn-danger active">Artiste</a>\n' +
     '         </div>'
-
-
+///////////////////   DISPLAY LISTES   ///////////////////////////
 function track_list(infos){
     return'<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_track ']+'"   ">\n' +
@@ -99,7 +99,7 @@ function artist_list(infos){
         '                        </ul>';
 }
 
-// Show all the result of the search
+///////////////////   DISPLAY RECHERCHE   ///////////////////////////
 $(document).on('click', '#recherche', () =>
     {
         $('#title-page').empty();
@@ -108,14 +108,14 @@ $(document).on('click', '#recherche', () =>
         ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_all);
     }
 );
-
+///////////////////   DISPLAY RECHERCHE ON KEY   ///////////////////////////
 $(document).on('keydown', '#bar', () =>
     {
         let search = $('#bar').val();
         ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_all);
     }
 );
-
+///////////////////   DISPLAY RECHERCHE_ALL ON BUTTON ALLSEARCH   ///////////////////////////
 $(document).on('click', '#all_search', () =>
     {
         let search = $('#bar').val();
@@ -123,21 +123,21 @@ $(document).on('click', '#all_search', () =>
 
     }
 );
-// Show all the track witch match with the search
+///////////////////   DISPLAY RECHERCHE_TRACK ON BUTTON TRACK   ///////////////////////////
 $(document).on('click', '#track_search', () =>
     {
         let search = $('#bar').val();
         ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_track);
     }
 );
-// Show all the album witch match with the search
+///////////////////   DISPLAY RECHERCHE_ALBUM ON BUTTON ALBUM   ///////////////////////////
 $(document).on('click', '#album_search', () =>
     {
         let search = $('#bar').val();
         ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_album);
     }
 );
-// Show all the artists witch match with the search
+///////////////////   DISPLAY RECHERCHE_ARTIST ON BUTTON ARTIST   ///////////////////////////
 $(document).on('click', '#artiste_search', () =>
     {
         let search = $('#bar').val();
@@ -154,8 +154,6 @@ function display_track(results) {
 }
 function show_track(results) {
     $('#content').append('<h2 style="margin: 15px 0">Les titres</h2>');
-    results = JSON.parse(results);
-    // console.log(results);
     let tracks = results[0];
     if (tracks.length === 0) {
         $('#content').append('<p style="margin: 15px 0">Aucun morceau trouvé</p>');
@@ -174,8 +172,6 @@ function display_artist(results) {
 }
 function show_artist(results) {
     $('#content').append('<h2 style="margin: 15px 0">Les artistes</h2>');
-    results = JSON.parse(results);
-    // console.log(results);
     let artists = results[5];
     if (artists.length === 0) {
         $('#content').append('<p style="margin: 15px 0">Aucun artiste trouvé</p>');
@@ -194,8 +190,6 @@ function display_album(results){
 }
 function show_album(results) {
     $('#content').append('<h2 style="margin: 15px 0">Les albums</h2>');
-    results = JSON.parse(results);
-    // console.log(results);
     let albums = results[3];
     if (albums.length === 0) {
         $('#content').append('<p style="margin: 15px 0">Aucun album trouvé</p>');
@@ -317,8 +311,6 @@ ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
 
     function handleUpdateResponse(response) {
         // Gérer la réponse de la mise à jour du profil
-
-
         console.log(response);
     }
 

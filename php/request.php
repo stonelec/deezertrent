@@ -15,110 +15,59 @@ if (!$db) {
 }
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
-$request = explode('/', substr($_SERVER['PATH_INFO'], 1));
+$request = substr($_SERVER['PATH_INFO'], 1);
+$request = explode('/', $request);
 $requestResource = array_shift($request);
 
-    $data = false;
-    $id = array_shift($request);
-    if ($id == null) {
-        $id = '';
-    }
+$data = false;
+$id = array_shift($request);
+if ($id == '') {
+        $id = null;
+}
 
     switch ($requestMethod) {
         case 'GET':
-            if ($requestResource == "playlist") {
-                $data =  json_encode(Playlist::playlist_info($_SESSION['user_id']));
-            } elseif ($requestResource == "profil") {
-                $data =  json_encode(User::user_info($_SESSION['user_id']));
+            if ($requestResource == "profil") {
+                $data =  User::user_info($_SESSION['user_id']);
             } elseif($requestResource == 'search'){
                 if(isset($_GET['key'])){
-                    $data =  json_encode(Search::all_search($_GET['key']));
+                    $data =  Search::all_search($_GET['key']);
                 }
-                // Test pour les fiches infos
             }elseif($requestResource == "artiste"){
-                $data =  json_encode(Artiste::artist_info($_GET['id_artiste']));
+                $data =  Artiste::artist_info($_GET['id_artiste']);
             }elseif ($requestResource == "track"){
-                $data =  json_encode(Track::track_info($_GET['id_track'], $_GET['id_album']));
+                $data =  Track::track_info($_GET['id_track'], $_GET['id_album']);
             }elseif ($requestResource    == "album"){
-                $data =  json_encode(Album::album_info($_GET['id_album']));
-            }elseif ($requestResource == "test") {
-                $data =  json_encode([["id" => 1, "nom" => "test1"], ["id" => 2, "nom" => "test2"]]);
-            }else {
-                http_response_code(400); /* Bad request*/
-                break;
+                $data =  Album::album_info($_GET['id_album']);
+            }elseif ($requestResource == "playlist") {
+                $data =Playlist::playlist_info($_SESSION['user_id']);
+            } elseif ($requestResource == "historique") {
+                $data =User::user_history($_SESSION['user_id']);
+            }
+            else {
+                http_response_code(400);
+                exit();
+        }
+            break;
+        case 'PUT':
+            if ($requestResource == "profil") {
+                $put = json_decode(file_get_contents('php://input'), true);
+                $nom = $put['nom'];
+                $prenom = $put['prenom'];
+                $datenaissance = $put['datenaissance'];
+                $email = $put['email'];
+                $password = $put['password'];
+                $success = User::ModifUserInfo($_SESSION['user_id'], $nom, $prenom, $datenaissance, $email, $password);
+                $data =$success;
+            } else {
+                http_response_code(400);
+                exit();
             }
             break;
-        default:
-            http_response_code(405); /* Method not allowed*/
-            break;
+
     }
 
+    echo json_encode($data);
+    exit;
 
-        // Send data to the client.
-//        header('Content-Type: application/json; charset=utf-8');
-//        header('Cache-control: no-store, no-cache, must-revalidate');
-//        header('Pragma: no-cache');
-//        header('HTTP/1.1 201 Created');
-
-        /*
-    if($requestResource == 'tarck'){
-        $data = false;
-        $id = array_shift($request);
-
-
-
-
-switch ($method) {
-    case 'GET':
-        if ($requestResource == "playlist") {
-            echo json_encode(Playlist::playlist_info($_SESSION['user_id']));
-        }
-        elseif ($requestResource == "profil") {
-            echo json_encode(User::user_info($_SESSION['user_id']));
-        }
-        elseif ($requestResource == "historique") {
-            echo json_encode(User::user_history($_SESSION['user_id']));
-        }
-        else {
-            http_response_code(400);
-            exit();
-        }
-        break;
-    case 'PUT':
-        if ($requestResource == "profil") {
-            $put = json_decode(file_get_contents('php://input'), true);
-            $nom = $put['nom'];
-            $prenom = $put['prenom'];
-            $datenaissance = $put['datenaissance'];
-            $email = $put['email'];
-            $password = $put['password'];
-            $success = User::ModifUserInfo($_SESSION['user_id'], $nom, $prenom, $datenaissance, $email, $password);
-            echo json_encode($success);
-        } else {
-            http_response_code(400);
-            exit();
-        }
-        break;
-
-
-
-        // Send data to the client.
-        header('Content-Type: application/json; charset=utf-8');
-        header('Cache-control: no-store, no-cache, must-revalidate');
-        header('Pragma: no-cache');
-        header('HTTP/1.1 201 Created');
-
-        echo json_encode($data);
-        exit;
-    }
-    if($requestResource == 'album'){
-        $data = false;
-        $id = array_shift($request);
-
-
-
-
-    */
-        echo json_encode($data);
-        exit;
-
+?>
