@@ -1,5 +1,10 @@
 'use strict';
 
+let menu_tri = '<div>' +
+    '               <i class="bi bi-file-plus"></i>' +
+    '               <i class="bi bi-sort-alpha-down"></i>' +
+    '           </div>';
+
 function playlist_list(infos){
     return    '<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_playlist']+'"   ">\n' +
@@ -24,4 +29,28 @@ function playlist_list(infos){
         '                                </div> \n'+
         '                            </li>\n' +
         '                        </ul>'
+}
+
+///////////////////   PLAYLIST ACCUEIL REQUEST   ///////////////////////////
+const divaccueil = document.getElementById('accueil');
+divaccueil.addEventListener('click', function() {
+    $('#content').empty();
+    ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
+});
+
+///////////////////   PLAYLIST REQUEST   ///////////////////////////
+const divplaylist = document.getElementById('playlist');
+divplaylist.addEventListener('click', function() {
+    $('#content').empty();
+    ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
+});
+
+//////////////////////////    DIPSLAY PLAYLIST    //////////////////////////////
+
+function displayListePlaylist(playlists)
+{
+    $('#content').html('<h2 style="margin: 15px 0">Playlist</h2>');
+    $('#content').append(menu_tri);
+    for (let playlist of playlists)
+        $('#content').append(playlist_list(playlist));
 }

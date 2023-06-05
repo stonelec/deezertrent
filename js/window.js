@@ -220,37 +220,6 @@ function display_all(results){
 ///////////////////   DEFAULT REQUEST   ///////////////////////////
 ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
 
-
-///////////////////   PLAYLIST REQUEST   ///////////////////////////
-    const divplaylist = document.getElementById('playlist');
-    divplaylist.addEventListener('click', function() {
-        $('#content').empty();
-        ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
-    });
-
-///////////////////   PLAYLIST ACCUEIL REQUEST   ///////////////////////////
-    const divaccueil = document.getElementById('accueil');
-    divaccueil.addEventListener('click', function() {
-        $('#content').empty();
-        ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
-    });
-
-
-//////////////////////////    DIPSLAY PLAYLIST    //////////////////////////////
-
-    function displayListePlaylist(playlists)
-    {
-        $('#content').html('<h3>OUI OUI OUI</h3>');
-        console.log(playlists)
-        for (let playlist of playlists)
-
-            $('#content').append('' +
-                '<div class="card">' +
-                '<div class="card-body">'
-                + playlist.nom_playlist+
-                '</div>' +
-                '</div>');
-    }
 ///////////////////   PROFIL REQUEST    ////////////////////////////////////////
     const maDiv = document.getElementById('profil');
     maDiv.addEventListener('click', function() {

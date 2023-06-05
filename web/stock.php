@@ -86,6 +86,12 @@
             <a class="nom-page" href="../test.php"><h2>Accueil</h2></a>
         </div>
 
+<!-- icon tri bar ------------------------------------------------------>
+        <div>
+            <i class="bi bi-file-plus"></i>
+            <i class="bi bi-sort-alpha-up"></i>
+            <i class="bi bi-sort-alpha-down"></i>
+        </div>
     </div>
 </body>
 
