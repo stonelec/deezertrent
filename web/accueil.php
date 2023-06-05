@@ -27,11 +27,12 @@ if(!isset($_SESSION['user_id'])){
         <script src="../js/accueil.js" defer></script>
         <script src="../js/ajax.js" defer></script>
         <script src="../js/window.js" defer></script>
+        <script src="../js/progresBar.js" defer></script>
 
 
     </head>
     <!-- Simple lecture audio -->
-    <audio src="https://cdns-preview-b.dzcdn.net/stream/c-b53be55456ff326e9c2a7bf1d0abe601-6.mp3" autoplay muted controls></audio>
+    <audio id="audioPlayer" src="https://cdns-preview-b.dzcdn.net/stream/c-b53be55456ff326e9c2a7bf1d0abe601-6.mp3" muted></audio>
 
 
     <body>
@@ -97,7 +98,7 @@ if(!isset($_SESSION['user_id'])){
             </div>
             <div class="right d-flex flex-column" >
                 <!--    Navbar TOP ----------------------------------------------------------------------------------->
-                <div class="click menu-top d-flex flex-row justify-content-between">
+                <div class="menu-top d-flex flex-row justify-content-between">
                     <div id="title-page">
                         <h2 class="nom-page" >Accueil</h2>
                     </div>
@@ -106,8 +107,8 @@ if(!isset($_SESSION['user_id'])){
 <!--                        <input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">-->
 <!--                    </div>-->
 
-                    <div>
-                        <a class="profil d-flex flex-row" style="display:block;width:100%;height:100%;">
+                    <div class="click">
+                        <a class=" profil d-flex flex-row " style="display:block;width:100%;height:100%;">
                             <h3>Profil</h3>
                             <span class="material-symbols-outlined" style="font-size: 2.5rem; margin-left: 10px">account_circle</span>
 
@@ -175,15 +176,15 @@ if(!isset($_SESSION['user_id'])){
                             </div>
                         </div>
                         <div class="progres d-flex flex-row justify-content-around align-items-center">
-                            <div>0:52</div>
-                            <div class="test">
-                                <input type="range" min="0" max="100" value="100" class="slider slider-progres" id="volume">
+                            <div class="time-display" id="track_current_time"></div>
+                            <div class="progres-bar">
+                                <div type="range" class="slider-progres"></div>
                             </div>
-                            <div>3:40</div>
+                            <div class="time-display" id="track_lenght"></div>
                         </div>
                     </div>
                     <div class="volume d-flex flex-column ">
-                        <div class="volume-edit d-flex align-items-center ">
+                        <div class="volume-edit d-flex justify-content-around align-items-center">
                             <div class="volume-logo button">
                                 <span class="material-symbols-outlined button_on_off" onclick="onOffTrack();">volume_off</span>
                             </div>

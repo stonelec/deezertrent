@@ -4,7 +4,6 @@ let button_play_pause = document.querySelector(".button_play_pause");
 let button_next = document.querySelector(".button_next");
 let button_laps = document.querySelector(".button_laps");
 let button_on_off = document.querySelector(".button_on_off");
-let slider_progres = document.querySelector(".slider_progres");
 let slider_volume = document.querySelector(".slider_volume");
 
 let audio = document.querySelector('audio')
