@@ -60,27 +60,30 @@ if(!isset($_SESSION['user_id'])){
                                 <span class="material-symbols-outlined">search</span>
                                 <p class="general-link-text">Recherche</p>
                             </div>
+                            <div id="historique" class="general-link d-flex flex-row">
+                                <span class="material-symbols-outlined">history</span>
+                                <p class="general-link-text">historique</p>
+                            </div>
                             <div id="playlist" class="general-link d-flex flex-row" >
                                 <span class="material-symbols-outlined">format_list_bulleted</span>
                                 <p class="general-link-text" style="margin-bottom: 5px">Playlist</p>
                             </div>
-                            <div class="general-link d-flex flex-row" >
-                                <span class="material-symbols-outlined"></span>
-                                <p class="general-link-text" style="margin-bottom: 5px" id="historique">Historique</p>
-                            </div>
                         </div>
                     </div>
                     <!--    playlist----------------------------------------------------------------------------------->
-                    <div class="playlist-flow" >
-                        <div class="playlist d-flex flex-column ">
-                            <p class="playlist-link">Favoris</p>
-                            <p class="playlist-link">Playlist n°1</p>
-                            <p class="playlist-link">Playlist n°1</p>
-                            <p class="playlist-link">Playlist n°1</p>
-                            <p class="playlist-link">Playlist n°1</p>
-                            <p class="playlist-link">Playlist pour dormir</p>
+                    <div style="height: 1rem">
+                        <div class="playlist-flow" >
+                            <div class="playlist d-flex flex-column ">
+                                <p class="playlist-link">Favoris</p>
+                                <p class="playlist-link">Playlist n°1</p>
+                                <p class="playlist-link">Playlist n°1</p>
+                                <p class="playlist-link">Playlist n°1</p>
+                                <p class="playlist-link">Playlist n°1</p>
+                                <p class="playlist-link">Playlist pour dormir</p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <!--    current music----------------------------------------------------------------------------------->
                 <div>
@@ -115,11 +118,11 @@ if(!isset($_SESSION['user_id'])){
 <!--                    </div>-->
 
                     <div class="click" id="profil" >
-                        <p class="profil d-flex flex-row"   style="display:block;width:100%;height:100%;">
+                        <div class="profil d-flex flex-row"   style="display:block;width:100%;height:100%;">
                             <h3>Profil</h3>
                             <span class="material-symbols-outlined" style="font-size: 2.5rem; margin-left: 10px">account_circle</span>
 
-                        </p>
+                        </div>
                     </div>
                 </div>
                 <!--    Contenu----------------------------------------------------------------------------------->
