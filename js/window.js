@@ -162,7 +162,6 @@ function show_track(results) {
         $('#content').append('<p style="margin: 15px 0">Aucun morceau trouvé</p>');
     } else {
         for (let track of tracks) {
-            // console.log(track);
             $('#content').append(track_list(track));
         }
     }

@@ -1,8 +1,8 @@
 'use strict';
 
 let menu_tri = '<div>' +
-    '               <i class="bi bi-file-plus"></i>' +
-    '               <i class="bi bi-sort-alpha-down"></i>' +
+    '               <i class="bi bi-file-plus infos-right-part button-track"></i>' +
+    '               <i class="bi bi-sort-alpha-down infos-right-part button-track"></i>' +
     '           </div>';
 
 function playlist_list(infos){
