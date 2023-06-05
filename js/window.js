@@ -240,6 +240,7 @@ ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
 
     function displayListePlaylist(playlists)
     {
+        playlists=json.parse(playlists)
         $('#content').html('<h3>OUI OUI OUI</h3>');
         console.log(playlists)
         for (let playlist of playlists)
