@@ -17,8 +17,8 @@ function playlist_list(infos){
         '                                </div>\n' +
         '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
         '                                     <div class="overflow">\n' +
-        '                                        <h7 class="infos-right-date infos-right-part ">'+infos["date_creation"].slice(0,10)+'</h7>\n' +
-        '                                    </div>'+
+            '                                        <h7 class="infos-right-date infos-right-part ">'+infos["date_creation"].slice(0,10)+'</h7>\n' +
+            '                                    </div>'+
         '                                </div>\n' +
         '                                <div> \n' +
         '                                    <i class="bi bi-trash button button-track infos-right-part"></i>\n'+
@@ -57,16 +57,10 @@ function track_list(infos){
 
 }
 
-///////////////////   DEFAULT REQUEST   ///////////////////////////
-ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
 
 
-///////////////////   PLAYLIST ACCUEIL REQUEST   ///////////////////////////
-const divaccueil = document.getElementById('accueil');
-divaccueil.addEventListener('click', function() {
-    $('#content').empty();
-    ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
-});
+
+
 
 ///////////////////   PLAYLIST REQUEST   ///////////////////////////
 const divplaylist = document.getElementById('playlist');
@@ -78,6 +72,8 @@ divplaylist.addEventListener('click', function() {
 //////////////////////////    DIPSLAY PLAYLIST    //////////////////////////////
 function displayListePlaylist(playlists)
 {
+    $('#title-page').empty();
+    $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
     $('#content').html('<h2 style="margin: 15px 0">Playlist</h2>');
     $('#content').append(menu_tri);
     for (let playlist of playlists)

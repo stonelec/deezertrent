@@ -42,7 +42,7 @@ if(!isset($_SESSION['user_id'])){
     <body>
         <div class="global d-flex flex-row">
             <!--    Navbar----------------------------------------------------------------------------------->
-            <div class="menu d-flex flex-column justify-content-between">
+            <div class="menu">
                 <div>
                     <!--    logo----------------------------------------------------------------------------------->
                     <div class="logo d-flex flex-column align-items-center">
@@ -54,54 +54,57 @@ if(!isset($_SESSION['user_id'])){
                         <!--    general----------------------------------------------------------------------------------->
                         <div class="general d-flex flex-column ">
                             <div id="accueil" class="general-link d-flex flex-row">
-                                <span class="material-symbols-outlined">home</span>
+                                <div class="hide">
+                                    <span class="material-symbols-outlined">home</span>
+                                </div>
                                 <p class="general-link-text">Accueil</p>
                             </div>
                             <div id="recherche" class="general-link d-flex flex-row">
-                                <span class="material-symbols-outlined">search</span>
+                                <div class="hide">
+                                    <span class="material-symbols-outlined hide">search</span>
+                                </div>
                                 <p class="general-link-text">Recherche</p>
                             </div>
                             <div id="historique" class="general-link d-flex flex-row">
-                                <span class="material-symbols-outlined">history</span>
+                                <div class="hide">
+                                    <span class="material-symbols-outlined">history</span>
+                                </div>
                                 <p class="general-link-text">historique</p>
                             </div>
                             <div id="playlist" class="general-link d-flex flex-row" >
-                                <span class="material-symbols-outlined">format_list_bulleted</span>
+                                <div class="hide">
+                                    <span class="material-symbols-outlined">format_list_bulleted</span>
+                                </div>
                                 <p class="general-link-text" style="margin-bottom: 5px">Playlist</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--    playlist----------------------------------------------------------------------------------->
-                    <div style="height: 1rem">
-                        <div class="playlist-flow" >
-                            <div class="playlist d-flex flex-column ">
-                                <p class="playlist-link">Favoris</p>
-                                <p class="playlist-link">Playlist n°1</p>
-                                <p class="playlist-link">Playlist n°1</p>
-                                <p class="playlist-link">Playlist n°1</p>
-                                <p class="playlist-link">Playlist n°1</p>
-                                <p class="playlist-link">Playlist pour dormir</p>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <!--    current music----------------------------------------------------------------------------------->
-                <div>
-                    <div class="current-music d-flex justify-content-center">
-                        <div class="current-music-center d-flex flex-column click">
-                            <div class="text-center">
-                                <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
+                <!--    playlist----------------------------------------------------------------------------------->
+                <div class="playlist d-flex flex-column ">
+                        <p class="playlist-link">Favoris</p>
+                        <p class="playlist-link">Playlist n°1</p>
+                        <p class="playlist-link">Playlist n°1</p>
+                        <p class="playlist-link">Playlist n°1</p>
+                        <p class="playlist-link">Playlist n°1</p>
+                        <p class="playlist-link">Playlist pour dormir</p>
+                    </div>
+            <!--    current music----------------------------------------------------------------------------------->
+                <div class="current-music d-flex justify-content-center">
+                    <div class="current-music-center d-flex flex-column click">
+                        <div class="text-center">
+
+                            <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
+                        </div>
+                        <div class="current-music-infos d-flex justify-content-between">
+                            <div class="d-flex flex-column">
+                                <h6>Nothing Left To Say</h6>
+                                <p>Imagines Dragons</p>
                             </div>
-                            <div class="current-music-infos d-flex justify-content-between">
-                                <div class="d-flex flex-column">
-                                    <h6>Nothing Left To Say</h6>
-                                    <p>Imagines Dragons</p>
-                                </div>
-                                <div class="d-flex flex-column " style="font-size : 1.2rem;">
-                                    <i class="bi bi-heart button"></i>
-                                    <i class="bi bi-plus-lg button"></i>
-                                </div>
+                            <div class="d-flex flex-column " style="font-size : 1.2rem;">
+                                <i class="bi bi-heart button"></i>
+                                <i class="bi bi-plus-lg button"></i>
                             </div>
                         </div>
                     </div>
@@ -127,44 +130,73 @@ if(!isset($_SESSION['user_id'])){
                     </div>
                 </div>
                 <!--    Contenu----------------------------------------------------------------------------------->
+                <style>
+                    .test{
+                        width: 100%;
+                    }
+                    .scroller{
+                        overflow-x: scroll;
+                        width: 100%;
+                        height: 200px;
+                        color: white;
+                        font-weight: normal;
+                    }
+                    .scroller::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                </style>
                 <div id="content" class="content d-flex flex-column">
-
-                        <div class="btn-group" style="width:30%;">
-                            <a id="all_search" class="btn btn-danger active ">Tous</a>
-                            <a id="track_search"  class="btn btn-danger ">Morceaux</a>
-                            <a id="album_search" class="btn btn-danger">Albums</a>
-                            <a id="artiste_search" class="btn btn-danger">Artiste</a>
+                    <div class="test">
+                        <div class="d-flex flex-row scroller">
+                        <div class="card-playlist d-flex flex-column">
+                            <div style="margin-left: auto; margin-right: auto;">
+                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                            </div>
+                            <div class="card-playlist-text">
+                                <p >  Left To Say</p>
+                            </div>
                         </div>
-                        <h2 style=" margin: 15px 0">Les titres</h2>
-                        <ul class="list-infos list-group justify-content-center">
-
-                            <li class="infos d-flex justify-content-between align-items-center">
-                                <div class="infos-left-part d-flex align-items-center">
-                                    <div>
-                                        <img class="music-image infos-left-part " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                                    </div>
-                                    <div>
-                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <div class="overflow">
-                                            <h7 class="infos-left-part" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
-                                        </div>
-                                        <div class="overflow">
-                                            <h7 class="infos-left-part">Imagines Dragons</h7>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="infos-right d-flex flex-row align-items-center">
-                                    <div class="overflow">
-                                        <h7 class="infos-right-date infos-right-part ">28 mai 2023</h7>
-                                    </div>
-                                    <i class="bi bi-trash button button-track infos-right-part"></i>
-                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>
-                                    <i class="bi bi-heart button button-track infos-right-part"></i>
-                                </div>
-                            </li>
-                        </ul>
+                        <div class="card-playlist d-flex flex-column">
+                            <div style="margin-left: auto; margin-right: auto;">
+                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                            </div>
+                            <div class="card-playlist-text">
+                                <p >  Left To Say</p>
+                            </div>
+                        </div>
+                        <div class="card-playlist d-flex flex-column">
+                            <div style="margin-left: auto; margin-right: auto;">
+                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                            </div>
+                            <div class="card-playlist-text">
+                                <p >  Left To Say</p>
+                            </div>
+                        </div>
+                        <div class="card-playlist d-flex flex-column">
+                            <div style="margin-left: auto; margin-right: auto;">
+                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                            </div>
+                            <div class="card-playlist-text">
+                                <p >  Left To Say</p>
+                            </div>
+                        </div>
+                        <div class="card-playlist d-flex flex-column">
+                            <div style="margin-left: auto; margin-right: auto;">
+                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                            </div>
+                            <div class="card-playlist-text">
+                                <p >  Left To Say</p>
+                            </div>
+                        </div>
+                        <div class="card-playlist d-flex flex-column">
+                            <div style="margin-left: auto; margin-right: auto;">
+                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                            </div>
+                            <div class="card-playlist-text">
+                                <p >  Left To Say</p>
+                            </div>
+                        </div>
                         <div class="card-playlist d-flex flex-column">
                             <div style="margin-left: auto; margin-right: auto;">
                                 <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
@@ -173,6 +205,20 @@ if(!isset($_SESSION['user_id'])){
                                 <p >Nothing Nothing Left To Say</p>
                             </div>
                         </div>
+                        <div class="card-playlist d-flex flex-column">
+                            <div style="margin-left: auto; margin-right: auto;">
+                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                            </div>
+                            <div class="card-playlist-text">
+                                <p >Nothing Nothing Left To Say</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    </div>
+                        <h2 style=" margin: 15px 0">Les titres</h2>
+
                 </div>
                 <!--    Sound----------------------------------------------------------------------------------->
                 <div class="sound d-flex flex-row">

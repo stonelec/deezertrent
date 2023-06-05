@@ -40,7 +40,7 @@ class User{
     {
         try {
             $conn = Database::connexionBD();
-            $sql = "SELECT id_playlist FROM playlist where id_user=? and nom_playlist='Historique';";
+            $sql = "SELECT id_playlist FROM playlist where id_user=? and nom_playlist='historique';";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$id]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

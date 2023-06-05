@@ -72,7 +72,7 @@
                 <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
             </div>
             <div class="card-playlist-text">
-                <p >Nothing Nothing Left To Say</p>
+                <p >Left To Say</p>
             </div>
         </div>
 

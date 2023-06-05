@@ -1,8 +1,8 @@
 @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
 /*general----------------------------------------------*/
 html, body, .global{
-    height: 100%;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     background: black;
     color: white;
 }
@@ -56,6 +56,8 @@ body a{
     border-radius: 15px;
     position: sticky;
     background-color: #121212;
+    display: flex;
+    flex-direction: column;
     }
 .menu .logo{
     color : #DC3545;
@@ -64,7 +66,7 @@ body a{
     -webkit-user-select: none;
 }
 html .menu .logo-image{
-    width: 50%;
+    width: 30%;
 }
 .menu .links{
     color: white;
@@ -85,15 +87,15 @@ html .menu .logo-image{
 .menu .links .general .general-link-text{
     margin : -2.5% 0 20px 15px;
 }
-.playlist-flow{
-    margin:  0 10%;
-    -webkit-user-select: none;
 
-}
-.playlist-flow .playlist{
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 8rem;
+.playlist{
+    padding-left: 25%;
+    margin-right: 5%;
+    -webkit-user-select: none;
+    overflow: scroll;
+    overflow-x : hidden;
+    flex-grow: 1;
+    color: #6c757d;
 
 }
 .playlist-flow .playlist .playlist-link{
@@ -101,15 +103,15 @@ html .menu .logo-image{
     margin-left: 50px;
     color: #6c757d;
 }
-.playlist-flow .playlist  .playlist-link:hover{
+.playlist  .playlist-link:hover{
     color: white;
     cursor: pointer;
 }
-.playlist-flow .playlist  .playlist-link:active{
+ .playlist  .playlist-link:active{
     color: black;
 }
-.menu .current-music {
-    height: 10%;
+.menu .current-music{
+    margin-top: 5px;
 }
 .menu .current-music .current-music-center{
     width: 70%;
@@ -125,8 +127,8 @@ html .menu .logo-image{
 /*partie droite ----------------------------------------------*/
 
 .right{
-    /*height: 97%;*/
-    width: 100%;
+
+    width: 75%;
     margin: 20px 20px 0 10px;
 }
 /*navbar TOP ----------------------------------------------*/
@@ -180,15 +182,13 @@ html .menu .logo-image{
 /*contenu ----------------------------------------------*/
 .content{
     background-color: #121212;
-    height: 78%;
+    height: 100%;
     border-radius: 15px 15px 0 0 ;
     padding:  2% 3% 0 3%;
     margin-top: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding-top: 2%;
-    padding-left: 2%;
-    padding-right: 2%;
+    width: 100%;
 }
 .list-infos{
     width: 95%;
@@ -237,9 +237,10 @@ html .menu .logo-image{
 .card-playlist{
     border-radius: 15px;
     width: 160px;
-    height: 200px;
+    height: 180px;
     padding: 10px;
     background-color: black;
+    margin-left: 10px;
 }
 .card-playlist:hover{
     color: #6c757d;
@@ -382,9 +383,17 @@ input{
 
 }
 @media only screen and (max-width: 960px) {
+
     .menu{
         width: 30%;
-        /*background-color: #DC3545;*/
+                /*background-color: #DC3545;*/
+    }
+    .right{
+        width: 70%;
+        /*background-color: #6c757d;*/
+    }
+    .hide{
+        display: none;
     }
     .volume{
         width: 30%;

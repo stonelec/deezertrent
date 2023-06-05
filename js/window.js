@@ -31,7 +31,7 @@ let button_artiste = '<div class="btn-group" style="width:30%;"   >\n' +
 ///////////////////   DISPLAY LISTES   ///////////////////////////
 function track_list(infos){
     return'<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track ']+'"   ">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
@@ -250,6 +250,7 @@ function display_all(results){
         const modifdiv= document.getElementById("modifier");
 
         modifdiv.addEventListener('click',function (){
+
             $('#content').empty();
             $('#content').append('' +
                 '<style>.form-group{margin-bottom: 15px}</style>'+
@@ -339,7 +340,7 @@ function display_all(results){
     function displayHistory(historiques)
     {
         $('#title-page').empty();
-        $('#title-page').append('<h2 class="nom-page" >Historique</h2>');
+        $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
         $('#content').html('<h3>OUI OUI OUI</h3>');
         console.log(historiques)
         for (let historique of historiques)
@@ -377,6 +378,23 @@ document.addEventListener('click', function(event) {
         document.querySelector('#content').innerHTML = '';
     }
 });
+///////////////////   DEFAULT REQUEST   ///////////////////////////
+// displayAccueil();
+
+///////////////////   PLAYLIST ACCUEIL REQUEST   ///////////////////////////
+const divaccueil = document.getElementById('accueil');
+divaccueil.addEventListener('click', displayAccueil);
 
 
+function displayAccueil(result){
+    $('#title-page').empty();
+    $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
+    $('#content').empty();
+    ajaxRequest('GET', '../php/request.php/profil/', displayUser);
 
+}
+
+function displayUser(result){
+    console.log(result);
+    $('#content').html('<h2 style="margin: 15px 0">Bienvenue '+result[0]['nom']+' '+result[0]['prenom']+'</h2>');
+}

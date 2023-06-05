@@ -1,11 +1,11 @@
 'use strict';
-var audioPlayer = document.getElementById("audioPlayer");
-var progressBar = document.querySelector(".progres-bar");
-var progress = progressBar.querySelector(".slider-progres");
-var track_current_time = document.getElementById("track_current_time");
-var track_lenght = document.getElementById("track_lenght");
+let audioPlayer = document.getElementById("audioPlayer");
+let progressBar = document.querySelector(".progres-bar");
+let progress = progressBar.querySelector(".slider-progres");
+let track_current_time = document.getElementById("track_current_time");
+let track_lenght = document.getElementById("track_lenght");
 
-var isDragging = false;
+let isDragging = false;
 
 
 progressBar.addEventListener("mousedown", function(event) {
@@ -25,28 +25,22 @@ progressBar.addEventListener("mouseup", function() {
 
 
 function updateProgressBar(event) {
-    var progressBarWidth = progressBar.offsetWidth;
-    var clickPosition = event.clientX - progressBar.getBoundingClientRect().left;
-    var progressPercentage = (clickPosition / progressBarWidth) * 100;
-
-    progressPercentage = Math.min(Math.max(progressPercentage, 0), 100);
+    let progressPercentage = ((event.clientX - progressBar.getBoundingClientRect().left) / progressBar.offsetWidth) * 100;
 
     progress.style.width = progressPercentage + "%";
 
-    var newPosition = (progressPercentage / 100) * audioPlayer.duration;
-    audioPlayer.currentTime = newPosition;
+    audioPlayer.currentTime = (progressPercentage / 100) * audioPlayer.duration;
 }
 
 audioPlayer.addEventListener("timeupdate", function() {
-    var newPosition = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-    progress.style.width = newPosition + "%";
+    progress.style.width = (audioPlayer.currentTime / audioPlayer.duration) * 100 + "%";
     track_current_time.textContent = formatTime(audioPlayer.currentTime);
     track_lenght.textContent = formatTime(audioPlayer.duration);
 
 });
 function formatTime(time) {
-    var minutes = Math.floor(time / 60);
-    var seconds = Math.floor(time % 60);
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time % 60);
     seconds = seconds < 10 ? "0" + seconds : seconds;
     return minutes + ":" + seconds;
 }
