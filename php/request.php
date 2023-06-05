@@ -66,6 +66,11 @@ if ($id == '') {
                 exit();
             }
             break;
+        case 'POST' :
+            if(isset($_POST['nom_playlist'])){
+                $data = Playlist::add_playlist($_POST['nom_playlist']);
+            }
+            break;
 
     }
 

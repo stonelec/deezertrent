@@ -98,4 +98,22 @@ class Playlist{
         }
 
     }
+
+    public static function add_playlist($nom){
+        try {
+            $conn = Database::connexionBD();
+            $sql = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
+                    VALUES
+                        (:nom, :dateC, :id_user);";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':nom', $nom);
+            $date = date('Y-m-d');
+            $stmt->bindParam(':dateC', $date );
+            $stmt->bindParam(':id_user', $_SESSION['id_user']);
+            $stmt->execute();
+        }catch (PDOException $exception){
+            error_log('Connection error: ' . $exception->getMessage());
+            return false;
+        }
+    }
 }
