@@ -366,4 +366,15 @@ function display_all(results){
         return age;
     }
 
+document.addEventListener('click', function(event) {
+    if (event.target.matches('.get_track')) {
+        console.log('yess');
+        var element = event.target;
+        var attributeValue = element.getAttribute('nom_de_l_attribut');
+        console.log('Valeur de l\'attribut :', attributeValue);
+        document.querySelector('#content').innerHTML = '';
+    }
+});
+
+
 
