@@ -30,6 +30,7 @@ let button_artiste = '<div class="btn-group" style="width:30%;"   >\n' +
 
 ///////////////////   DISPLAY LISTES   ///////////////////////////
 function track_list(infos){
+    console.log(infos)
     return'<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
@@ -367,14 +368,91 @@ function display_all(results){
         return age;
     }
 
-document.addEventListener('click', function(event) {
-    if (event.target.matches('.get_track')) {
-        console.log('yess');
-        var element = event.target;
-        var attributeValue = element.getAttribute('nom_de_l_attribut');
-        console.log('Valeur de l\'attribut :', attributeValue);
-        document.querySelector('#content').innerHTML = '';
+    $(document).on('click', '.get_track', function(event) {
+    let attributeValue = $(this).attr('id');
+        ajaxRequest('GET', `../php/request.php/track/${attributeValue}`, displaytrackinfo);
+});
+function format_duree(seconde) {
+    var minutes = Math.floor(seconde / 60);
+    var secondes = seconde % 60;
+    var minuteStr = minutes.toString().padStart(2, '0');
+    var secondeStr = secondes.toString().padStart(2, '0');
+    return minuteStr + ':' + secondeStr;
+}
+
+
+function displaytrackinfo(trackinfo){
+        console.log(trackinfo)
+    var duree= format_duree(parseInt(trackinfo[0]['duree'], 10));
+
+        $('#content').empty();
+
+        $('#content').append('<div style="padding: 5%>" ' +
+            '<div class="container">\n' +
+            '    <div class="row">\n' +
+            '      <div class="col-md-4">\n' +
+            '        <img src="images/albums/'+trackinfo[0]['image_album']+'" alt="Image de l\'album" class="img-fluid" style="border-radius: 5%;margin:3%">\n' +
+            '      </div>\n' +
+            '      <div class="col-md-8">\n' +
+            '        <h1>'+trackinfo[0]['titre_track']+'</h1>\n' +
+            '        <h3>'+trackinfo[0]['titre_album']+'</h3>\n' +
+            '      </div>\n' +
+            '    </div>\n' +
+            '  </div>' +
+            '');
+
+        $('#content').append('' +
+            '<ul class="list-infos list-group justify-content-center">\n' +
+            '\n' +
+            '            <li class="infos d-flex justify-content-between align-items-center"  onclick=" console.log(\'track\');">\n' +
+            '                <div class="infos-left-part d-flex align-items-center">\n' +
+            '                    <div>\n' +
+            '                        <img class="music-image infos-left-part " src="images/albums/'+trackinfo[0]['image_album']+'"  alt=".....">\n' +
+            '                    </div>\n' +
+            '                    <div>\n' +
+            '                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play" onclick="console.log(\'play\');event.stopPropagation();"></i>\n' +
+            '                    </div>\n' +
+            '                    <div class="d-flex flex-row align-items-center">\n' +
+            '                        <div class="overflow">\n' +
+            '                            <h7 class="infos-left-part" style="font-weight: bolder;">'+trackinfo[0]['titre_track']+'</h7>\n' +
+            '                        </div>\n' +
+            '                        <div class="overflow">\n' +
+            '                            <h7 class="infos-left-part">'+trackinfo[0]['nom_artiste']+'</h7>\n' +
+            '                        </div>\n' +
+            '                    </div>\n' +
+            '                </div>\n' +
+            '                <div class="infos-right d-flex flex-row align-items-center">\n' +
+            '                   <i class="bi bi-plus-lg button button-track infos-right-part"></i>\n' +
+            '                    <i class="bi bi-heart button button-track infos-right-part"></i>\n' +
+            '                </div>\n' +
+            '            </li>\n' +
+            '        </ul>' +
+            '')
+
+        $('#content').append('' +
+            '<div class="container">\n' +
+            '    <div class="row">\n' +
+            '      <div class="col-2 col-md-4 offset-1">\n' +
+            '        <h6 style="width: fit-content">'+duree+'</h6>\n' +
+            '</div>' +
+            '      <div class="col-2 col-md-4">\n' +
+            '        <h6 style="width: fit-content">'+trackinfo[0]['date_parution'].slice(0,4)+'</h6>\n' +
+            '</div>' +
+            '      <div class="col-2">\n' +
+            '        <h6 style="width: fit-content">'+trackinfo[0]['nom_style']+'</h6>\n' +
+            '</div>' +
+            '      </div>\n' +
+            '    </div>\n' +
+            '  </div>' +
+            '</div>');
+
+
+
     }
+
+$(document).on('click', '.get_artiste', function(event) {
+    let Value = $(this).attr('id');
+    ajaxRequest('GET', `../php/request.php/artiste/${Value}`, displayArtisteInfo);
 });
 ///////////////////   DEFAULT REQUEST   ///////////////////////////
 // displayAccueil();
@@ -383,6 +461,12 @@ document.addEventListener('click', function(event) {
 const divaccueil = document.getElementById('accueil');
 divaccueil.addEventListener('click', displayAccueil);
 
+function displayArtisteInfo(artisteInfo) {
+    $('#content').empty();
+    console.log('/');
+    console.log(artisteInfo);
+    console.log('/');
+}
 
 function displayAccueil(result){
     $('#title-page').empty();
