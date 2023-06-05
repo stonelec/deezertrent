@@ -157,32 +157,35 @@ function show_track(results) {
     results = JSON.parse(results);
     // console.log(results);
     let tracks = results[0];
-    if (tracks.length === 0){
+    if (tracks.length === 0) {
         $('#content').append('<p style="margin: 15px 0">Aucun morceau trouvé</p>');
-    }else {
+    } else {
         for (let track of tracks) {
             // console.log(track);
             $('#content').append(track_list(track));
         }
     }
+}
 // For artists
-function display_artist(results){
+function display_artist(results) {
     $('#content').empty();
-    $('#content').append( button_artiste);
+    $('#content').append(button_artiste);
     show_artist(results);
+}
 function show_artist(results) {
     $('#content').append('<h2 style="margin: 15px 0">Les artistes</h2>');
     results = JSON.parse(results);
     // console.log(results);
     let artists = results[5];
-    if (artists.length === 0){
+    if (artists.length === 0) {
         $('#content').append('<p style="margin: 15px 0">Aucun artiste trouvé</p>');
-    }else {
+    } else {
         for (let artist of artists) {
             // console.log(artist);
             $('#content').append(artist_list(artist));
         }
     }
+}
 // For albums
 function display_album(results){
     $('#content').empty();
@@ -214,9 +217,8 @@ function display_all(results){
 }
 
 
-    'use strict';
 ///////////////////   DEFAULT REQUEST   ///////////////////////////
-    ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
+ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
 
 
 ///////////////////   PLAYLIST REQUEST   ///////////////////////////
