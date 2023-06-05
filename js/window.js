@@ -5,24 +5,29 @@ let button_all = '<div class="btn-group" style="width:30%;"   >\n' +
 '                <a id="album_search" class="btn btn-danger">Albums</a>\n' +
 '                <a id="artiste_search" class="btn btn-danger">Artiste</a>\n' +
     '         </div>'
+
 let button_track = '<div class="btn-group" style="width:30%;"   >\n' +
     '            <a id="all_search" class="btn btn-danger">Tous</a>\n' +
     '                <a id="track_search"  class="btn btn-danger active">Morceaux</a>\n' +
     '                <a id="album_search" class="btn btn-danger">Albums</a>\n' +
     '                <a id="artiste_search" class="btn btn-danger">Artiste</a>\n' +
     '         </div>'
+
 let button_album = '<div class="btn-group" style="width:30%;"   >\n' +
     '            <a id="all_search" class="btn btn-danger">Tous</a>\n' +
     '                <a id="track_search"  class="btn btn-danger">Morceaux</a>\n' +
     '                <a id="album_search" class="btn btn-danger active">Albums</a>\n' +
     '                <a id="artiste_search" class="btn btn-danger">Artiste</a>\n' +
     '         </div>'
+
 let button_artiste = '<div class="btn-group" style="width:30%;"   >\n' +
     '            <a id="all_search" class="btn btn-danger">Tous</a>\n' +
     '                <a id="track_search"  class="btn btn-danger">Morceaux</a>\n' +
     '                <a id="album_search" class="btn btn-danger">Albums</a>\n' +
     '                <a id="artiste_search" class="btn btn-danger active">Artiste</a>\n' +
     '         </div>'
+
+
 function track_list(infos){
     return'<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_track ']+'"   ">\n' +
@@ -51,6 +56,7 @@ function track_list(infos){
 
 
 }
+
 function album_list(infos){
     return    '<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_album ']+'"   ">\n' +
@@ -75,6 +81,7 @@ function album_list(infos){
         '                            </li>\n' +
         '                        </ul>'
 }
+
 function artist_list(infos){
     // console.log('artist_list');
     // console.log(infos);
@@ -91,6 +98,8 @@ function artist_list(infos){
         '                            </li>\n' +
         '                        </ul>';
 }
+
+// Show all the result of the search
 $(document).on('click', '#recherche', () =>
     {
         $('#title-page').empty();
@@ -99,6 +108,7 @@ $(document).on('click', '#recherche', () =>
         ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_all);
     }
 );
+
 $(document).on('keydown', '#bar', () =>
     {
         let search = $('#bar').val();
@@ -114,18 +124,23 @@ $(document).on('click', '#all_search', () =>
     }
 );
 
+// Show all the track witch match with the search
 $(document).on('click', '#track_search', () =>
     {
         let search = $('#bar').val();
         ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_track);
     }
 );
+
+// Show all the album witch match with the search
 $(document).on('click', '#album_search', () =>
     {
         let search = $('#bar').val();
         ajaxRequest('GET', '../php/request.php/search/?key='+ search, display_album);
     }
 );
+
+// Show all the artists witch match with the search
 $(document).on('click', '#artiste_search', () =>
     {
         let search = $('#bar').val();
@@ -136,6 +151,7 @@ $(document).on('click', '#artiste_search', () =>
 
 
 // Search functions
+// For tracks
 function display_track(results) {
     $('#content').empty();
     $('#content').append( button_track);
@@ -157,6 +173,8 @@ function show_track(results) {
         }
     }
 }
+
+// For artists
 function display_artist(results){
     $('#content').empty();
     $('#content').append( button_artiste);
@@ -177,6 +195,8 @@ function show_artist(results) {
         }
     }
 }
+
+// For albums
 function display_album(results){
     $('#content').empty();
     $('#content').append(button_album);
@@ -198,6 +218,8 @@ function show_album(results) {
         }
     }
 }
+
+// To show all
 function display_all(results){
     $('#content').empty();
     $('#content').append(button_all);
