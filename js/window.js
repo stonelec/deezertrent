@@ -149,7 +149,7 @@ function show_track(results) {
     // console.log(results);
     let tracks = results[0];
     if (tracks.length === 0){
-        $('#content').append('<p style="margin: 15px 0">Aucun morceaux trouvé</p>');
+        $('#content').append('<p style="margin: 15px 0">Aucun morceau trouvé</p>');
     }else {
         for (let track of tracks) {
             // console.log(track);
