@@ -31,7 +31,7 @@ let button_artiste = '<div class="btn-group" style="width:30%;"   >\n' +
 ///////////////////   DISPLAY LISTES   ///////////////////////////
 function track_list(infos){
     return'<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_track ']+'"   ">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track ']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
@@ -60,7 +60,7 @@ function track_list(infos){
 
 function album_list(infos){
     return    '<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_album ']+'"   ">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_album" name="'+infos['id_album ']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
@@ -250,7 +250,12 @@ function display_all(results){
         modifdiv.addEventListener('click',function (){
             $('#content').empty();
             $('#content').append('' +
-                '<div class="card-body backBlack">\n' +
+                '<style>.form-group{margin-bottom: 15px}</style>'+
+                '<div class="card-body backBlack" style="width: 40%; margin-left: auto; margin-right: auto;">\n' +
+                '                        <div class="card-header backBlack">\n' +
+                '                            <h3 class="text-center"> <br>Edition</h3>\n' +
+                '                            <p class="text-center">Veuillez entrer vos nouvelles informations</p>\n' +
+                '                        </div>'+
                 '                    <form method="post" id="profilForm">\n' +
                 '                        <div class="form-group">\n' +
                 '                            <label for="nom">Nouveau Nom <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
@@ -276,7 +281,9 @@ function display_all(results){
                 '                            <label for="passwordconf">Nouveau mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
                 '                            <input type="password" class="form-control" id="passwordconf" name="passwordconf" placeholder="Entrez à nouveau votre mot de passe" required>\n' +
                 '                        </div>\n' +
-                '                        <input type="submit" class="btn btn-danger btn-block " name="modification" value="modifier">\n' +
+                '                        <div>\n' +
+                '                            <input type="submit"wmargin-left: auto; margin-right: auto" class="btn btn-danger btn-block " name="modification" value="modifier">\n' +
+                '                        </div>\n' +
                 '                    </form>\n' +
                 '                </div>' +
                 '');

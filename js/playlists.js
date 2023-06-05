@@ -7,7 +7,7 @@ let menu_tri = '<div>' +
 
 function playlist_list(infos){
     return    '<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_playlist']+'"   ">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_playlist" name="'+infos['id_playlist']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images'+infos['image_playlist']+'"  alt=".....">\n' +
