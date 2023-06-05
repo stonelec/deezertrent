@@ -1,18 +1,17 @@
 <?php
 
 require_once ('../php/database.php');
-session_start();
 
 class User{
     // Get the user's data
 
     // Get all the information about user
-    public static function user_info(){
+    public static function user_info($id){
         try {
             $conn = Database::connexionBD();
-            $sql = 'SELECT * FROM utilisateur';
+            $sql = 'SELECT * FROM utilisateur where id_user=?';
             $stmt = $conn->prepare($sql);
-            $stmt->execute();
+            $stmt->execute([$id]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
 
@@ -20,6 +19,37 @@ class User{
             error_log('Connection error: ' . $exception->getMessage());
             return false;
         }
+    }
+
+    public static function user_history($id){
+        try{
+            $conn = Database::connexionBD();
+            $sql = "SELECT id_playlist FROM playlist where id_user=? and nom_playlist='Historique';";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$id]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sql = "SELECT t.* FROM comprendre c LEFT JOIN
+    track t on t.id_track=c.id_track WHERE c.id_playlist=?;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$result[0]['id_playlist']]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+
+
+        } catch (PDOException $exception) {
+            error_log('Connection error: ' . $exception->getMessage());
+            return false;
+        }
+
+    }
+
+    public static function ModifUserInfo($id, $nom, $prenom, $datenaissance, $email, $password) {
+        $hashpassword = password_hash($password, PASSWORD_DEFAULT);
+        $db = database::connexionBD();
+        $query = "UPDATE utilisateur SET nom=?, prenom=?, date_de_naissance=?, email=?, mot_de_passe=? WHERE id_user=?;";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$nom, $prenom, $datenaissance, $email, $hashpassword, $id]);
+        return true;
     }
 
     // Get the user's name

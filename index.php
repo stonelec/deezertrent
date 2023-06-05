@@ -9,7 +9,7 @@ ob_start(); // Démarre la mise en tampon de sortie
         <style>
             *{
                 color: white;
-                border:0px;
+                border:0;
 
             }
             .logoSize{
@@ -89,28 +89,28 @@ ob_start(); // Démarre la mise en tampon de sortie
         // login
         session_start();
 
-        require_once('php/database.php');
-        if (isset($_POST['submit'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $db = database::connexionBD();
-            $query = "SELECT * FROM utilisateur WHERE email= ? ;";
-            $stmt = $db->prepare($query);
-            $stmt->execute([$email]);
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if (count($result) == 1) {
-                if (password_verify($password, $result[0]['mot_de_passe'])) {
-                    $_SESSION['user_id'] = $result[0]['id_user'];
-                    //echo "<h1 style='font-size: 100px;color: white'>".$_SESSION['user_id']."</h1>";
-                    header("Location: web/accueil.php");
-                    exit;
-                } else {
-                    echo "Mot de passe incorrect.";
-                }
-            } else {
-                echo "Email incorrect.";
-            }
+require_once('php/database.php');
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $db = database::connexionBD();
+    $query = "SELECT * FROM utilisateur WHERE email= ? ;";
+    $stmt = $db->prepare($query);
+    $stmt->execute([$email]);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (count($result) == 1) {
+        if (password_verify($password, $result[0]['mot_de_passe'])) {
+            $_SESSION['user_id'] = $result[0]['id_user'];
+            //echo "<h1 style='font-size: 100px;color: white'>".$_SESSION['user_id']."</h1>";
+            header("Location: web/accueil.php");
+            exit;
+        } else {
+            echo "Mot de passe incorrect.";
         }
-        ?>
-    </body>
+    } else {
+        echo "Email incorrect.";
+    }
+}
+?>
+</body>
 </html>

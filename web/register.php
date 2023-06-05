@@ -1,5 +1,7 @@
 <?php
 ob_start(); // Démarre la mise en tampon de sortie
+
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +13,7 @@ ob_start(); // Démarre la mise en tampon de sortie
     <style>
         * {
             color: white;
-            border: 0px;
+            border: 0;
         }
 
         .logoSize {
@@ -22,9 +24,6 @@ ob_start(); // Démarre la mise en tampon de sortie
             border: none;
         }
 
-        .cardSize {
-            width: 70%;
-        }
 
         body {
             background-color: #121212;
