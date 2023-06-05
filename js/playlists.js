@@ -5,6 +5,7 @@ let menu_tri = '<div>' +
     '               <i class="bi bi-sort-alpha-down"></i>' +
     '           </div>';
 
+
 function playlist_list(infos){
     return    '<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center name="'+infos['id_playlist']+'"   ">\n' +

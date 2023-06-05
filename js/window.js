@@ -182,6 +182,7 @@ function show_artist(results) {
         }
     }
 }
+
 // For albums
 function display_album(results){
     $('#content').empty();
