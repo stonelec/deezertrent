@@ -45,10 +45,12 @@ if ($id == '') {
             }
             elseif ($requestResource == "album"){
                 $data =  Album::album_info($_GET['id_album']);
-            }elseif ($requestResource == "playlist") {
-                $data =Playlist::playlist_info($_SESSION['user_id']);
+            }elseif($requestResource == "playlist" and isset($_GET['id_playlist']) ){
+                $data = Playlist::playlist_detail($_SESSION['user_id'], $_GET['id_playlist']);
+            } elseif ($requestResource == "playlist") {
+                $data = Playlist::playlist_info($_SESSION['user_id']);
             } elseif ($requestResource == "historique") {
-                $data =User::user_history($_SESSION['user_id']);
+                $data = User::user_history($_SESSION['user_id']);
             }
             else {
                 http_response_code(400);

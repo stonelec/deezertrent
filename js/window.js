@@ -85,11 +85,9 @@ function album_list(infos){
 }
 
 function artist_list(infos){
-    // console.log('artist_list');
-    // console.log(infos);
     return'                        <ul class="list-infos list-group justify-content-center">\n' +
         '\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_artiste" id="'+infos['id_artist']+'">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_artist" id="'+infos['id_artiste ']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div class="d-flex flex-row align-items-center">\n' +
         '                                        <div class="overflow">\n' +
@@ -332,13 +330,15 @@ function display_all(results){
     const divhistorique = document.getElementById('historique');
     divhistorique.addEventListener('click', function() {
         $('#content').empty();
-        ajaxRequest('GET', '../php/request.php/historique/10', displayHistory);
+        ajaxRequest('GET', '../php/request.php/historique/', displayHistory);
     });
 
 ///////////////////   DISPLAY HISTORIQUE   ///////////////////////////
 
     function displayHistory(historiques)
     {
+        $('#title-page').empty();
+        $('#title-page').append('<h2 class="nom-page" >Historique</h2>');
         $('#content').html('<h3>OUI OUI OUI</h3>');
         console.log(historiques)
         for (let historique of historiques)
