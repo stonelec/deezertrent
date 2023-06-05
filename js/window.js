@@ -60,7 +60,7 @@ function track_list(infos){
 
 function album_list(infos){
     return    '<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_album" name="'+infos['id_album ']+'"   ">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_album" id="'+infos['id_album ']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
@@ -84,11 +84,9 @@ function album_list(infos){
 }
 
 function artist_list(infos){
-    // console.log('artist_list');
-    // console.log(infos);
     return'                        <ul class="list-infos list-group justify-content-center">\n' +
         '\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_artist" id="'+infos['id_artiste ']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div class="d-flex flex-row align-items-center">\n' +
         '                                        <div class="overflow">\n' +

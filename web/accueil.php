@@ -37,8 +37,6 @@ if(!isset($_SESSION['user_id'])){
     </head>
     <!-- Simple lecture audio -->
     <audio id="audioPlayer" src="https://cdns-preview-b.dzcdn.net/stream/c-b53be55456ff326e9c2a7bf1d0abe601-6.mp3" muted></audio>
-
-
     <body>
         <div class="global d-flex flex-row">
             <!--    Navbar----------------------------------------------------------------------------------->

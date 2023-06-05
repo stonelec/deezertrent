@@ -96,8 +96,8 @@ if (isset($_POST['inscription'])) {
         $id = $_SESSION['user_id'];
         $query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
                 VALUE(('Historique', :jour, :id),
-                        ('Liste de lecture', :jour, :id )
-                        ('Favoris', :jour, :id))";
+                        ('Liste de lecture', :jour, :id ),
+                        ('Favoris', :jour, :id);)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':jour', $date);

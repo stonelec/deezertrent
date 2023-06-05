@@ -21,20 +21,18 @@ class Playlist{
     }
 
     // Get all the data of a playlist
-    public static function playlist_detail($id){
+    public static function playlist_detail($id_user, $id_playlist){
         try {
             $conn = Database::connexionBD();
-            $sql = "SELECT id_playlist, nom_playlist, date_creation FROM playlist 
-                    WHERE id_user=?;";
+            $sql = "SELECT p.id_playlist, p.nom_playlist, p.date_creation, t.*, a.image_album, ar.nom_artiste, c.date_ajout FROM playlist p
+                    JOIN comprendre c ON c.id_playlist = p.id_playlist
+                    JOIN track t ON c.id_track = t.id_track
+                    JOIN album a ON a.id_album = t.id_album
+                    JOIN artiste ar ON ar.id_artiste = a.id_artiste
+                    WHERE p.id_user=? AND p.id_playlist = ?;";
             $stmt = $conn->prepare($sql);
-            $stmt->execute([$id]);
+            $stmt->execute([$id_user, $id_playlist]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $sql = "SELECT t.* FROM comprendre c 
-                    LEFT JOIN track t ON t.id_track = c.id_track 
-                    WHERE c.id_playlist=?;";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([$result[0]['id_playlist']]);
-            $result += $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
 
         } catch (PDOException $exception) {
