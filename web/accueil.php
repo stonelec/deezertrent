@@ -28,6 +28,7 @@ if(!isset($_SESSION['user_id'])){
         <script src="../js/ajax.js" defer></script>
         <script src="../js/window.js" defer></script>
         <script src="../js/progresBar.js" defer></script>
+        <script src="../js/playlists.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
             integrity="sha256-x3YZWtRjM8bJqf48dFAv/qmgL68SI4jqNWeSLMZaMGA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"

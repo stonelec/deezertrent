@@ -31,6 +31,10 @@ function playlist_list(infos){
         '                        </ul>'
 }
 
+///////////////////   DEFAULT REQUEST   ///////////////////////////
+ajaxRequest('GET', '../php/request.php/playlist/10', displayListePlaylist);
+
+
 ///////////////////   PLAYLIST ACCUEIL REQUEST   ///////////////////////////
 const divaccueil = document.getElementById('accueil');
 divaccueil.addEventListener('click', function() {
