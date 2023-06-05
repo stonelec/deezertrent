@@ -116,4 +116,19 @@ class Playlist{
             return false;
         }
     }
+
+    public static function del_playlist($id_playlist){
+        try {
+            $conn = Database::connexionBD();
+            $sql = 'DELETE FROM playlist
+                    WHERE id_playlist = :id
+                    CASCADE';
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id_playlist);
+            $stmt->execute();
+        }catch (PDOException $exception){
+            error_log('Connection error: ' . $exception->getMessage());
+            return false;
+        }
+    }
 }

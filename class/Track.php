@@ -105,4 +105,35 @@ where id_track=?;';
                 return false;
             }
         }
+
+        public static function add_tarck($id_track, $id_playlist){
+            try {
+                $conn = Database::connexionBD();
+                $sql = "INSERT INTO comprendre (id_track, id_playlist, date_ajout)
+                        VALUES
+                        (:idT, :idP, CURRENT_TIMESTAMP),";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':idT', $id_track);
+                $stmt->bindParam(':idP', $id_playlist);
+                $stmt->execute();
+            }catch (PDOException $exception){
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
+        public static function del_track($id_track, $id_playlist){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'DELETE FROM comprendre
+                    WHERE id_playlist = :idP AND id_track = :idT';
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':idP', $id_playlist);
+                $stmt->bindParam(':idT', $id_track);
+                $stmt->execute();
+            }catch (PDOException $exception){
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
     }

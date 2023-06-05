@@ -16,6 +16,9 @@ if(!isset($_SESSION['user_id'])){
         <!--    Bootstrap    -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+
         <!--    Icons Bootstrap-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <!--    Icons google-->
@@ -132,6 +135,14 @@ if(!isset($_SESSION['user_id'])){
                             <a id="track_search"  class="btn btn-danger ">Morceaux</a>
                             <a id="album_search" class="btn btn-danger">Albums</a>
                             <a id="artiste_search" class="btn btn-danger">Artiste</a>
+                        </div>
+
+                        <div class="modal fade" id="new_playlist_modal" tabindex="-1" aria-labelledby="new_playlist_modalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <!-- Contenu de la fenêtre modale -->
+                                </div>
+                            </div>
                         </div>
                         <h2 style=" margin: 15px 0">Les titres</h2>
                         <ul class="list-infos list-group justify-content-center">

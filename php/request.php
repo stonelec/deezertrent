@@ -57,6 +57,7 @@ if ($id == '') {
                 exit();
         }
             break;
+
         case 'PUT':
             if ($requestResource == "profil") {
                 $put = json_decode(file_get_contents('php://input'), true);
@@ -72,9 +73,20 @@ if ($id == '') {
                 exit();
             }
             break;
+
         case 'POST' :
             if(isset($_POST['nom_playlist'])){
                 $data = Playlist::add_playlist($_POST['nom_playlist']);
+            }elseif (isset($_POST['id_playlist']) AND isset($_POST['id_track'])){
+
+            }
+            break;
+
+        case 'DELLETE' :
+            if(isset($_GET['id'])){
+                $data = Playlist::del_playlist($_GET['id']);
+            }elseif (isset($_GET['id_playlist']) AND isset($_GET['id_track'])){
+                $data = Track::del_track($_GET['id_track'],$_GET['id_playlist'] );
             }
             break;
 
