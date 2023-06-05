@@ -39,8 +39,11 @@ if ($id == '') {
                 $data =  Track::track_info($_GET['id_track'], $_GET['id_album']);
             }elseif ($requestResource    == "album"){
                 $data =  Album::album_info($_GET['id_album']);
-            }elseif ($requestResource == "playlist") {
-                $data =Playlist::playlist_info($_SESSION['user_id']);
+            }elseif(isset($_GET['id_playlist']) and $requestResource == "playlist"){
+                $data = Playlist::playlist_detail($_GET['id_playlist']);
+                var_dump($data);
+            } elseif ($requestResource == "playlist") {
+                $data = Playlist::playlist_info($_SESSION['user_id']);
             } elseif ($requestResource == "historique") {
                 $data = User::user_history($_SESSION['user_id']);
             }

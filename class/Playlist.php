@@ -3,7 +3,7 @@ require_once ('../php/database.php');
 
 class Playlist{
 
-    // Get all the information about album
+    // Get all the information about playlist
 
     public static function playlist_info($id){
         try {
@@ -19,6 +19,30 @@ class Playlist{
             return false;
         }
     }
+
+    // Get all the data of a playlist
+    public static function playlist_detail($id){
+        try {
+            $conn = Database::connexionBD();
+            $sql = "SELECT id_playlist, nom_playlist, date_creation FROM playlist 
+                    WHERE id_user=?;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$id]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sql = "SELECT t.* FROM comprendre c 
+                    LEFT JOIN track t ON t.id_track = c.id_track 
+                    WHERE c.id_playlist=?;";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$result[0]['id_playlist']]);
+            $result += $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+
+        } catch (PDOException $exception) {
+            error_log('Connection error: ' . $exception->getMessage());
+            return false;
+        }
+    }
+
 
     // Get the playlist's name
     public static function name($id){
