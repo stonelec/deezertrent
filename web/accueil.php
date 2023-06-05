@@ -110,13 +110,13 @@ if(!isset($_SESSION['user_id'])){
             <div class="right d-flex flex-column" >
                 <!--    Navbar TOP ----------------------------------------------------------------------------------->
                 <div class="menu-top d-flex flex-row justify-content-between">
-                    <div id="title-page">
-                        <h2 class="nom-page" >Accueil</h2>
-                    </div>
-                    <!-- Div avec form de recherche -->
-<!--                    <div>-->
-<!--                        <input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">-->
+<!--                    <div id="title-page">-->
+<!--                        <h2 class="nom-page" >Accueil</h2>-->
 <!--                    </div>-->
+                    <!-- Div avec form de recherche -->
+                    <div id="title-page">
+                        <input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">
+                    </div>
 
                     <div class="click" id="profil" >
                         <div class="profil d-flex flex-row"   style="display:block;width:100%;height:100%;">

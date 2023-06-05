@@ -228,6 +228,8 @@ function display_all(results){
     function displayProfil(profil) {
         let age=calculerAge(profil[0].date_de_naissance)
         $('#content').empty();
+        $('#title-page').empty();
+        $('#title-page').append('<h2 class="nom-page" >Profil</h2>');
         $('#content').append('' +
             '<div class="container" style="margin: auto;  ">\n' +
             '    <div class="row ">\n' +
@@ -240,8 +242,8 @@ function display_all(results){
             '       <p><strong>Date de naissance:</strong> '+profil[0].date_de_naissance+'</p>\n' +
             '        <p><strong>Age:</strong>'+age+'</p>\n' +
             '        <p><strong>Autre information:</strong>...</p>\n' +
+            '        <button type="button" style="width: 50%" class="btn btn-danger btn-block " id="modifier" name="submit">Modifier</button>'+
             '      </div>\n' +
-            '<button type="button" class="btn btn-danger btn-block " id="modifier" name="submit">Modifier</button>'+
             '    </div>\n' +
             '  </div>' +
             '');
@@ -281,8 +283,8 @@ function display_all(results){
                 '                            <label for="passwordconf">Nouveau mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
                 '                            <input type="password" class="form-control" id="passwordconf" name="passwordconf" placeholder="Entrez à nouveau votre mot de passe" required>\n' +
                 '                        </div>\n' +
-                '                        <div>\n' +
-                '                            <input type="submit"wmargin-left: auto; margin-right: auto" class="btn btn-danger btn-block " name="modification" value="modifier">\n' +
+                '                        <div style="text-align: center">\n' +
+                '                            <input type="submit"  style="width: 50%" class="btn btn-danger btn-block " name="modification" value="modifier">\n' +
                 '                        </div>\n' +
                 '                    </form>\n' +
                 '                </div>' +
