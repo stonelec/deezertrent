@@ -23,14 +23,25 @@ require_once ('../php/database.php');
         }
 
         // Get all the information about one artist
-        public static function artist_info($id){
+        // Get all the information about one artist
+        public static function artist_info($id) {
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT * FROM artiste WHERE id_artiste = :id';
+                $sql = 'SELECT ar.*, a.* FROM artiste a
+                LEFT JOIN art ar ON ar.id_type = a.id_type
+                WHERE id_artiste = ?';
                 $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':id', $id);
-                $stmt->execute();
+                $stmt->execute([$id]);
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+/*
+                $sql = 'SELECT alb.* FROM artiste a
+                LEFT JOIN album alb ON alb.id_artiste = a.id_artiste
+                WHERE a.id_artiste = ?';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$id]);
+                $albums = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $result['albums'] = $albums;
+*/
                 return $result;
 
             } catch (PDOException $exception) {
@@ -38,6 +49,7 @@ require_once ('../php/database.php');
                 return false;
             }
         }
+
 
         // Get the artist's name
         public static function nom($id_artiste)
@@ -131,15 +143,11 @@ require_once ('../php/database.php');
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
                 return $result;
-
             } catch (PDOException $exception) {
                 error_log('Connection error: ' . $exception->getMessage());
                 return false;
             }
-            return false;
         }
-
     }
 ?>

@@ -20,18 +20,16 @@ require_once ('../php/database.php');
             }
         }
 
-        // Get all the information about one track on an album
-        public static function track_info($id_t, $id_a){
+        public static function track_info($id){
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT * ar.nom_artiste FROM track t
-                        JOIN album a ON t.id_album = a.id_album
-                        JOIN artiste ar ON ar.id_artiste = a.id_artiste
-                        WHERE t.id_track = :idt AND a.id_album = :ida';
+                $sql = 'SELECT t.*,a.titre_album,a.image_album,a.date_parution,s.nom_style,ar.nom_artiste 
+FROM track t LEFT JOIN album a on a.id_album=t.id_album
+LEFT JOIN style_a s on s.id_style=a.id_style
+LEFT JOIN artiste ar on ar.id_artiste=a.id_artiste 
+where id_track=?;';
                 $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':idt', $id_t);
-                $stmt->bindParam(':ida', $id_a);
-                $stmt->execute();
+                $stmt->execute([$id]);
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
 

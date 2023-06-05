@@ -4,6 +4,10 @@
     require_once ('../class/Search.php');
     require_once ('../class/Playlist.php');
     require_once ('../class/User.php');
+    require_once ('../class/Track.php');
+    require_once ('../class/Artiste.php');
+
+
 
 
 session_start();
@@ -33,11 +37,13 @@ if ($id == '') {
                 if(isset($_GET['key'])){
                     $data =  Search::all_search($_GET['key']);
                 }
-            }elseif($requestResource == "artiste"){
-                $data =  Artiste::artist_info($_GET['id_artiste']);
             }elseif ($requestResource == "track"){
-                $data =  Track::track_info($_GET['id_track'], $_GET['id_album']);
-            }elseif ($requestResource    == "album"){
+                $data =  Track::track_info($id);
+            }
+            elseif ($requestResource == "artiste") {
+                $data = Artiste::artist_info($id);
+            }
+            elseif ($requestResource == "album"){
                 $data =  Album::album_info($_GET['id_album']);
             }elseif ($requestResource == "playlist") {
                 $data =Playlist::playlist_info($_SESSION['user_id']);
