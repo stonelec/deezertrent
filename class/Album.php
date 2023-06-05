@@ -7,7 +7,24 @@
         public static function album_info(){
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT * FROM album';
+                $sql = 'SELECT * FROM album JOIN artiste ON album.id_artiste = artiste.id_artiste JOIN style_A ON album.id_style = style_A.id_style';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
+        // Get all the information about album
+
+        public static function albums_info($id){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT * FROM album WHERE id_album';
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

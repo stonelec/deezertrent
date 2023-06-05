@@ -1,16 +1,34 @@
 <?php
 
 require_once ('../php/database.php');
+//session_start();
 
     class Artiste {
 
         // Get all the information about artist
 
-        public static function artist_info(){
+        public static function artists_info(){
             try {
                 $conn = Database::connexionBD();
                 $sql = 'SELECT * FROM artiste';
                 $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+
+            } catch (PDOException $exception) {
+                error_log('Connection error: ' . $exception->getMessage());
+                return false;
+            }
+        }
+
+        // Get all the information about one artist
+        public static function artist_info($id){
+            try {
+                $conn = Database::connexionBD();
+                $sql = 'SELECT * FROM artiste WHERE id_artiste = :id';
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':id', $id);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
@@ -78,29 +96,26 @@ require_once ('../php/database.php');
         }
 
         // Get all the track of an artist
-        public static function track_artist($name)
+        public static function track_artist($id)
         {
             try {
-                $list_final = [];
                 $conn = Database::connexionBD();
-                $sql = 'SELECT t.titre_track ar.nom_artiste, t.id_track FROM album a
-                        JOIN track t ON t.id_album = a.id_album
-                        JOIN artiste ar ON ar.id_artiste = a.id_artiste';
+                $sql = 'SELECT * FROM track t
+                        JOIN album a ON t.id_album = a.id_album
+                        JOIN artiste ar ON ar.id_artiste = a.id_artiste
+                        WHERE ar.id_artiste = :id';
                 $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':id', $id);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                foreach ($result as $elt) {
-                    if (strtolower($elt['nom_artiste']) == strtolower($name)) {
-                        $list_final += $elt['nom_artiste'];
-                    }
-                }
+                return $result;
+
 
             } catch (PDOException $exception) {
                 error_log('Connection error: ' . $exception->getMessage());
                 return false;
             }
-            return false;
         }
 
 
@@ -108,7 +123,6 @@ require_once ('../php/database.php');
         public static function album_artist($id)
         {
             try {
-                $list_final = [];
                 $conn = Database::connexionBD();
                 $sql = 'SELECT * FROM album a
                         JOIN artiste ar ON ar.id_artiste = a.id_artiste
@@ -118,6 +132,7 @@ require_once ('../php/database.php');
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+                return $result;
 
             } catch (PDOException $exception) {
                 error_log('Connection error: ' . $exception->getMessage());

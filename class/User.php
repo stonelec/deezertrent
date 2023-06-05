@@ -1,6 +1,7 @@
 <?php
 
 require_once ('../php/database.php');
+//session_start();
 
 class User{
     // Get the user's data
@@ -9,20 +10,35 @@ class User{
     public static function user_info($id){
         try {
             $conn = Database::connexionBD();
-            $sql = 'SELECT * FROM utilisateur where id_user=?';
+            $sql = 'SELECT * FROM utilisateur
+                    WHERE id_user = :id';
             $stmt = $conn->prepare($sql);
-            $stmt->execute([$id]);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
+
 
         } catch (PDOException $exception) {
             error_log('Connection error: ' . $exception->getMessage());
             return false;
         }
+
     }
 
-    public static function user_history($id){
-        try{
+    public static function ModifUserInfo($id, $nom, $prenom, $datenaissance, $email, $password)
+    {
+        $hashpassword = password_hash($password, PASSWORD_DEFAULT);
+        $db = database::connexionBD();
+        $query = "UPDATE utilisateur SET nom=?, prenom=?, date_de_naissance=?, email=?, mot_de_passe=? WHERE id_user=?;";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$nom, $prenom, $datenaissance, $email, $hashpassword, $id]);
+        return true;
+    }
+
+    public static function user_history($id)
+    {
+        try {
             $conn = Database::connexionBD();
             $sql = "SELECT id_playlist FROM playlist where id_user=? and nom_playlist='Historique';";
             $stmt = $conn->prepare($sql);
@@ -40,16 +56,6 @@ class User{
             error_log('Connection error: ' . $exception->getMessage());
             return false;
         }
-
-    }
-
-    public static function ModifUserInfo($id, $nom, $prenom, $datenaissance, $email, $password) {
-        $hashpassword = password_hash($password, PASSWORD_DEFAULT);
-        $db = database::connexionBD();
-        $query = "UPDATE utilisateur SET nom=?, prenom=?, date_de_naissance=?, email=?, mot_de_passe=? WHERE id_user=?;";
-        $stmt = $db->prepare($query);
-        $stmt->execute([$nom, $prenom, $datenaissance, $email, $hashpassword, $id]);
-        return true;
     }
 
     // Get the user's name

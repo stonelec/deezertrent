@@ -14,14 +14,14 @@ function ajaxRequest(type, url, callback, data = null){
     if (type === 'GET' && data != null)
         url += '?' + data;
     xhr.open(type, url);
-    xhr.setRequestHeader('Content-Type',
-        'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
     // Add onload function.
     xhr.onload = () => {
         switch (xhr.status) {
             case 200:
-            case 201: callback(xhr.responseText);
+            case 201:
+                callback(JSON.parse(xhr.responseText));
                 break;
             default: httpErrors(xhr.status);
         } };

@@ -1,8 +1,9 @@
 <?php
 
-require_once('database.php');
-require_once ('../class/Playlist.php');
-require_once ('../class/User.php');
+    require_once('database.php');
+    require_once ('../class/Search.php');
+    require_once ('../class/Playlist.php');
+    require_once ('../class/User.php');
 
 
 session_start();
@@ -13,14 +14,58 @@ if (!$db) {
     exit;
 }
 
-$method = $_SERVER['REQUEST_METHOD'];
+$requestMethod = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', substr($_SERVER['PATH_INFO'], 1));
 $requestResource = array_shift($request);
 
-$id = array_shift($request);
-if ($id == '') {
-    $id = NULL;
-}
+    $data = false;
+    $id = array_shift($request);
+    if ($id == null) {
+        $id = '';
+    }
+
+    switch ($requestMethod) {
+        case 'GET':
+            if ($requestResource == "playlist") {
+                $data =  json_encode(Playlist::playlist_info($_SESSION['user_id']));
+            } elseif ($requestResource == "profil") {
+                $data =  json_encode(User::user_info($_SESSION['user_id']));
+            } elseif($requestResource == 'search'){
+                if(isset($_GET['key'])){
+                    $data =  json_encode(Search::all_search($_GET['key']));
+                }
+                // Test pour les fiches infos
+            }elseif($requestResource == "artiste"){
+                $data =  json_encode(Artiste::artist_info($_GET['id_artiste']));
+            }elseif ($requestResource == "track"){
+                $data =  json_encode(Track::track_info($_GET['id_track'], $_GET['id_album']));
+            }elseif ($requestResource    == "album"){
+                $data =  json_encode(Album::album_info($_GET['id_album']));
+            }elseif ($requestResource == "test") {
+                $data =  json_encode([["id" => 1, "nom" => "test1"], ["id" => 2, "nom" => "test2"]]);
+            }else {
+                http_response_code(400); /* Bad request*/
+                break;
+            }
+            break;
+        default:
+            http_response_code(405); /* Method not allowed*/
+            break;
+    }
+
+
+        // Send data to the client.
+//        header('Content-Type: application/json; charset=utf-8');
+//        header('Cache-control: no-store, no-cache, must-revalidate');
+//        header('Pragma: no-cache');
+//        header('HTTP/1.1 201 Created');
+
+        /*
+    if($requestResource == 'tarck'){
+        $data = false;
+        $id = array_shift($request);
+
+
 
 
 switch ($method) {
@@ -55,41 +100,25 @@ switch ($method) {
         }
         break;
 
-    /*
-        case 'POST':
-            if ($id === NULL && $requestResource == "tweets") {
-                $login = $_POST['login'];
-                $text = $_POST['text'];
-                var_dump($id);
-                echo json_encode(dbAddTweet($db, $login, $text));
-            } else {
-                http_response_code(400);
-                exit();
-            }
-            break;
 
-        case 'PUT':
-            if ($id !== NULL && $requestResource == "tweets") {
-                parse_str(file_get_contents("php://input"), $put);
-                $login = $put['login'];
-                $text = $put['text'];
-                echo json_encode(dbModifyTweet($db, $id, $login, $text));
-            } else {
-                http_response_code(400);
-                exit();
-            }
-            break;
 
-        case 'DELETE':
-            if ($id !== NULL && $requestResource == "tweets") {
-                $login = $_GET['login'];
-                echo json_encode(dbDeleteTweet($db, $id, $login));
-            } else {
-                exit();
-            }
-            break;*/
+        // Send data to the client.
+        header('Content-Type: application/json; charset=utf-8');
+        header('Cache-control: no-store, no-cache, must-revalidate');
+        header('Pragma: no-cache');
+        header('HTTP/1.1 201 Created');
 
-    default:
-        http_response_code(405);
-        exit();
-}
+        echo json_encode($data);
+        exit;
+    }
+    if($requestResource == 'album'){
+        $data = false;
+        $id = array_shift($request);
+
+
+
+
+    */
+        echo json_encode($data);
+        exit;
+

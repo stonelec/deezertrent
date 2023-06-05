@@ -4,71 +4,89 @@
     require_once ('../class/Album.php');
 
     class Search{
-        // Get all the album with an album name for the search
-        public static function search_album($name){
+        // Get all the album with an album result for the search
+        public static function search_album($result){
             $list_al = Album::album_info();
             $list_final = [];
             foreach ($list_al as $elt){
-                if(substr_compare(strtolower($name), strtolower($elt['titre_album']), 0, count($name))){
-                    $list_final += $elt;
+                $titre = preg_replace(' /\s+/', '', strtolower($elt['titre_album']));
+                $search = preg_replace(' /\s+/', '',strtolower($result));
+                if(substr_compare($search, $titre, 0, strlen($result)) == 0){
+                    $list_final[] = $elt;
                 }
             }
             return $list_final;
         }
 
-        // Get all the artist with a name for the search
-        public static function search_artist($name){
-            $list_art = Artiste::artist_info();
+        // Get all the artist with a result for the search
+        public static function search_artist($result){
+            $list_art = Artiste::artists_info();
             $list_final = [];
             foreach ($list_art as $elt){
-                if(substr_compare(strtolower($name), strtolower($elt['nom_artiste']), 0, count($name))){
-                    $list_final += $elt['nom_artiste'];
+                $nom = preg_replace(' /\s+/', '', strtolower($elt['nom_artiste']));
+                $search = preg_replace(' /\s+/', '',strtolower($result));
+                if(substr_compare($search, $nom, 0, strlen($result)) == 0){
+                    $list_final[] = $elt;
                 }
             }
             return $list_final;
         }
 
-        // Get all the track with a name for the search
-        public static function search_track($name){
-            $list_track = Track::track_info();
-            $list_final = [];
+        // Get all the track with a result for the search
+        public static function search_track($result){
+            $list_track = Track::tracks_info();
+            $list_final = array();
             foreach ($list_track as $elt){
-                if(substr_compare(strtolower($name), strtolower($elt['titre_track']), 0, count($name))){
-                    $list_final += $elt;
+                $titre = preg_replace(' /\s+/', '', strtolower($elt['titre_track']));
+                $search = preg_replace(' /\s+/', '',strtolower($result));
+                if(substr_compare($search, $titre, 0, strlen($result)) == 0){
+                    $list_final[] = $elt;
                 }
             }
             return $list_final;
         }
 
 
-        public static function search_artiste_track($name){
-            $list_art = self::search_artist($name);
+        public static function search_artiste_track($result){
+            $list_art = self::search_artist($result);
             $list_final = [];
 
             foreach ($list_art as $elt) {
-                $list_final += Artiste::track_artist($elt['nom_artiste']);
+                array_push($list_final,Artiste::track_artist($elt['id_artiste']));
             }
             return $list_final;
         }
 
-        public static function search_album_track($name){
-            $list_al = self::search_album($name);
+        public static function search_album_track($result){
+            $list_al = self::search_album($result);
             $list_final = [];
-
             foreach ($list_al as $elt) {
-                $list_final += Album::liste_track($elt['id_album']);
+                $list_final[] = Album::liste_track($elt['id_album']);
+            }
+
+
+            return $list_final;
+        }
+
+        public static function search_artiste_album($result){
+            $list_art = self::search_artist($result);
+            $list_final = [];
+
+            foreach ($list_art as $elt) {
+                $list_final[] = Artiste::album_artist($elt['id_artiste']);
             }
             return $list_final;
         }
 
-        public static function search_artiste_album($name){
-            $list_art = self::search_artist($name);
-            $list_final = [];
-
-            foreach ($list_art as $elt) {
-                $list_final += Artiste::album_artist($elt['id_artiste']);
-            }
-            return $list_final;
+        public static function all_search($result){
+            $stock = [];
+            $stock[] = self::search_track($result);
+            $stock[] = self::search_album_track($result);
+            $stock[] = self::search_artiste_track($result);
+            $stock[] = self::search_album($result);
+            $stock[] = self::search_artiste_album($result);
+            $stock[] = self::search_artist($result);
+            return $stock;
         }
 
     }

@@ -52,12 +52,78 @@ session_start();
     </style>
 </head>
 <body>
+
+<?php
+require_once('../php/database.php');
+
+if (isset($_POST['inscription'])) {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $datenaissance = $_POST['datenaissance'];
+    $email = $_POST['email'];
+    $emailconf = $_POST['emailconf'];
+    $password = $_POST['password'];
+    $passwordconf = $_POST['passwordconf'];
+    $hashpassword = password_hash($password, PASSWORD_DEFAULT);
+    $image = '';
+    //$id = $_SESSION['user_id'];
+    $date = date('d-m-y');
+    if ($password == $passwordconf && $email == $emailconf) {
+        $db = database::connexionBD();
+
+        if($db){
+            echo 'connexion reussie';
+            $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
+              VALUES (:nom, :prenom, :daten, :mail, :mdp, :img )";
+            var_dump($db);
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':nom', $nom);
+            echo 'nom';
+            $stmt->bindParam('prenom', $prenom);
+            echo 'prenom';
+            $stmt->bindParam(':daten', $datenaissance);
+            echo 'date';
+            $stmt->bindParam(':mail', $email);
+            echo 'mail';
+            $stmt->bindParam(':mdp', $hashpassword);
+            echo 'pwd';
+            $stmt->bindParam(':img',$image );
+            echo'prepare';
+            $stmt->execute();
+            echo 'exec';
+        }
+
+        /*$query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
+                VALUE(('Historique', :jour, :id),
+                        ('Liste de lecture', :jour, :id )
+                        ('Favoris', :jour, :id))";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':jour', $date);
+        $stmt->execute();*/
+        header('Location: ../index.php');
+
+    }else{
+        echo '
+        <div class="card NoBorder">
+                <div class="card-header backBlack">
+                    <p class="text-center textColor-DC3545">Mot de passe ou Email non similaire !</p>
+                </div>
+                ';
+
+    }
+
+
+}
+?>
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card NoBorder">
                 <div class="card-header backBlack">
-                    <img class="d-block mx-auto logoSize" src="images/logo.png" alt="Logo">
+                    <a href="../index.php">
+                        <img class="d-block mx-auto logoSize" src="images/logo.png" alt="Logo">
+                    </a>
                     <h3 class="text-center">Bienvenue parmi nous</h3>
                     <p class="text-center">Content de te revoir !</p>
                     <p class="text-center">Veuillez entrer vos coordonnées.</p>
@@ -78,21 +144,21 @@ session_start();
                         </div>
                         <div class="form-group">
                             <label for="email">Email <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                         </div>
                         <div class="form-group">
                             <label for="emailconf">Confirmation de l'email <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>
-                            <input type="email" class="form-control" id="emailconf" name="emailconf" placeholder="Entrez à nouveau votre email" required>
+                            <input type="email" class="form-control" id="emailconf" name="emailconf" placeholder="Entrez à nouveau votre email" required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                         </div>
                         <div class="form-group">
                             <label for="password">Mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                         </div>
                         <div class="form-group">
                             <label for="passwordconf">Confirmation du mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>
-                            <input type="password" class="form-control" id="passwordconf" name="passwordconf" placeholder="Entrez à nouveau votre mot de passe" required>
+                            <input type="password" class="form-control" id="passwordconf" name="passwordconf" placeholder="Entrez à nouveau votre mot de passe" required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                         </div>
-                        <input type="submit" class="btn btn-primary btn-block color-DC3545" name="inscription" value="Se connecter">
+                        <input type="submit" class="btn btn-primary btn-block color-DC3545" name="inscription" value="Créer un compte">
                     </form>
                 </div>
             </div>
@@ -100,49 +166,5 @@ session_start();
     </div>
 </div>
 
-<?php
-require_once('../php/database.php');
-
-if (isset($_POST['inscription'])) {
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $datenaissance = $_POST['datenaissance'];
-    $email = $_POST['email'];
-    $emailconf = $_POST['emailconf'];
-    $password = $_POST['password'];
-    $passwordconf = $_POST['passwordconf'];
-    $hashpassword = password_hash($password, PASSWORD_DEFAULT);
-    $image = '';
-    $id = $_SESSION['user_id'];
-    $date = date('d-m-y');
-    if ($password == $passwordconf && $email == $emailconf) {
-        $db = database::connexionBD();
-        $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user) 
-              VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $db->prepare($query);
-        $stmt->execute([$nom,$prenom,$datenaissance,$email,$hashpassword,'']);
-        $query = "INSERT INTO playlist (nom_playlist, date_creation, id_user) 
-                VALUE(('Historique', :jour, :id),
-                        ('Liste de lecture', :jour, :id )
-                        ('Favoris', :jour, :id))";
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':jour', $date);
-        $stmt->execute();
-        header('Location: ../index.php');
-
-    }else{
-        echo '
-        <div class="card NoBorder">
-                <div class="card-header backBlack">
-                    <p class="text-center textColor-DC3545">Mot de passe ou Email non similaire !</p>
-                </div>
-                ';
-
-    }
-
-
-}
-?>
 </body>
 </html>
