@@ -44,8 +44,7 @@ class User{
             $stmt = $conn->prepare($sql);
             $stmt->execute([$id]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $sql = "SELECT t.* FROM comprendre c LEFT JOIN
-    track t on t.id_track=c.id_track WHERE c.id_playlist=?;";
+            $sql = "SELECT t.* FROM comprendre c LEFT JOIN track t on t.id_track=c.id_track WHERE c.id_playlist=?;";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$result[0]['id_playlist']]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

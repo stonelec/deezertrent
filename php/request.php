@@ -42,7 +42,7 @@ if ($id == '') {
             }elseif ($requestResource == "playlist") {
                 $data =Playlist::playlist_info($_SESSION['user_id']);
             } elseif ($requestResource == "historique") {
-                $data =User::user_history($_SESSION['user_id']);
+                $data = User::user_history($_SESSION['user_id']);
             }
             else {
                 http_response_code(400);

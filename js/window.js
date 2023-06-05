@@ -331,13 +331,15 @@ function display_all(results){
     const divhistorique = document.getElementById('historique');
     divhistorique.addEventListener('click', function() {
         $('#content').empty();
-        ajaxRequest('GET', '../php/request.php/historique/10', displayHistory);
+        ajaxRequest('GET', '../php/request.php/historique/', displayHistory);
     });
 
 ///////////////////   DISPLAY HISTORIQUE   ///////////////////////////
 
     function displayHistory(historiques)
     {
+        $('#title-page').empty();
+        $('#title-page').append('<h2 class="nom-page" >Historique</h2>');
         $('#content').html('<h3>OUI OUI OUI</h3>');
         console.log(historiques)
         for (let historique of historiques)
