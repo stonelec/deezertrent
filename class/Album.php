@@ -25,7 +25,7 @@
         public static function albums_fiche_info($id){
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT alb.image_album,alb.titre_album,art.nom_artiste,s.nom_style, alb.date_parution
+                $sql = 'SELECT alb.image_album,alb.titre_album,art.nom_artiste,s.nom_style, alb.date_parution, art.id_artiste
                         FROM album alb
                         LEFT JOIN artiste art on art.id_artiste=alb.id_artiste 
                         LEFT JOIN style_a s on s.id_style=alb.id_style
