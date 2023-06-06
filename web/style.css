@@ -273,6 +273,9 @@ html .menu .logo-image{
 .scroller-card-playlist::-webkit-scrollbar {
     display: none;
 }
+.top-fiche{
+    margin-bottom: 20px;
+}
 
 /*responsive ----------------------------------------------*/
 .sound{

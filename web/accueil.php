@@ -29,6 +29,7 @@ if(!isset($_SESSION['user_id'])){
         <script src="../js/ajax.js" defer></script>
         <script src="../js/historique.js" defer></script>
         <script src="../js/modal.js" defer></script>
+        <script src="../js/track.js" defer></script>
         <script src="../js/accueil.js" defer></script>
         <script src="../js/window.js" defer></script>
         <script src="../js/artist.js" defer></script>
@@ -51,8 +52,8 @@ if(!isset($_SESSION['user_id'])){
                 <div>
                     <!--    logo----------------------------------------------------------------------------------->
                     <div class="logo d-flex flex-column align-items-center">
-                        <img class="logo-image" src="images/img.png" alt="logo deezertrent">
-                        <p class="logo-text"  style="margin-top: -10px">Deezertrent</p>
+                        <img id="accueil" class="logo-image button" src="images/img.png" alt="logo deezertrent">
+                        <p id="accueil" class="logo-text button re"  style="margin-top: -10px">Deezertrent</p>
                     </div>
                     <!--    link----------------------------------------------------------------------------------->
                     <div class="links d-flex flex-column justify-content-center" >

@@ -361,7 +361,7 @@ function displaytrackinfo(trackinfo){
 
         $('#content').empty();
         console.log(trackinfo);
-        $('#content').append('<div style="padding: 5%>" ' +
+        $('#content').append('<div class="top-fiche" style="padding: 5%>;" ' +
             '<div class="container">\n' +
             '    <div class="row">\n' +
             '      <div class="col-md-4">\n' +
@@ -405,7 +405,7 @@ $(document).on('click', '.get_album', function(event) {
 function displayAlbumInfo(albumInfo){
     //console.log(albumInfo);
     $('#content').empty();
-    $('#content').append('<div class="info_album" style="padding: 5%>" ' +
+    $('#content').append('<div class="info_album top-fiche" style="padding: 5%>" ' +
         '                   <div class="container">\n' +
         '                       <div class="row">\n' +
         '                           <div class="col-md-4">\n' +
@@ -431,6 +431,8 @@ $(document).on('click', '.bi-heart', function(event) {
     ajaxRequest('POST', '../php/request.php/favoris/', () => {
         ajaxRequest('GET', 'php/request.php/favoris/', displayrien);
     }, 'idadd=' + id);
+    event.stopPropagation();
+
 });
 
 function displayrien(info) {

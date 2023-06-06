@@ -89,16 +89,20 @@ if ($id == '') {
             }elseif (isset($_POST['id_playlist']) AND isset($_POST['id_track'])){
                 $data= Track::add_track($_POST['id_track'],$_POST['id_playlist']);
             }
+            elseif ($requestResource == "add_track"){
+                $data =  Track::add_track($_GET['id_track'], $_GET['id_playlist']);
+            }
             break;
 
 
 
-        case 'DELLETE' :
+        case 'DELETE' :
             if(isset($_GET['id'])){
                 $data = Playlist::del_playlist($_GET['id']);
             }elseif (isset($_GET['id_playlist']) AND isset($_GET['id_track'])){
                 $data = Track::del_track($_GET['id_track'],$_GET['id_playlist'] );
             }
+
             break;
 
     }
