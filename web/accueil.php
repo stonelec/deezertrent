@@ -29,11 +29,11 @@ if(!isset($_SESSION['user_id'])){
                 integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous" defer></script>
         <script src="../js/soundBar.js" defer></script>
         <script src="../js/progresBar.js" defer></script>
-    <script src="../js/playlists.js" defer></script>
-    <script src="../js/ajax.js" defer></script>
-    <script src="../js/historique.js" defer></script>
-    <script src="../js/accueil.js" defer></script>
-    <script src="../js/window.js" defer></script>
+        <script src="../js/playlists.js" defer></script>
+        <script src="../js/ajax.js" defer></script>
+        <script src="../js/historique.js" defer></script>
+        <script src="../js/accueil.js" defer></script>
+        <script src="../js/window.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
             integrity="sha256-x3YZWtRjM8bJqf48dFAv/qmgL68SI4jqNWeSLMZaMGA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
@@ -130,7 +130,12 @@ if(!isset($_SESSION['user_id'])){
                 <!--    Contenu----------------------------------------------------------------------------------->
 
                 <div id="content" class="content d-flex flex-column">
+                    <h2 style="margin: 15px 0;">Vos playlist</h2>
+                    <div class="d-flex flex-row-reverse" style="padding-right: 10%; font-size: 2rem;">
+                        <i class="bi bi-sort-alpha-down button button_sort"></i>
+                        <i class="bi bi-file-plus button button_add_playlist"></i>
 
+                    </div>
 
                 </div>
                 <!--    Sound----------------------------------------------------------------------------------->

@@ -135,20 +135,21 @@ divplaylist.addEventListener('click', function() {
 
 //////////////////////////    DIPSLAY PLAYLIST    //////////////////////////////
 function displayListePlaylist(playlists) {
-{
-    $('#title-page').empty();
-    $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
-    $('#content').html('<h2 style="margin: 15px 0">Playlist</h2>');
-    $('#content').append('  <div class="w-50 infos-right-part d-flex align-self-end ms-auto p-2" style="right: 5em">' +
-        '                       <button type="button" id="add_playlist" class=" bi bi-file-plus infos-right-part button-track" data-bs-toggle="modal" data-bs-target="#new_playlist_modal" ></button>' +
-        '                       <i class="bi bi-sort-alpha-down infos-right-part button-track" ></i>' +
-        '                   </div>');
-    for (let playlist of playlists)
-        $('#content').append(playlist_list(playlist));
+    {
+        $('#title-page').empty();
+        $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
+        $('#content').html('<h2 style="margin: 15px 0;">Vos playlist</h2>\n');
+        $('#content').append('<div class="d-flex flex-row-reverse" style="padding-right: 10%; font-size: 2rem;  height: 4rem">\n' +
+            '                        <i class="bi bi-sort-alpha-down button button_sort"></i>\n' +
+            '                        <i class="bi bi-file-plus button button_add_playlist"></i>\n' +
+            '\n' +
+            '                    </div>');
+        for (let playlist of playlists)
+            $('#content').append(playlist_list(playlist));
 
-
-    ///////////////    CREATE A NEW PLAYLIST    ///////////////////
-    $('#add_playlist').click((event) =>
+    }
+///////////////    CREATE A NEW PLAYLIST    ///////////////////
+$('#add_playlist').click((event) =>
         {
             console.log('LE TEST DE NEW');
             modal();
@@ -191,7 +192,7 @@ $('#content').on('click', '.del', ()=>{
     ajaxRequest('DELETE', '../php/request.php/playlist/' +'?id=' + $(event.target).parent().parent().attr('id') , () => {
         ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);
         })
-})
+});
 
 function playlistDetail(playlist){
     console.log('fonction playlist detail');
