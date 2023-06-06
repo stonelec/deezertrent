@@ -54,6 +54,7 @@ session_start();
 <body>
 
 <?php
+
 require_once('../php/database.php');
 
 if (isset($_POST['inscription'])) {
@@ -72,14 +73,14 @@ if (isset($_POST['inscription'])) {
         $db = database::connexionBD();
 
         if($db){
-            echo 'connexion reussie';
+            echo 'connexion réussie';
             $query = "INSERT INTO utilisateur (nom, prenom, date_de_naissance, email, mot_de_passe, image_user)
               VALUES (:nom, :prenom, :daten, :mail, :mdp, :img )";
             var_dump($db);
             $stmt = $db->prepare($query);
             $stmt->bindParam(':nom', $nom);
             echo 'nom';
-            $stmt->bindParam('prenom', $prenom);
+            $stmt->bindParam(':prenom', $prenom);
             echo 'prenom';
             $stmt->bindParam(':daten', $datenaissance);
             echo 'date';
@@ -87,36 +88,34 @@ if (isset($_POST['inscription'])) {
             echo 'mail';
             $stmt->bindParam(':mdp', $hashpassword);
             echo 'pwd';
-            $stmt->bindParam(':img',$image );
-            echo'prepare';
+            $stmt->bindParam(':img', $image);
+            echo 'prepare';
             $stmt->execute();
             echo 'exec';
+            $id = $db->lastInsertId();
         }
 
-        $id = $_SESSION['user_id'];
         $query = "INSERT INTO playlist (nom_playlist, date_creation, id_user)
-                VALUE(('Historique', :jour, :id),
-                        ('Liste de lecture', :jour, :id ),
-                        ('Favoris', :jour, :id);)";
+                VALUES ('Historique', :jour, :id),
+                       ('Liste de lecture', :jour, :id ),
+                       ('Favoris', :jour, :id)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':jour', $date);
         $stmt->execute();
         header('Location: ../index.php');
 
-    }else{
+    } else {
         echo '
         <div class="card NoBorder">
                 <div class="card-header backBlack">
                     <p class="text-center textColor-DC3545">Mot de passe ou Email non similaire !</p>
                 </div>
                 ';
-
     }
-
-
 }
 ?>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-5">

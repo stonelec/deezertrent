@@ -61,7 +61,7 @@ function track_list(infos){
 
 function album_list(infos){
     return    '<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_album" id="'+infos['id_album ']+'"   ">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_album" id="'+infos['id_album']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
@@ -87,7 +87,7 @@ function album_list(infos){
 function artist_list(infos){
     return'                        <ul class="list-infos list-group justify-content-center">\n' +
         '\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_artist" id="'+infos['id_artiste ']+'"   ">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_artist" id="'+infos['id_artiste']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div class="d-flex flex-row align-items-center">\n' +
         '                                        <div class="overflow">\n' +
@@ -344,10 +344,9 @@ function display_all(results){
 
         return age;
     }
-
     $(document).on('click', '.get_track', function(event) {
     let attributeValue = $(this).attr('id');
-        ajaxRequest('GET', `../php/request.php/track/${attributeValue}`, displaytrackinfo);
+    ajaxRequest('GET', `../php/request.php/track/${attributeValue}`, displaytrackinfo);
 });
 function format_duree(seconde) {
     var minutes = Math.floor(seconde / 60);
@@ -427,9 +426,18 @@ function displaytrackinfo(trackinfo){
 
     }
 
-$(document).on('click', '.get_artiste', function(event) {
+$(document).on('click', '.get_artist', function(event) {
     let Value = $(this).attr('id');
     ajaxRequest('GET', `../php/request.php/artiste/${Value}`, displayArtisteInfo);
 });
+
+
+
+function displayArtisteInfo(artisteInfo) {
+    $('#content').empty();
+    console.log('/');
+    console.log(artisteInfo);
+    console.log('/');
+}
 
 

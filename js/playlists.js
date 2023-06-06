@@ -37,7 +37,7 @@ function playlist_list(infos){
         '                                </div>\n' +
         '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
         '                                   <div class="overflow">\n'+
-        '                                       <h7 class="infos-right-date infos-right-part ">'+infos["date_creation"].slice(0,10)+'</h7>\n' +
+        '                                       <h7 class="infos-right-date infos-right-part ">'+infos["date_creation"]+'</h7>\n' +
         '                                   </div>\n'+
         '                                    <i class="bi bi-trash button button-track infos-right-part delete" id="del'+ infos['id_playlist']+'"></i>\n'+
         '                                </div>\n' +
@@ -57,7 +57,7 @@ function playlist_card(playlist){
 function track_list(infos){
     console.log(infos);
     return'<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track ']+'" >\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
@@ -90,7 +90,7 @@ function track_list(infos){
 function track_list_search(infos){
     console.log(infos);
     return'<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track ']+'" >\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +

@@ -6,12 +6,6 @@
 
 $(document).on('click', '#accueil', displayAccueil);
 
-function displayArtisteInfo(artisteInfo) {
-    $('#content').empty();
-    console.log('/');
-    console.log(artisteInfo);
-    console.log('/');
-}
 
 function displayAccueil(){
     $('#title-page').empty();
