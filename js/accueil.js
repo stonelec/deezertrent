@@ -2,7 +2,7 @@
 
 ///////////////////   DEFAULT REQUEST   ///////////////////////////
 
-// displayAccueil();
+displayAccueil();
 
 $(document).on('click', '#accueil', displayAccueil);
 

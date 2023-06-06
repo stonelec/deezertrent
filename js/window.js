@@ -37,9 +37,7 @@ function track_list(infos){
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
         '                                    </div>\n' +
-        '                                    <div>\n' +
         '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
-        '                                    </div>\n' +
         '                                    <div class="d-flex flex-row align-items-center">\n' +
         '                                        <div class="overflow">\n' +
         '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
@@ -425,22 +423,6 @@ function displaytrackinfo(trackinfo){
 
 
     }
-
-$(document).on('click', '.get_artist', function(event) {
-    let Value = $(this).attr('id');
-    ajaxRequest('GET', `../php/request.php/artiste/${Value}`, displayArtisteInfo);
-});
-
-
-
-function displayArtisteInfo(artisteInfo) {
-    $('#content').empty();
-    console.log('/');
-    console.log(artisteInfo);
-    console.log('/');
-}
-
-
 $(document).on('click', '.get_album', function(event) {
     let Value = $(this).attr('id');
     ajaxRequest('GET', `../php/request.php/album/${Value}`, displayAlbumInfo);

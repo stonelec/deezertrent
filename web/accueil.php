@@ -33,6 +33,7 @@ if(!isset($_SESSION['user_id'])){
         <script src="../js/ajax.js" defer></script>
         <script src="../js/historique.js" defer></script>
         <script src="../js/accueil.js" defer></script>
+        <script src="../js/artist.js" defer></script>
         <script src="../js/window.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
             integrity="sha256-x3YZWtRjM8bJqf48dFAv/qmgL68SI4jqNWeSLMZaMGA=" crossorigin="anonymous"></script>
@@ -58,25 +59,25 @@ if(!isset($_SESSION['user_id'])){
                         <div class="general d-flex flex-column ">
                             <div id="accueil" class="general-link d-flex flex-row">
                                 <div class="hide">
-                                    <span class="material-symbols-outlined">home</span>
+                                    <span class="material-symbols-outlined moove">home</span>
                                 </div>
                                 <p class="general-link-text">Accueil</p>
                             </div>
                             <div id="recherche" class="general-link d-flex flex-row">
                                 <div class="hide">
-                                    <span class="material-symbols-outlined hide">search</span>
+                                    <span class="material-symbols-outlined moove">search</span>
                                 </div>
                                 <p class="general-link-text">Recherche</p>
                             </div>
                             <div id="historique" class="general-link d-flex flex-row">
                                 <div class="hide">
-                                    <span class="material-symbols-outlined">history</span>
+                                    <span class="material-symbols-outlined moove">history</span>
                                 </div>
                                 <p class="general-link-text">historique</p>
                             </div>
                             <div id="playlist" class="general-link d-flex flex-row" >
                                 <div class="hide">
-                                    <span class="material-symbols-outlined">format_list_bulleted</span>
+                                    <span class="material-symbols-outlined moove">format_list_bulleted</span>
                                 </div>
                                 <p class="general-link-text" style="margin-bottom: 5px">Playlist</p>
                             </div>
@@ -102,6 +103,7 @@ if(!isset($_SESSION['user_id'])){
                             </div>
                             <div class="d-flex flex-column " style="font-size : 1.2rem;">
                                 <i class="bi bi-heart button"></i>
+                                <div style="margin-bottom: 10px"></div>
                                 <i class="bi bi-plus-lg button"></i>
                             </div>
                         </div>
@@ -130,12 +132,10 @@ if(!isset($_SESSION['user_id'])){
                 <!--    Contenu----------------------------------------------------------------------------------->
 
                 <div id="content" class="content d-flex flex-column">
-                    <h2 style="margin: 15px 0;">Vos playlist</h2>
-                    <div class="d-flex flex-row-reverse" style="padding-right: 10%; font-size: 2rem;">
-                        <i class="bi bi-sort-alpha-down button button_sort"></i>
-                        <i class="bi bi-file-plus button button_add_playlist"></i>
 
-                    </div>
+
+
+
 
                 </div>
                 <!--    Sound----------------------------------------------------------------------------------->

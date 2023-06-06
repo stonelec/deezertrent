@@ -74,6 +74,7 @@ html .menu .logo-image{
     font-weight: bolder;
     margin:  10px 0  0 10% ;
     -webkit-user-select: none;
+
 }
 .menu .links .general{
     font-size: 140%;
@@ -81,6 +82,7 @@ html .menu .logo-image{
 .menu .links .general-link:hover{
     color: #6c757d;
     cursor: pointer;
+
 }
 .menu .links .general-link:active{
     color: black;
@@ -88,7 +90,10 @@ html .menu .logo-image{
 .menu .links .general .general-link-text{
     margin : -2.5% 0 20px 15px;
 }
+.menu .links .general .moove{
+    vertical-align: +30%!important;
 
+}
 .playlist{
     padding-left: 25%;
     margin-right: 5%;
@@ -263,7 +268,8 @@ html .menu .logo-image{
 .scroller-card-playlist{
     overflow-x: scroll;
     width: 100%;
-    height: 200px;
+    height: 180px;
+    min-height: 180px;
     color: white;
     font-weight: normal;
 }
@@ -271,7 +277,7 @@ html .menu .logo-image{
     display: none;
 }
 
-/*responsive ----------------------------------------------*/
+    /*responsive ----------------------------------------------*/
 .sound{
     /*background-color: orange;*/
     height: 15%;
@@ -409,4 +415,8 @@ input{
     .volume{
         width: 30%;
     }
+}
+
+.bi::before{
+    vertical-align: +15%!important;
 }

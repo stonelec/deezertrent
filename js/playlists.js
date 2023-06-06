@@ -95,9 +95,7 @@ function track_list_search(infos){
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
         '                                    </div>\n' +
-        '                                    <div>\n' +
         '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
-        '                                    </div>\n' +
         '                                    <div class="d-flex flex-row align-items-center">\n' +
         '                                        <div class="overflow">\n' +
         '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
@@ -108,7 +106,6 @@ function track_list_search(infos){
         '                                    </div>\n' +
         '                                </div>\n' +
         '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
-        '                                    <i class="bi bi-trash button button-track infos-right-part"></i>\n'+
         '                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>\n' +
         '                                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'"></i>\n' +
         '                                </div>\n' +
@@ -140,7 +137,7 @@ function displayListePlaylist(playlists) {
         $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
         $('#content').html('<h2 style="margin: 15px 0;">Vos playlist</h2>\n');
         $('#content').append('<div class="d-flex flex-row-reverse" style="padding-right: 10%; font-size: 2rem;  height: 4rem">\n' +
-            '                        <i class="bi bi-sort-alpha-down button button_sort"></i>\n' +
+            '                        <i class="bi bi-sort-alpha-down button button_sort" style="padding-left: 1%"></i>\n'+
             '                        <i class="bi bi-file-plus button button_add_playlist"></i>\n' +
             '\n' +
             '                    </div>');
