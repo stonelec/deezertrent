@@ -24,11 +24,13 @@ if(!isset($_SESSION['user_id'])){
         <!-- JS Script -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"
                 integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous" defer></script>
-        <script src="../js/accueil.js" defer></script>
-        <script src="../js/ajax.js" defer></script>
-        <script src="../js/window.js" defer></script>
+        <script src="../js/soundBar.js" defer></script>
         <script src="../js/progresBar.js" defer></script>
-        <script src="../js/playlists.js" defer></script>
+    <script src="../js/playlists.js" defer></script>
+    <script src="../js/ajax.js" defer></script>
+    <script src="../js/historique.js" defer></script>
+    <script src="../js/accueil.js" defer></script>
+    <script src="../js/window.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
             integrity="sha256-x3YZWtRjM8bJqf48dFAv/qmgL68SI4jqNWeSLMZaMGA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
@@ -36,7 +38,7 @@ if(!isset($_SESSION['user_id'])){
 
     </head>
     <!-- Simple lecture audio -->
-    <audio id="audioPlayer" src="https://cdns-preview-b.dzcdn.net/stream/c-b53be55456ff326e9c2a7bf1d0abe601-6.mp3" muted></audio>
+    <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3   " muted></audio>
     <body>
         <div class="global d-flex flex-row">
             <!--    Navbar----------------------------------------------------------------------------------->
@@ -80,13 +82,8 @@ if(!isset($_SESSION['user_id'])){
 
                 </div>
                 <!--    playlist----------------------------------------------------------------------------------->
-                <div class="playlist d-flex flex-column ">
-                        <p class="playlist-link">Favoris</p>
-                        <p class="playlist-link">Playlist n°1</p>
-                        <p class="playlist-link">Playlist n°1</p>
-                        <p class="playlist-link">Playlist n°1</p>
-                        <p class="playlist-link">Playlist n°1</p>
-                        <p class="playlist-link">Playlist pour dormir</p>
+                <div id="playlist-menu" class="playlist d-flex flex-column">
+
                     </div>
             <!--    current music----------------------------------------------------------------------------------->
                 <div class="current-music d-flex justify-content-center">
@@ -128,94 +125,9 @@ if(!isset($_SESSION['user_id'])){
                     </div>
                 </div>
                 <!--    Contenu----------------------------------------------------------------------------------->
-                <style>
-                    .test{
-                        width: 100%;
-                    }
-                    .scroller{
-                        overflow-x: scroll;
-                        width: 100%;
-                        height: 200px;
-                        color: white;
-                        font-weight: normal;
-                    }
-                    .scroller::-webkit-scrollbar {
-                        display: none;
-                    }
 
-                </style>
                 <div id="content" class="content d-flex flex-column">
-                    <div class="test">
-                        <div class="d-flex flex-row scroller">
-                        <div class="card-playlist d-flex flex-column">
-                            <div style="margin-left: auto; margin-right: auto;">
-                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                            </div>
-                            <div class="card-playlist-text">
-                                <p >  Left To Say</p>
-                            </div>
-                        </div>
-                        <div class="card-playlist d-flex flex-column">
-                            <div style="margin-left: auto; margin-right: auto;">
-                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                            </div>
-                            <div class="card-playlist-text">
-                                <p >  Left To Say</p>
-                            </div>
-                        </div>
-                        <div class="card-playlist d-flex flex-column">
-                            <div style="margin-left: auto; margin-right: auto;">
-                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                            </div>
-                            <div class="card-playlist-text">
-                                <p >  Left To Say</p>
-                            </div>
-                        </div>
-                        <div class="card-playlist d-flex flex-column">
-                            <div style="margin-left: auto; margin-right: auto;">
-                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                            </div>
-                            <div class="card-playlist-text">
-                                <p >  Left To Say</p>
-                            </div>
-                        </div>
-                        <div class="card-playlist d-flex flex-column">
-                            <div style="margin-left: auto; margin-right: auto;">
-                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                            </div>
-                            <div class="card-playlist-text">
-                                <p >  Left To Say</p>
-                            </div>
-                        </div>
-                        <div class="card-playlist d-flex flex-column">
-                            <div style="margin-left: auto; margin-right: auto;">
-                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                            </div>
-                            <div class="card-playlist-text">
-                                <p >  Left To Say</p>
-                            </div>
-                        </div>
-                        <div class="card-playlist d-flex flex-column">
-                            <div style="margin-left: auto; margin-right: auto;">
-                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                            </div>
-                            <div class="card-playlist-text">
-                                <p >Nothing Nothing Left To Say</p>
-                            </div>
-                        </div>
-                        <div class="card-playlist d-flex flex-column">
-                            <div style="margin-left: auto; margin-right: auto;">
-                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                            </div>
-                            <div class="card-playlist-text">
-                                <p >Nothing Nothing Left To Say</p>
-                            </div>
-                        </div>
 
-
-                    </div>
-                    </div>
-                        <h2 style=" margin: 15px 0">Les titres</h2>
 
                 </div>
                 <!--    Sound----------------------------------------------------------------------------------->

@@ -25,7 +25,16 @@ function playlist_list(infos){
         '                            </li>\n' +
         '                        </ul>'
 }
-
+function playlist_card(playlist){
+    return '         <div class="card-playlist d-flex flex-column">\n' +
+        '                            <div style="margin-left: auto; margin-right: auto;">\n' +
+        '                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">\n' +
+        '                            </div>\n' +
+        '                            <div class="card-playlist-text">\n' +
+        '                                <p >'+playlist["nom_playlist"]+'</p>\n' +
+        '                            </div>\n' +
+        '                        </div>';
+}
 function track_list(infos){
     console.log(infos);
     return'<ul class="list-infos list-group justify-content-center">\n' +
@@ -59,18 +68,42 @@ function track_list(infos){
 
 
 }
+function track_list_search(infos){
+    console.log(infos);
+    return'<ul class="list-infos list-group justify-content-center">\n' +
+        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track ']+'" >\n' +
+        '                                <div class="infos-left-part d-flex align-items-center">\n' +
+        '                                    <div>\n' +
+        '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
+        '                                    </div>\n' +
+        '                                    <div>\n' +
+        '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
+        '                                    </div>\n' +
+        '                                    <div class="d-flex flex-row align-items-center">\n' +
+        '                                        <div class="overflow">\n' +
+        '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
+        '                                        </div>\n' +
+        '                                        <div class="overflow">\n' +
+        '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
+        '                                        </div>\n' +
+        '                                    </div>\n' +
+        '                                </div>\n' +
+        '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
+        '                                    <i class="bi bi-trash button button-track infos-right-part"></i>\n'+
+        '                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>\n' +
+        '                                    <i class="bi bi-heart button button-track infos-right-part"></i>\n' +
+        '                                </div>\n' +
+        '                            </li>\n' +
+        '                        </ul>'
+
+
+}
 
 ///////////////////   DEFAULT REQUEST   ///////////////////////////
-ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);
+// ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);
 
 
 
-///////////////////   PLAYLIST ACCUEIL REQUEST   ///////////////////////////
-const divaccueil = document.getElementById('accueil');
-divaccueil.addEventListener('click', function() {
-    $('#content').empty();
-    ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);
-});
 
 
 ///////////////////   PLAYLIST REQUEST   ///////////////////////////
@@ -121,5 +154,6 @@ function playlistDetail(playlist){
     for(let info of playlist) {
         $('#liste').append(track_list(info))
     }
-
 }
+
+//////////////////////////    DIPSLAY HISTORIQUE    //////////////////////////////

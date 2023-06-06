@@ -17,7 +17,7 @@
     <!-- JS Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"
             integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous" defer></script>
-    <script src="../js/accueil.js" defer></script>
+    <script src="../js/soundBar.js" defer></script>
     <script src="../js/ajax.js" defer></script>
     <script src="../js/window.js" defer></script>
 </head>

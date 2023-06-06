@@ -1,7 +1,8 @@
 @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
 /*general----------------------------------------------*/
 html, body, .global{
-    width: 100vw;
+    min-width: 600px;
+    width: 1fr;
     height: 100vh;
     background: black;
     color: white;
@@ -50,7 +51,7 @@ body a{
 }
 /*navbar----------------------------------------------*/
 .menu {
-    width: 25%;
+    width: 20%;
     margin: 20px 10px 20px 20px;
     padding: 5px;
     border-radius: 15px;
@@ -92,7 +93,7 @@ html .menu .logo-image{
     padding-left: 25%;
     margin-right: 5%;
     -webkit-user-select: none;
-    overflow: scroll;
+    overflow: auto;
     overflow-x : hidden;
     flex-grow: 1;
     color: #6c757d;
@@ -259,6 +260,16 @@ html .menu .logo-image{
     overflow: hidden;
     font-weight: bolder;
 }
+.scroller-card-playlist{
+    overflow-x: scroll;
+    width: 100%;
+    height: 200px;
+    color: white;
+    font-weight: normal;
+}
+.scroller-card-playlist::-webkit-scrollbar {
+    display: none;
+}
 
 /*responsive ----------------------------------------------*/
 .sound{
@@ -324,7 +335,7 @@ html .menu .logo-image{
 
 .sound .volume{
     /*background-color: blue;*/
-    width: 25%;
+    width: 36%;
     padding-left: 10px;
     padding-top: 0.5%;
 }

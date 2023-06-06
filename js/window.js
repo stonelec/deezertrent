@@ -161,7 +161,7 @@ function show_track(results) {
         $('#content').append('<p style="margin: 15px 0">Aucun morceau trouvé</p>');
     } else {
         for (let track of tracks) {
-            $('#content').append(track_list(track));
+            $('#content').append(track_list_search(track));
         }
     }
 }
@@ -327,30 +327,7 @@ function display_all(results){
 
 
 
-///////////////////   HISTORIQUE REQUEST   ///////////////////////////
-    const divhistorique = document.getElementById('historique');
-    divhistorique.addEventListener('click', function() {
-        $('#content').empty();
-        ajaxRequest('GET', '../php/request.php/historique/', displayHistory);
-    });
 
-///////////////////   DISPLAY HISTORIQUE   ///////////////////////////
-
-    function displayHistory(historiques)
-    {
-        $('#title-page').empty();
-        $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
-        $('#content').html('<h3>OUI OUI OUI</h3>');
-        console.log(historiques)
-        for (let historique of historiques)
-
-            $('#content').append('' +
-                '<div class="card">' +
-                '<div class="card-body">'
-                + historique.titre_track+
-                '</div>' +
-                '</div>');
-    }
 
     function calculerAge(dateNaissance) {
         const dateActuelle = new Date();
@@ -454,29 +431,5 @@ $(document).on('click', '.get_artiste', function(event) {
     let Value = $(this).attr('id');
     ajaxRequest('GET', `../php/request.php/artiste/${Value}`, displayArtisteInfo);
 });
-///////////////////   DEFAULT REQUEST   ///////////////////////////
-// displayAccueil();
 
-///////////////////   PLAYLIST ACCUEIL REQUEST   ///////////////////////////
-const divaccueil = document.getElementById('accueil');
-divaccueil.addEventListener('click', displayAccueil);
 
-function displayArtisteInfo(artisteInfo) {
-    $('#content').empty();
-    console.log('/');
-    console.log(artisteInfo);
-    console.log('/');
-}
-
-function displayAccueil(result){
-    $('#title-page').empty();
-    $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
-    $('#content').empty();
-    ajaxRequest('GET', '../php/request.php/profil/', displayUser);
-
-}
-
-function displayUser(result){
-    console.log(result);
-    $('#content').html('<h2 style="margin: 15px 0">Bienvenue '+result[0]['nom']+' '+result[0]['prenom']+'</h2>');
-}

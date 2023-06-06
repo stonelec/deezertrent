@@ -1,73 +1,63 @@
-let button_random = document.querySelector(".button_random");
-let button_previous = document.querySelector(".button_previous");
-let button_play_pause = document.querySelector(".button_play_pause");
-let button_next = document.querySelector(".button_next");
-let button_laps = document.querySelector(".button_laps");
-let button_on_off = document.querySelector(".button_on_off");
-let slider_volume = document.querySelector(".slider_volume");
+///////////////////   PLAYLIST ACCUEIL REQUEST   ///////////////////////////
 
-let audio = document.querySelector('audio')
+///////////////////   DEFAULT REQUEST   ///////////////////////////
 
-let is_playing = false;
-let track_id;
+// displayAccueil();
 
-let track_now = document.createElement('audio');
+$(document).on('click', '#accueil', displayAccueil);
 
-function playPauseTrack(){
-    if(is_playing){
-        pauseTrack();
-    }else {
-        playTrack();
+function displayArtisteInfo(artisteInfo) {
+    $('#content').empty();
+    console.log('/');
+    console.log(artisteInfo);
+    console.log('/');
+}
+
+function displayAccueil(){
+    $('#title-page').empty();
+    $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
+    $('#content').empty();
+    ajaxRequest('GET', '../php/request.php/profil/', displayUserAccueil );
+
+    // ajaxRequest('GET', '../php/request.php/playlist/', displayHistorique);
+}
+
+function displayUserAccueil(result){
+    $('#content').append('<h2 style="margin: 15px 0; color: #DC3545;">Bienvenue '+result[0]['prenom']+' '+result[0]['nom']+' !</h2>');
+    $('#content').append('<h5 style="margin: 15px 0">Vos playlist</h5>');
+    ajaxRequest('GET', '../php/request.php/playlist/', displayCardPlaylistsAccueil)
+}
+function displayCardPlaylistsAccueil(playlists){
+    $('#content').append('<div class="d-flex flex-row scroller-card-playlist">');
+    for (let playlist of playlists)
+        $('.scroller-card-playlist').append(playlist_card(playlist));
+    $('#content').append('</div>');
+    $('#content').append('<h5 style="margin: 15px 0">Votre historique</h5>');
+    ajaxRequest('GET', '../php/request.php/historique/', historiqueAccueil)
+
+}
+function historiqueAccueil(playlist) {
+    for (let track of playlist)
+        $('#content').append(track_list(track));
+}
+
+///////////////////   PLAYLIST MENU   ///////////////////////////
+
+showPlaylistMusic();
+
+function showPlaylistMusic(){
+    ajaxRequest('GET', '../php/request.php/playlist/', playlistMenu);
+}
+function playlistMenu(result){
+    $('#playlist-menu').empty();
+    // console.log('playlistMenu');
+
+    for (let playlist of result){
+        // console.log('playlist');
+        $('#playlist-menu').append('<div class="playlist-link get_playlist" id="'+playlist['id_playlist']+'"><p>'+playlist['nom_playlist']+'</p></div>\n');
+        // console.log(playlist);
+
     }
-}
-function playTrack(){
-    audio.play();
-    button_play_pause.innerHTML = 'pause_circle';
-    is_playing = true;
-    console.log("play");
-}
-function pauseTrack(){
-    audio.pause();
-    button_play_pause.innerHTML = 'play_circle';
-    is_playing = false;
-    console.log("pause");
-}
-function onOffTrack(){
-    if(audio.muted){
-        onTrack();
-    }else {
-        offTrack();
-    }
-}
-function onTrack(){
-    audio.muted = false;
-    button_on_off.innerHTML = 'volume_up';
-    console.log("track : on");
-}
-function offTrack(){
-    audio.muted = true;
-    button_on_off.innerHTML = 'volume_off';
-    console.log("track : off");
-}
-function setVolume(){
-    audio.volume =  slider_volume.value/100;
-    console.log("volume : "+audio.volume*100+"%");
-}
-function onOffLoop(){
-    console.log(audio.loop)
-    if(audio.loop){
-        offLoop();
-    }else {
-        onLoop();
-    }
-}
-function  onLoop(){
-    audio.loop = true;
-    button_laps.innerHTML = "<span class=\"material-symbols-outlined play-icon-third-click button\" >laps</span>"
-    console.log("loop : on");
-}
-function offLoop(){
-    audio.loop = false;
-    button_laps.innerHTML = "<span class=\"material-symbols-outlined play-icon-third button\">laps</span>"
-    console.log("loop : off");
+
+
 }
