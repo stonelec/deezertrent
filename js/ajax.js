@@ -8,14 +8,15 @@
 // \param url The url with the data.
 // \param callback The callback to call where the request is successful.
 // \param data The data associated with the request.
-function ajaxRequest(type, url, callback, data = null){
+function ajaxRequest(type, url, callback, data = null,sendImage=false){
     // Create XML HTTP request.
     let xhr = new XMLHttpRequest();
     if (type === 'GET' && data != null)
         url += '?' + data;
     xhr.open(type, url);
-    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-
+    if(!sendImage) {
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    }
     // Add onload function.
     xhr.onload = () => {
         switch (xhr.status) {

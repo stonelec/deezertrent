@@ -66,6 +66,7 @@ if ($id == '') {
             break;
 
         case 'PUT':
+
             if ($requestResource == "profil") {
                 $put = json_decode(file_get_contents('php://input'), true);
                 $nom = $put['nom'];
@@ -82,6 +83,17 @@ if ($id == '') {
             break;
 
         case 'POST' :
+            if($requestResource == "image") {
+
+                $file = $_FILES['imageuser'];
+                $iduser = $_POST['iduserimage'];
+                move_uploaded_file($file['tmp_name'], "../web/images/".$file['name']);
+
+                $conn = Database::connexionBD();
+                $sql = 'UPDATE utilisateur SET image_user = ? WHERE id_user = ?';
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$file['name'], $iduser]);
+            }
             if(isset($_POST['idadd'])){
                 $data = Playlist::addtofavoris($_POST['idadd'],$_SESSION['user_id']);
             }

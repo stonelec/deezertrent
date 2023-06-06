@@ -222,3 +222,5 @@ $(document).on('click', '.del_playlist',function (event){
     showPlaylistMusic()
 });
 
+
+

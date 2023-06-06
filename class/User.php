@@ -36,6 +36,16 @@ class User{
         return true;
     }
 
+    public static function change_image($iduser,$file){
+        $file_name = $file['name'];
+        $file_tmp = $file['tmp_name'];
+        move_uploaded_file($file_tmp, "/images/" . $file_name);
+        $conn = Database::connexionBD();
+        $sql = 'UPDATE utilisateur SET image_user= ? WHERE id_user=?;';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$file_name,$iduser]);
+    }
+
 
     public static function user_history($id)
     {

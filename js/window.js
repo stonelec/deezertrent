@@ -219,105 +219,126 @@ function display_all(results){
 
 ///////////////////    DISPLAY PROFIL    ////////////////////////////////////////
 
-    function displayProfil(profil) {
-        let age=calculerAge(profil[0].date_de_naissance)
+function displayProfil(profil) {
+    console.log(profil);
+    let age = calculerAge(profil[0].date_de_naissance);
+    $('#content').empty();
+    $('#title-page').empty();
+    $('#title-page').append('<h2 class="nom-page">Profil</h2>');
+    $('#content').append('' +
+        '<div class="container" style="margin: auto;">\n' +
+        '    <div class="row">\n' +
+        '        <div class="col-md-6">\n' +
+        '            <img src="../web/images/'+profil[0].image_user+'" alt="Profile Picture" class="img-fluid" style="width: 200px;height:200px;border-radius: 100%">\n' +
+        '            <h2>' + profil[0].prenom + '  ' + profil[0].nom + '</h2>\n' +
+        '        </div>\n' +
+        '        <div class="col-md-6">\n' +
+        '            <p><strong>Email:</strong> ' + profil[0].email + '</p>\n' +
+        '            <p><strong>Date de naissance:</strong> ' + profil[0].date_de_naissance + '</p>\n' +
+        '            <p><strong>Age:</strong> ' + age + '</p>\n' +
+        '            <p><strong>Autre information:</strong>...</p>\n' +
+        '        <button type="button" style="width: 50%" class="btn btn-danger btn-block " id="modifier" name="submit">Modifier</button>'+
+        '            <form method="post" id="imageForm" enctype="multipart/form-data">\n' +
+        '                <input type="file" name="imageuser" id="imageuser" accept="image/*">\n' +
+        '                <input hidden type="text" name="iduserimage" id="iduserimage" value="' + profil[0]['id_user'] + '">\n' +
+        '                <input type="submit" value="Envoyer">\n' +
+        '            </form>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '</div>' +
+        '<button type="button" style="width: 50%;" class="btn btn-danger btn-block decobutton" id="deco" name="submit"><a href="../web/deconnexion.php">deconnexion</a></button>\n');
+
+    const imageForm = document.getElementById("imageForm");
+    imageForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Empêcher la soumission du formulaire
+
+
+
+        // Obtenir les nouvelles données de profil
+      const formdata = new FormData()
+            formdata.append('iduserimage',document.getElementById("iduserimage").value)
+            formdata.append('imageuser',document.getElementById("imageuser").files[0])
+        // Envoyer les données à une requête AJAX ou à une autre fonction de manipulation
+        ajaxRequest('POST', '../php/request.php/image/', handleUpdateResponse, formdata,true);
+        $('#content').empty()
+        ajaxRequest('GET', '../php/request.php/profil/10', displayProfil)
+        $('#content').empty()
+        ajaxRequest('GET', '../php/request.php/profil/10', displayProfil)
+    });
+
+
+    const modifdiv = document.getElementById("modifier");
+    modifdiv.addEventListener('click', function(e) {
         $('#content').empty();
-        $('#title-page').empty();
-        $('#title-page').append('<h2 class="nom-page" >Profil</h2>');
         $('#content').append('' +
-            '<div class="container" style="margin: auto;  ">\n' +
-            '    <div class="row ">\n' +
-            '      <div class="col-md-6">\n' +
-            '        <img src="../web/images/logo.png" alt="Profile Picture" class="img-fluid" style="width: 30%">\n' +
-            '        <h2>'+profil[0].prenom+'  '+ profil[0].nom+ '</h2>\n' +
-            '      </div>\n' +
-            '      <div class="col-md-6">\n' +
-            '<p><strong>Email:</strong> '+profil[0].email+'</p>\n' +
-            '       <p><strong>Date de naissance:</strong> '+profil[0].date_de_naissance+'</p>\n' +
-            '        <p><strong>Age:</strong>'+age+'</p>\n' +
-            '        <p><strong>Autre information:</strong>...</p>\n' +
-            '        <button type="button" style="width: 50%" class="btn btn-danger btn-block " id="modifier" name="submit">Modifier</button>'+
-            '      </div>\n' +
+            '<style>.form-group{margin-bottom: 15px}</style>' +
+            '<div class="card-body backBlack" style="width: 40%; margin-left: auto; margin-right: auto;">\n' +
+            '    <div class="card-header backBlack">\n' +
+            '        <h3 class="text-center"><br>Edition</h3>\n' +
+            '        <p class="text-center">Veuillez entrer vos nouvelles informations</p>\n' +
             '    </div>\n' +
-            '  </div>' +
-            '      <button type="button" style="width: 50%" class="btn btn-danger btn-block decobutton" id="deco" name="submit"><a href="../web/deconnexion.php">deconnexion</a></button>\n'+
-
+            '    <form method="post" id="profilForm">\n' +
+            '        <div class="form-group">\n' +
+            '            <label for="nom">Nouveau Nom <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
+            '            <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez votre nom" required>\n' +
+            '        </div>\n' +
+            '        <div class="form-group">\n' +
+            '            <label for="prenom">Nouveau Prénom <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
+            '            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrez votre prénom" required>\n' +
+            '        </div>\n' +
+            '        <div class="form-group">\n' +
+            '            <label for="datenaissance">Nouvelle Date de naissance <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
+            '            <input type="date" class="form-control" id="datenaissance" name="datenaissance" placeholder="Entrez votre date de naissance" required>\n' +
+            '        </div>\n' +
+            '        <div class="form-group">\n' +
+            '            <label for="email">Nouveau Email <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
+            '            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required>\n' +
+            '        </div>\n' +
+            '        <div class="form-group">\n' +
+            '            <label for="password">Mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
+            '            <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>\n' +
+            '        </div>\n' +
+            '        <div class="form-group">\n' +
+            '            <label for="passwordconf">Nouveau mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
+            '            <input type="password" class="form-control" id="passwordconf" name="passwordconf" placeholder="Entrez à nouveau votre mot de passe" required>\n' +
+            '        </div>\n' +
+            '        <div style="text-align: center">\n' +
+            '            <input type="submit" style="width: 50%;" class="btn btn-danger btn-block" name="modification" value="modifier">\n' +
+            '        </div>\n' +
+            '    </form>\n' +
+            '</div>' +
             '');
-        const modifdiv= document.getElementById("modifier");
 
-        modifdiv.addEventListener('click',function (){
+        // Ajouter un gestionnaire d'événement pour le formulaire de profil
+        const profilForm = document.getElementById("profilForm");
+        profilForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêcher la soumission du formulaire
+
+            // Obtenir les nouvelles données de profil
+            const newProfileData = {
+                nom: document.getElementById("nom").value,
+                prenom: document.getElementById("prenom").value,
+                datenaissance: document.getElementById("datenaissance").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+                passwordconf: document.getElementById("passwordconf").value
+            };
+
+            console.log(newProfileData);
+
+            // Exécuter la requête AJAX pour mettre à jour le profil
+            ajaxRequest('PUT', '../php/request.php/profil/10', handleUpdateResponse, JSON.stringify(newProfileData));
 
             $('#content').empty();
-            $('#content').append('' +
-                '<style>.form-group{margin-bottom: 15px}</style>'+
-                '<div class="card-body backBlack" style="width: 40%; margin-left: auto; margin-right: auto;">\n' +
-                '                        <div class="card-header backBlack">\n' +
-                '                            <h3 class="text-center"> <br>Edition</h3>\n' +
-                '                            <p class="text-center">Veuillez entrer vos nouvelles informations</p>\n' +
-                '                        </div>'+
-                '                    <form method="post" id="profilForm">\n' +
-                '                        <div class="form-group">\n' +
-                '                            <label for="nom">Nouveau Nom <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-                '                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez votre nom" required>\n' +
-                '                        </div>\n' +
-                '                        <div class="form-group">\n' +
-                '                            <label for="prenom">Nouveau Prénom <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-                '                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrez votre prénom" required>\n' +
-                '                        </div>\n' +
-                '                        <div class="form-group">\n' +
-                '                            <label for="datenaissance">Nouvelle Date de naissance <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-                '                            <input type="date" class="form-control" id="datenaissance" name="datenaissance" placeholder="Entrez votre date de naissance" required>\n' +
-                '                        </div>\n' +
-                '                        <div class="form-group">\n' +
-                '                            <label for="email">Nouveau Email <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-                '                            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required>\n' +
-                '                        </div>\n' +
-                '                        <div class="form-group">\n' +
-                '                            <label for="password">Mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-                '                            <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>\n' +
-                '                        </div>\n' +
-                '                        <div class="form-group">\n' +
-                '                            <label for="passwordconf">Nouveau mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-                '                            <input type="password" class="form-control" id="passwordconf" name="passwordconf" placeholder="Entrez à nouveau votre mot de passe" required>\n' +
-                '                        </div>\n' +
-                '                        <div style="text-align: center">\n' +
-                '                            <input type="submit"  style="width: 50%" class="btn btn-danger btn-block " name="modification" value="modifier">\n' +
-                '                        </div>\n' +
-                '                    </form>\n' +
-                '                </div>' +
-                '');
-
-            // Ajouter un gestionnaire d'événement pour le formulaire de profil
-            const profilForm = document.getElementById("profilForm");
-            profilForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Empêcher la soumission du formulaire
-
-                // Obtenir les nouvelles données de profil
-                const newProfileData = {
-                    nom: document.getElementById("nom").value,
-                    prenom: document.getElementById("prenom").value,
-                    datenaissance: document.getElementById("datenaissance").value,
-                    email: document.getElementById("email").value,
-                    password: document.getElementById("password").value,
-                    passwordconf: document.getElementById("passwordconf").value
-                };
-                console.log("/")
-                console.log(newProfileData['prenom'])
-                console.log(JSON.stringify(newProfileData));
-                // Exécuter la requête AJAX pour mettre à jour le profil
-                ajaxRequest('PUT', '../php/request.php/profil/10',  handleUpdateResponse,JSON.stringify(newProfileData));
-                $('#content').empty();
-                ajaxRequest('GET', '../php/request.php/profil/10', displayProfil);
-                $('#content').empty();
-
-                ajaxRequest('GET', '../php/request.php/profil/10', displayProfil);
-
-
-            });
+            ajaxRequest('GET', '../php/request.php/profil/10', displayProfil);
+            $('#content').empty();
+            ajaxRequest('GET', '../php/request.php/profil/10', displayProfil);
         });
-    }
+    });
+}
 
-    function handleUpdateResponse(response) {
+
+function handleUpdateResponse(response) {
         // Gérer la réponse de la mise à jour du profil
         console.log(response);
     }
@@ -455,4 +476,6 @@ $(document).on('click', '.bi-heart', function(event) {
 function displayrien(info) {
     $('#content').empty();
 }
+
+
 
