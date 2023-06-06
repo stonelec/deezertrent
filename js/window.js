@@ -410,8 +410,7 @@ $(document).on('click', '.get_album', function(event) {
 });
 
 function displayAlbumInfo(albumInfo){
-    console.log('ALBUM INFO');
-    console.log(albumInfo);
+    //console.log(albumInfo);
     $('#content').empty();
     $('#content').append('<div class="info_album top-fiche" style="padding: 5%>" ' +
         '                   <div class="container">\n' +
@@ -425,7 +424,7 @@ function displayAlbumInfo(albumInfo){
         '                                   <h3>'+albumInfo[0]['nom_artiste']+'</h3>\n' +
         '                               </div>'+
         '                               <div class="row">' +
-        '                                   <h7 class="infos-right-date infos-right-part ">'+albumInfo["date_parution"]+'</h7>'+
+        '                                   <h7 class="infos-right-date infos-right-part ">'+albumInfo[0]["date_parution"].slice(0,10)+'</h7>'+
         '                                   <h7>'+albumInfo[0]['nom_style']+'</h7>'+
         '                               </div>'+
         '                           </div>\n' +
