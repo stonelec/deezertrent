@@ -40,7 +40,7 @@ require_once ('../php/database.php');
                 $stmt->execute([$id]);
                 $albums = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $result['albums'] = $albums;
-                $sql = 'SELECT t.*,alb.titre_album,alb.image_album FROM track t
+                $sql = 'SELECT t.*,alb.titre_album,alb.image_album,art.nom_artiste FROM track t
                     LEFT JOIN album alb on alb.id_album=t.id_album
                     LEFT JOIN artiste art on art.id_artiste=alb.id_artiste
 WHERE art.id_artiste = ?;';
