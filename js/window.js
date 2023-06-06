@@ -436,6 +436,16 @@ function displayAlbumInfo(albumInfo){
 
 }
 
+$(document).on('click', '.bi-heart', function(event) {
+    let id = $(this).attr('id');
+    ajaxRequest('POST', '../php/request.php/favoris/', () => {
+        ajaxRequest('GET', 'php/request.php/favoris/', displayrien);
+    }, 'idadd=' + id);
+});
+
+function displayrien(info) {
+    $('#content').empty();
+}
 
 
 
