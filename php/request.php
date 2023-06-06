@@ -58,11 +58,13 @@ if ($id == '') {
                 $data = User::user_history($_SESSION['user_id']);
             } elseif ($requestResource == "historique_id") {
                 $data = User::user_history_id($_SESSION['user_id']);
+            }elseif($requestResource == "audio" and isset($_GET['id_track'])){
+                $data = Track::track_info($_GET['id_track']);
             }
             else {
                 http_response_code(400);
                 exit();
-        }
+            }
             break;
 
         case 'PUT':
@@ -95,12 +97,18 @@ if ($id == '') {
                 $stmt->execute([$file['name'], $iduser]);
             }
             if(isset($_POST['idadd'])){
+            if($requestResource == "add_playlist"){
+
+//                    echo("test");
+                    $date =Playlist::add_playlist($_POST['nom_playlist'],$_SESSION['user_id']);
+
+            }
+            elseif(isset($_POST['idadd'])){
                 $data = Playlist::addtofavoris($_POST['idadd'],$_SESSION['user_id']);
             }
-            if(isset($_POST['nom_playlist'])){
-                $data = Playlist::add_playlist($_POST['nom_playlist']);
-            }
+
             elseif ($requestResource == "add_track"){
+
                 $data =  Track::add_track($_GET['id_track'], $_GET['id_playlist']);
             }
             break;
@@ -117,7 +125,7 @@ if ($id == '') {
             }
             break;
 
-    }
+        }
 
     echo json_encode($data);
     exit;

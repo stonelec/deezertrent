@@ -33,6 +33,7 @@ if(!isset($_SESSION['user_id'])){
         <script src="../js/accueil.js" defer></script>
         <script src="../js/window.js" defer></script>
         <script src="../js/artist.js" defer></script>
+        <script src="../js/audio.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
             integrity="sha256-x3YZWtRjM8bJqf48dFAv/qmgL68SI4jqNWeSLMZaMGA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
@@ -43,9 +44,12 @@ if(!isset($_SESSION['user_id'])){
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     </head>
-    <!-- Simple lecture audio -->
-    <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3" muted></audio>
+
     <body>
+        <div id="musique">
+            <!-- Simple lecture audio -->
+            <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3" muted></audio>
+        </div>
         <div class="global d-flex flex-row">
             <!--    Navbar----------------------------------------------------------------------------------->
             <div class="menu">
@@ -91,25 +95,29 @@ if(!isset($_SESSION['user_id'])){
                 <div id="playlist-menu" class="playlist d-flex flex-column">
 
                     </div>
-            <!--    current music----------------------------------------------------------------------------------->
-                <div class="current-music d-flex justify-content-center">
-                    <div class="current-music-center d-flex flex-column click">
-                        <div class="text-center">
+                <!--    current music----------------------------------------------------------------------------------->
+                <div id="info_music_played">
+                    <div class="current-music d-flex justify-content-center">
+                        <div class="current-music-center d-flex flex-column click">
+                            <div class="text-center">
 
-                            <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
-                        </div>
-                        <div class="current-music-infos d-flex justify-content-between">
-                            <div class="d-flex flex-column">
-                                <h6>Nothing Left To Say</h6>
-                                <p>Imagines Dragons</p>
+                                <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
                             </div>
-                            <div class="d-flex flex-column " style="font-size : 1.2rem;">
-                                <i class="bi bi-heart button"></i>
-                                <div style="margin-bottom: 10px"></div>
-                                <i class="bi bi-plus-lg button"></i>
+                            <div class="current-music-infos d-flex justify-content-between">
+                                <div class="d-flex flex-column">
+                                    <h6>Nothing Left To Say</h6>
+                                    <p>Imagines Dragons</p>
+                                </div>
+                                <div class="d-flex flex-column " style="font-size : 1.2rem;">
+                                    <i class="bi bi-heart button"></i>
+                                    <div style="margin-bottom: 10px"></div>
+                                    <i class="bi bi-plus-lg button"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                </div>
+
                 </div>
             </div>
             <div class="right d-flex flex-column" >
@@ -136,66 +144,10 @@ if(!isset($_SESSION['user_id'])){
                 <!--    Contenu----------------------------------------------------------------------------------->
 
                 <div id="content" class="content d-flex flex-column">
-                    <h2 style="margin: 15px 0;">Vos playlist</h2>
-                    <div class="d-flex flex-row-reverse" style="padding-right: 10%; font-size: 2rem;">
-                        <i class="bi bi-sort-alpha-down button button_sort"></i>
-                        <i class="bi bi-file-plus button button_add_playlist"></i>
-
-                        <!--- The window to get the name of the new playlist ----------->
-                        <div id="new_modal">
-                            <div id="modal_header">
-                                <h2>Ajouter une nouvelle playlist :</h2>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div id="modal_body">
-                                <input class="form-control" type="text" id="new_name"/>
-                            </div>
-                            <div id="modal_footer">
-                                <a href="#" onclick="open_modal()">Annuler</a>
-                                <button type="button" class="btn btn-primary">Ajouter</button>
-                            </div>
-                        </div>
-
-                        <h2 style=" margin: 15px 0">Les titres</h2>
-                        <ul class="list-infos list-group justify-content-center">
-
-                            <li class="infos d-flex justify-content-between align-items-center">
-                                <div class="infos-left-part d-flex align-items-center">
-                                    <div>
-                                        <img class="music-image infos-left-part " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                                    </div>
-                                    <div>
-                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <div class="overflow">
-                                            <h7 class="infos-left-part" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
-                                        </div>
-                                        <div class="overflow">
-                                            <h7 class="infos-left-part">Imagines Dragons</h7>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="infos-right d-flex flex-row align-items-center">
-                                    <div class="overflow">
-                                        <h7 class="infos-right-date infos-right-part ">28 mai 2023</h7>
-                                    </div>
-                                    <i class="bi bi-trash button button-track infos-right-part"></i>
-                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>
-                                    <i class="bi bi-heart button button-track infos-right-part"></i>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="card-playlist d-flex flex-column">
-                            <div style="margin-left: auto; margin-right: auto;">
-                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
-                            </div>
-                            <div class="card-playlist-text">
-                                <p >Nothing Nothing Left To Say</p>
-                            </div>
-                        </div>
+                    <div class="add_track" onclick="openModal()">
+                        <p>add</p>
                     </div>
+
 
                 </div>
                 <!--    Sound----------------------------------------------------------------------------------->
@@ -230,7 +182,28 @@ if(!isset($_SESSION['user_id'])){
             </div>
 
         </div>
-
+<!--  ------------------------------modal------------------------------------->
+        <div class="modal fade" id="addPlaylist" tabindex="-1" aria-hidden="true" style="color: white">
+            <div class="modal-dialog" >
+                <div class="modal-content" style="background-color: #121212; border: solid 2px white">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une playlist</h1>
+                        <button style="background-color: #DC3545" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="add_playlist">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label" >Titre :</label>
+                                <input type="text" class="form-control" id="titre-add" style="background-color: white">
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="submit" class="btn btn-danger">Ajouter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 
 </html>

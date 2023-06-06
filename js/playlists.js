@@ -7,7 +7,7 @@ function playlist_list(infos){
         '                                <div class="infos-left-part d-flex align-items-center ">\n' +
         '                                    <div class="d-flex flex-row align-items-center">\n' +
         '                                        <div class="overflow">\n' +
-        '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['nom_playlist']+'</h7>\n' +
+        '                                            <h7 class="infos-left-part" style="font-weight: bolder; padding-left: 30px;">'+infos['nom_playlist']+'</h7>\n' +
         '                                        </div>\n' +
         '                                    </div>\n' +
         '                                </div>\n' +
@@ -96,13 +96,13 @@ function track_list_search(infos){
 }
 
 function playlistDetail(playlist){
-    // console.log('fonction playlist detail');
+    console.log(playlist);
     if (playlist.length == 0){
         console.log('playlist est vide');
         $('#content').html('<h4>Votre playlist est vide</h4>');
     }else{
-        // console.log('playlist est pas vide');
-        //console.log(playlist);
+        console.log('playlist est pas vide');
+        //consfole.log(playlist);
         $('#content').html('<h2 style="margin: 15px 0;">'+playlist[0]["nom_playlist"]+'</h2>\n');
         $('#content').append('<div class="d-flex justify-content-between" style="padding-right: 10%;   height: 4rem">\n' +
             '                        <div>' +
@@ -119,12 +119,12 @@ function playlistDetail(playlist){
     }
 }
 
-// Function to open a window to ask the name of a new playlist
-function open_modal(){
-    console.log('try to open');
-    let new_modal = document.getElementById("new_modal");
-    new_modal.style.visibility = new_modal.style.visibility === "visible" ? "hidden" : "visible";
-}
+// // Function to open a window to ask the name of a new playlist
+// function open_dmodal(){
+//     console.log('try to open');
+//     let new_modal = document.getElementById("new_modal");
+//     new_modal.style.visibility = new_modal.style.visibility === "visible" ? "hidden" : "visible";
+// }
 
 // Ajax request
 
@@ -144,7 +144,7 @@ divplaylist.addEventListener('click', function() {
 //////////////////////////    DIPSLAY PLAYLIST    //////////////////////////////
 function displayListePlaylist(playlists) {
     {
-        console.log('on est censé sup un truc');
+        // console.log('on est censé sup un truc');
         console.log(playlists);
         $('#content').empty();
         $('#title-page').empty();
@@ -154,8 +154,12 @@ function displayListePlaylist(playlists) {
             '                        <i class="bi bi-sort-alpha-down button button_sort" style="padding-left: 1%"></i>\n'+
             '                        <i class="bi bi-file-plus button button_add_playlist"></i>\n' +
             '                    </div>');
-        for (let playlist of playlists)
-            $('#content').append(playlist_list(playlist));
+        for (let playlist of playlists) {
+            // console.log(playlist['nom_playlist']);
+            if (playlist['nom_playlist'] !== "Favoris" && playlist['nom_playlist'] !== "Liste de lecture" && playlist['nom_playlist'] !== "Historique") {
+                $('#content').append(playlist_list(playlist));
+            }
+        }
 
 
         ///////////////    CREATE A NEW PLAYLIST    ///////////////////
@@ -174,8 +178,10 @@ function displayListePlaylist(playlists) {
 
 //////////////     INFORMATION ABOUT A PLAYLIST     //////////////
 $(document).on('click', '.get_playlist', function (event){
-    var id_playlist = $(this).attr('id');
-    ajaxRequest('GET', '../php/request.php/playlist/?id_playlist='+ id_playlist, playlistDetail)
+    event.stopPropagation();
+    console.log('click sur une playlist');
+    let id_playlist = $(this).attr('id');
+    ajaxRequest('GET', '../php/request.php/playlist?id_playlist='+ id_playlist, playlistDetail)
 
 });
 

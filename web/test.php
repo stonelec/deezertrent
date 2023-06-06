@@ -44,26 +44,29 @@
 <p id="modal">ouvrir</p>
 
 </div>
-<div id="example">
 
-    <div class="content-modal">
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                <button type="button" class="btn-close" aria-label="Close" id="modal"></button>
-                <span class="visually-hidden">unread messages</span>
-          </span>
-        <form>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Titre de votre playlist</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Choisir une ilustration</label>
-                <input class="form-control" type="file" id="formFile">
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                </form>
             </div>
-            <button id="submit-modal" type="submit" class="btn btn-danger">Submit</button>
-        </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
     </div>
-
+</div>
 </div>
 </body>
 </html>
