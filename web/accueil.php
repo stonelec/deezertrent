@@ -46,6 +46,10 @@ if(!isset($_SESSION['user_id'])){
     <!-- Simple lecture audio -->
     <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3" muted></audio>
     <body>
+        <div id="audio">
+            <!-- Simple lecture audio -->
+            <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3" muted></audio>
+        </div>
         <div class="global d-flex flex-row">
             <!--    Navbar----------------------------------------------------------------------------------->
             <div class="menu">

@@ -58,6 +58,8 @@ if ($id == '') {
                 $data = User::user_history($_SESSION['user_id']);
             } elseif ($requestResource == "historique_id") {
                 $data = User::user_history_id($_SESSION['user_id']);
+            }elseif($requestResource == "audio" and isset($_GET['id_track'])){
+                $data = Track::link($_GET['id_track']);
             }
             else {
                 http_response_code(400);
