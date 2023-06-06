@@ -74,7 +74,6 @@ html .menu .logo-image{
     font-weight: bolder;
     margin:  10px 0  0 10% ;
     -webkit-user-select: none;
-
 }
 .menu .links .general{
     font-size: 140%;
@@ -82,7 +81,6 @@ html .menu .logo-image{
 .menu .links .general-link:hover{
     color: #6c757d;
     cursor: pointer;
-
 }
 .menu .links .general-link:active{
     color: black;
@@ -93,7 +91,6 @@ html .menu .logo-image{
 .menu .links .general .moove{
     vertical-align: +30%!important;
 
-}
 .playlist{
     padding-left: 25%;
     margin-right: 5%;
@@ -277,7 +274,7 @@ html .menu .logo-image{
     display: none;
 }
 
-    /*responsive ----------------------------------------------*/
+/*responsive ----------------------------------------------*/
 .sound{
     /*background-color: orange;*/
     height: 15%;
@@ -419,4 +416,23 @@ input{
 
 .bi::before{
     vertical-align: +15%!important;
+}
+
+
+/* Modal -------------------- */
+#new_modal{
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding: 15px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }

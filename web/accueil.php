@@ -7,18 +7,14 @@ if(!isset($_SESSION['user_id'])){
 ?>
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>deezertrent</title>
-    <link href="style.css" rel="stylesheet">
+    <head>
+        <meta charset="utf-8">
+        <title>deezertrent</title>
+        <link href="style.css" rel="stylesheet">
 
 
         <!--    Bootstrap    -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-
         <!--    Icons Bootstrap-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <!--    Icons google-->
@@ -33,12 +29,15 @@ if(!isset($_SESSION['user_id'])){
         <script src="../js/ajax.js" defer></script>
         <script src="../js/historique.js" defer></script>
         <script src="../js/accueil.js" defer></script>
-        <script src="../js/artist.js" defer></script>
         <script src="../js/window.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
             integrity="sha256-x3YZWtRjM8bJqf48dFAv/qmgL68SI4jqNWeSLMZaMGA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     </head>
     <!-- Simple lecture audio -->
@@ -132,10 +131,66 @@ if(!isset($_SESSION['user_id'])){
                 <!--    Contenu----------------------------------------------------------------------------------->
 
                 <div id="content" class="content d-flex flex-column">
+                    <h2 style="margin: 15px 0;">Vos playlist</h2>
+                    <div class="d-flex flex-row-reverse" style="padding-right: 10%; font-size: 2rem;">
+                        <i class="bi bi-sort-alpha-down button button_sort"></i>
+                        <i class="bi bi-file-plus button button_add_playlist"></i>
+
+                        <!--- The window to get the name of the new playlist ----------->
+                        <div id="new_modal">
+                            <div id="modal_header">
+                                <h2>Ajouter une nouvelle playlist :</h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div id="modal_body">
+                                <input class="form-control" type="text" id="new_name"/>
+                            </div>
+                            <div id="modal_footer">
+                                <a href="#" onclick="open_modal()">Annuler</a>
+                                <button type="button" class="btn btn-primary">Ajouter</button>
+                            </div>
+                        </div>
 
 
+                        <h2 style=" margin: 15px 0">Les titres</h2>
+                        <ul class="list-infos list-group justify-content-center">
 
-
+                            <li class="infos d-flex justify-content-between align-items-center">
+                                <div class="infos-left-part d-flex align-items-center">
+                                    <div>
+                                        <img class="music-image infos-left-part " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="overflow">
+                                            <h7 class="infos-left-part" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
+                                        </div>
+                                        <div class="overflow">
+                                            <h7 class="infos-left-part">Imagines Dragons</h7>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="infos-right d-flex flex-row align-items-center">
+                                    <div class="overflow">
+                                        <h7 class="infos-right-date infos-right-part ">28 mai 2023</h7>
+                                    </div>
+                                    <i class="bi bi-trash button button-track infos-right-part"></i>
+                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>
+                                    <i class="bi bi-heart button button-track infos-right-part"></i>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="card-playlist d-flex flex-column">
+                            <div style="margin-left: auto; margin-right: auto;">
+                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">
+                            </div>
+                            <div class="card-playlist-text">
+                                <p >Nothing Nothing Left To Say</p>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!--    Sound----------------------------------------------------------------------------------->
