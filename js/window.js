@@ -404,6 +404,8 @@ $(document).on('click', '.info_album', function(event) {
 
 $(document).on('click', '.get_album', function(event) {
     let Value = $(this).attr('id');
+    console.log('ID trouvé');
+    console.log(Value);
     ajaxRequest('GET', `../php/request.php/album/${Value}`, displayAlbumInfo);
 });
 
