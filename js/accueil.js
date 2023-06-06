@@ -24,8 +24,13 @@ function displayUserAccueil(result){
 }
 function displayCardPlaylistsAccueil(playlists){
     $('#content').append('<div class="d-flex flex-row scroller-card-playlist">');
-    for (let playlist of playlists)
-        $('.scroller-card-playlist').append(playlist_card(playlist));
+    for (let playlist of playlists) {
+        if (playlist['nom_playlist'] != 'Historique') {
+            if (playlist['nom_playlist'] != 'Liste de lecture') {
+                $('.scroller-card-playlist').append(playlist_card(playlist));
+            }
+        }
+    }
     $('#content').append('</div>');
     $('#content').append('<h5 style="margin: 15px 0">Votre historique</h5>');
     ajaxRequest('GET', '../php/request.php/historique/', historiqueAccueil)

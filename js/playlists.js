@@ -23,7 +23,7 @@ function playlist_list(infos){
 
 // Frame of a list to show the track in a playlist
 function playlist_card(playlist){
-    return '         <div class="card-playlist d-flex flex-column">\n' +
+    return '         <div class="card-playlist d-flex flex-column get_playlist id"'+playlist['id_playlist']+'">\n' +
         '                            <div style="margin-left: auto; margin-right: auto;">\n' +
         '                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">\n' +
         '                            </div>\n' +
@@ -40,9 +40,7 @@ function track_list_playlist(infos){
         '                                    <div>\n' +
         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
         '                                    </div>\n' +
-        '                                    <div>\n' +
         '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
-        '                                    </div>\n' +
         '                                    <div class="d-flex flex-row align-items-center">\n' +
         '                                        <div class="overflow">\n' +
         '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
