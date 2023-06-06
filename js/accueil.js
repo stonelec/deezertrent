@@ -3,7 +3,7 @@
 ///////////////////   DEFAULT REQUEST   ///////////////////////////
 
 displayAccueil();
-// loadHistorique();
+ajaxRequest('GET', '../php/request.php/historique_id/', loadHistory );
 $(document).on('click', '#accueil', displayAccueil);
 
 
@@ -33,17 +33,19 @@ function displayCardPlaylistsAccueil(playlists){
     }
     $('#content').append('</div>');
     $('#content').append('<h5 style="margin: 15px 0">Votre historique</h5>');
-    ajaxRequest('GET', '../php/request.php/historique/', historiqueAccueil)
+    ajaxRequest('GET', '../php/request.php/historique/', historyAccueil)
 
 }
-function historiqueAccueil(playlist) {
+function historyAccueil(playlist) {
     for (let track of playlist)
         $('#content').append(track_list(track));
 }
 ///////////////////   LOAD HISTORIQUE   ///////////////////////////
 
-function loadHistorique(){
-
+function loadHistory(result){
+    console.log('loadHistory');
+    console.log(result[0]['id_playlist']);
+    $('.history').attr('id', result[0]['id_playlist']);
 }
 
 ///////////////////   PLAYLIST MENU   ///////////////////////////

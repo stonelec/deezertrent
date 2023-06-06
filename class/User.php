@@ -56,7 +56,21 @@ class User{
             return false;
         }
     }
+    public static function user_history_id($id)
+    {
+        try {
+            $conn = Database::connexionBD();
+            $sql = "SELECT id_playlist FROM playlist where id_user=? and nom_playlist='Historique';";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$id]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
 
+        } catch (PDOException $exception) {
+            error_log('Connection error: ' . $exception->getMessage());
+            return false;
+        }
+    }
 
     // Get the user's name
     public static function name($id_user) {
