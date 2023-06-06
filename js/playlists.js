@@ -100,8 +100,9 @@ function playlistDetail(playlist){
         console.log('playlist est vide');
         $('#content').html('<h4>Votre playlist est vide</h4>');
     }else{
-
-        $('#content').html('<h2 style="margin: 15px 0;">Vos playlist</h2>\n');
+        console.log('playlist est pas vide');
+        console.log(playlist);
+        $('#content').html('<h2 style="margin: 15px 0;">'+playlist[0]["nom_playlist"]+'</h2>\n');
         $('#content').append('<div class="d-flex justify-content-between" style="padding-right: 10%;   height: 4rem">\n' +
             '                        <div>' +
             '                            <p style="">'+playlist[0]['date_creation']+'</p>\n' +
