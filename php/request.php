@@ -84,6 +84,8 @@ if ($id == '') {
             }
             break;
 
+
+
         case 'DELLETE' :
             if(isset($_GET['id'])){
                 $data = Playlist::del_playlist($_GET['id']);
