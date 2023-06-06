@@ -119,12 +119,12 @@ function playlistDetail(playlist){
     }
 }
 
-// Function to open a window to ask the name of a new playlist
-function open_modal(){
-    console.log('try to open');
-    let new_modal = document.getElementById("new_modal");
-    new_modal.style.visibility = new_modal.style.visibility === "visible" ? "hidden" : "visible";
-}
+// // Function to open a window to ask the name of a new playlist
+// function open_modal(){
+//     console.log('try to open');
+//     let new_modal = document.getElementById("new_modal");
+//     new_modal.style.visibility = new_modal.style.visibility === "visible" ? "hidden" : "visible";
+// }
 
 // Ajax request
 
@@ -144,7 +144,7 @@ divplaylist.addEventListener('click', function() {
 //////////////////////////    DIPSLAY PLAYLIST    //////////////////////////////
 function displayListePlaylist(playlists) {
     {
-        console.log('on est censé sup un truc');
+        // console.log('on est censé sup un truc');
         console.log(playlists);
         $('#title-page').empty();
         $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')

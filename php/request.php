@@ -50,10 +50,10 @@ if ($id == '') {
             }
             elseif ($requestResource == "album"){
                 $data =  Album::albums_fiche_info($id);
-            }elseif($requestResource == "playlist" and isset($_GET['id_playlist']) ){
-                $data = Playlist::playlist_detail($_SESSION['user_id'], $_GET['id_playlist']);
             } elseif ($requestResource == "playlist") {
                 $data = Playlist::playlist_info($_SESSION['user_id']);
+            }elseif($requestResource == "playlist" and isset($_GET['id_playlist']) ){
+                $data = Playlist::playlist_detail($_SESSION['user_id'], $_GET['id_playlist']);
             } elseif ($requestResource == "historique") {
                 $data = User::user_history($_SESSION['user_id']);
             } elseif ($requestResource == "historique_id") {
@@ -82,13 +82,18 @@ if ($id == '') {
             break;
 
         case 'POST' :
-            if(isset($_POST['idadd'])){
+            if($requestResource == "add_playlist"){
+
+//                    echo("test");
+                    $date =Playlist::add_playlist($_POST['nom_playlist'],$_SESSION['user_id']);
+
+            }
+            elseif(isset($_POST['idadd'])){
                 $data = Playlist::addtofavoris($_POST['idadd'],$_SESSION['user_id']);
             }
-            if(isset($_POST['nom_playlist'])){
-                $data = Playlist::add_playlist($_POST['nom_playlist']);
-            }
+
             elseif ($requestResource == "add_track"){
+
                 $data =  Track::add_track($_GET['id_track'], $_GET['id_playlist']);
             }
             break;

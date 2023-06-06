@@ -2,7 +2,7 @@
 
 ///////////////////   DEFAULT REQUEST   ///////////////////////////
 
-displayAccueil();
+// displayAccueil();
 ajaxRequest('GET', '../php/request.php/historique_id/', loadHistory );
 $(document).on('click', '#accueil', displayAccueil);
 
