@@ -58,11 +58,13 @@ if ($id == '') {
                 $data = User::user_history($_SESSION['user_id']);
             } elseif ($requestResource == "historique_id") {
                 $data = User::user_history_id($_SESSION['user_id']);
+            }elseif($requestResource == "audio" and isset($_GET['id_track'])){
+                $data = Track::track_info($_GET['id_track']);
             }
             else {
                 http_response_code(400);
                 exit();
-        }
+            }
             break;
 
         case 'PUT':
@@ -100,6 +102,9 @@ if ($id == '') {
 
 
         case 'DELETE' :
+            if(isset($_GET['idplaylistdel'])){
+                $data = Playlist::del_playlist($_GET['idplaylistdel']);
+            }
             if(isset($_GET['idplaylist']) and isset($_GET['idtrack'])){
                 $data = Playlist::deltrack($_GET['idplaylist'],$_GET['idtrack']);
             }elseif(isset($_GET['id'])){
@@ -107,7 +112,7 @@ if ($id == '') {
             }
             break;
 
-    }
+        }
 
     echo json_encode($data);
     exit;

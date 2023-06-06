@@ -15,7 +15,7 @@ function playlist_list(infos){
         '                                   <div class="overflow">\n'+
         '                                       <h7 class="infos-right-date infos-right-part ">'+infos["date_creation"]+'</h7>\n' +
         '                                   </div>\n'+
-        '                                    <i class="bi bi-trash button button-track infos-right-part del_playlist" id="del'+ infos['id_playlist']+'"></i>\n'+
+        '                                    <i class="bi bi-trash button button-track infos-right-part del_playlist" id="'+ infos['id_playlist']+'"></i>\n'+
         '                                </div>\n' +
         '                            </li>\n' +
         '                        </ul>'
@@ -146,6 +146,7 @@ function displayListePlaylist(playlists) {
     {
         // console.log('on est censé sup un truc');
         console.log(playlists);
+        $('#content').empty();
         $('#title-page').empty();
         $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
         $('#content').html('<h2 style="margin: 15px 0;">Vos playlist</h2>\n');
@@ -208,5 +209,16 @@ $(document).on('click', '.del_track', function(event) {
         ajaxRequest('GET', '../php/request.php/playlist/?id_playlist='+ idplaylist, playlistDetail)
 
     });
+});
+
+
+$(document).on('click', '.del_playlist',function (event){
+    var idplaylist = $(this).attr('id');
+
+    ajaxRequest('DELETE', `../php/request.php/delplaylist?idplaylistdel=${idplaylist}`,()=>{
+        ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);
+
+    });
+    showPlaylistMusic()
 });
 

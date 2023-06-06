@@ -33,6 +33,7 @@ if(!isset($_SESSION['user_id'])){
         <script src="../js/accueil.js" defer></script>
         <script src="../js/window.js" defer></script>
         <script src="../js/artist.js" defer></script>
+        <script src="../js/audio.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
             integrity="sha256-x3YZWtRjM8bJqf48dFAv/qmgL68SI4jqNWeSLMZaMGA=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"
@@ -43,9 +44,12 @@ if(!isset($_SESSION['user_id'])){
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     </head>
-    <!-- Simple lecture audio -->
-    <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3" muted></audio>
+
     <body>
+        <div id="musique">
+            <!-- Simple lecture audio -->
+            <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3" muted></audio>
+        </div>
         <div class="global d-flex flex-row">
             <!--    Navbar----------------------------------------------------------------------------------->
             <div class="menu">
@@ -91,25 +95,29 @@ if(!isset($_SESSION['user_id'])){
                 <div id="playlist-menu" class="playlist d-flex flex-column">
 
                     </div>
-            <!--    current music----------------------------------------------------------------------------------->
-                <div class="current-music d-flex justify-content-center">
-                    <div class="current-music-center d-flex flex-column click">
-                        <div class="text-center">
+                <!--    current music----------------------------------------------------------------------------------->
+                <div id="info_music_played">
+                    <div class="current-music d-flex justify-content-center">
+                        <div class="current-music-center d-flex flex-column click">
+                            <div class="text-center">
 
-                            <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
-                        </div>
-                        <div class="current-music-infos d-flex justify-content-between">
-                            <div class="d-flex flex-column">
-                                <h6>Nothing Left To Say</h6>
-                                <p>Imagines Dragons</p>
+                                <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
                             </div>
-                            <div class="d-flex flex-column " style="font-size : 1.2rem;">
-                                <i class="bi bi-heart button"></i>
-                                <div style="margin-bottom: 10px"></div>
-                                <i class="bi bi-plus-lg button"></i>
+                            <div class="current-music-infos d-flex justify-content-between">
+                                <div class="d-flex flex-column">
+                                    <h6>Nothing Left To Say</h6>
+                                    <p>Imagines Dragons</p>
+                                </div>
+                                <div class="d-flex flex-column " style="font-size : 1.2rem;">
+                                    <i class="bi bi-heart button"></i>
+                                    <div style="margin-bottom: 10px"></div>
+                                    <i class="bi bi-plus-lg button"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                </div>
+
                 </div>
             </div>
             <div class="right d-flex flex-column" >
