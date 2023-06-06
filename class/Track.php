@@ -23,11 +23,11 @@ require_once ('../php/database.php');
         public static function track_info($id){
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT t.*,a.titre_album,a.image_album,a.date_parution,s.nom_style,ar.nom_artiste 
-FROM track t LEFT JOIN album a on a.id_album=t.id_album
-LEFT JOIN style_a s on s.id_style=a.id_style
-LEFT JOIN artiste ar on ar.id_artiste=a.id_artiste 
-where id_track=?;';
+                $sql = 'SELECT t.* ,a.titre_album, a.image_album, a.date_parution, s.nom_style, ar.nom_artiste 
+                        FROM track t LEFT JOIN album a on a.id_album=t.id_album
+                        LEFT JOIN style_a s on s.id_style=a.id_style
+                        LEFT JOIN artiste ar on ar.id_artiste=a.id_artiste 
+                        WHERE id_track=?;';
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([$id]);
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -106,7 +106,7 @@ where id_track=?;';
             }
         }
 
-        public static function add_tarck($id_track, $id_playlist){
+        public static function add_track($id_track, $id_playlist){
             try {
                 $conn = Database::connexionBD();
                 $sql = "INSERT INTO comprendre (id_track, id_playlist, date_ajout)

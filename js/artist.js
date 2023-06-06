@@ -37,6 +37,7 @@ function displayArtisteInfo(artisteInfo) {
         '                        </div>\n' +
         '                    </div>\n' +
         '                    <h2 style="margin: 15px 0;">Albums</h2>\n');
+
     let playlists = artisteInfo['albums'];
     $('#content').append('<div class="d-flex flex-row scroller-card-playlist">');
     for (let playlist of playlists)

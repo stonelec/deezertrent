@@ -30,7 +30,6 @@ let button_artiste = '<div class="btn-group" style="width:30%;"   >\n' +
 
 ///////////////////   DISPLAY LISTES   ///////////////////////////
 function track_list(infos){
-    console.log(infos)
     return'<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
@@ -149,7 +148,6 @@ function display_track(results) {
     $('#content').empty();
     $('#content').append( button_track);
     show_track(results);
-
 }
 
 function show_track(results) {
@@ -199,7 +197,6 @@ function show_album(results) {
     } else {
         for (let album of albums) {
             // console.log("album");
-            console.log(album);
             $('#content').append(album_list(album));
         }
     }
@@ -346,6 +343,8 @@ function display_all(results){
     let attributeValue = $(this).attr('id');
     ajaxRequest('GET', `../php/request.php/track/${attributeValue}`, displaytrackinfo);
 });
+
+    /////////// INFORMATION ABOUT A TRACK //////////////
 function format_duree(seconde) {
     var minutes = Math.floor(seconde / 60);
     var secondes = seconde % 60;
@@ -354,13 +353,13 @@ function format_duree(seconde) {
     return minuteStr + ':' + secondeStr;
 }
 
-
 function displaytrackinfo(trackinfo){
-        console.log(trackinfo)
+    console.log('info track');
+
     var duree= format_duree(parseInt(trackinfo[0]['duree'], 10));
 
         $('#content').empty();
-
+        console.log(trackinfo);
         $('#content').append('<div style="padding: 5%>" ' +
             '<div class="container">\n' +
             '    <div class="row">\n' +
@@ -372,38 +371,9 @@ function displaytrackinfo(trackinfo){
             '        <h3>'+trackinfo[0]['titre_album']+'</h3>\n' +
             '      </div>\n' +
             '    </div>\n' +
-            '  </div>' +
-            '');
-
-        $('#content').append('' +
-            '<ul class="list-infos list-group justify-content-center">\n' +
-            '\n' +
-            '            <li class="infos d-flex justify-content-between align-items-center"  onclick=" console.log(\'track\');">\n' +
-            '                <div class="infos-left-part d-flex align-items-center">\n' +
-            '                    <div>\n' +
-            '                        <img class="music-image infos-left-part " src="images/albums/'+trackinfo[0]['image_album']+'"  alt=".....">\n' +
-            '                    </div>\n' +
-            '                    <div>\n' +
-            '                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play" onclick="console.log(\'play\');event.stopPropagation();"></i>\n' +
-            '                    </div>\n' +
-            '                    <div class="d-flex flex-row align-items-center">\n' +
-            '                        <div class="overflow">\n' +
-            '                            <h7 class="infos-left-part" style="font-weight: bolder;">'+trackinfo[0]['titre_track']+'</h7>\n' +
-            '                        </div>\n' +
-            '                        <div class="overflow">\n' +
-            '                            <h7 class="infos-left-part">'+trackinfo[0]['nom_artiste']+'</h7>\n' +
-            '                        </div>\n' +
-            '                    </div>\n' +
-            '                </div>\n' +
-            '                <div class="infos-right d-flex flex-row align-items-center">\n' +
-            '                   <i class="bi bi-plus-lg button button-track infos-right-part"></i>\n' +
-            '                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'"></i>\n' +
-            '                </div>\n' +
-            '            </li>\n' +
-            '        </ul>' +
-            '')
-
-        $('#content').append('' +
+            '  </div>');
+        $('#content').append(artist_list(trackinfo[0]))
+        $('#content').append(
             '<div class="container">\n' +
             '    <div class="row">\n' +
             '      <div class="col-2 col-md-4 offset-1">\n' +
@@ -423,19 +393,37 @@ function displaytrackinfo(trackinfo){
 
 
     }
+
+
+    ////////////// INFORMATION ABOUT AN ALBUM //////////////////
 $(document).on('click', '.get_album', function(event) {
     let Value = $(this).attr('id');
     ajaxRequest('GET', `../php/request.php/album/${Value}`, displayAlbumInfo);
 });
 
 function displayAlbumInfo(albumInfo){
+    //console.log(albumInfo);
     $('#content').empty();
-    console.log('/');
-    console.log(albumInfo);
-    console.log('/');
-
+    $('#content').append('<div class="info_album" style="padding: 5%>" ' +
+        '                   <div class="container">\n' +
+        '                       <div class="row">\n' +
+        '                           <div class="col-md-4">\n' +
+        '                               <img src="images/albums/'+albumInfo[0]['image_album']+'" alt="Image de l\'album" class="img-fluid" style="border-radius: 5%;margin:3%">\n' +
+        '                           </div>\n' +
+        '                           <div class="col-md-8">\n' +
+        '                               <h1>'+albumInfo[0]['titre_album']+'</h1>\n' +
+        '                               <h3>'+albumInfo[0]['nom_artiste']+'</h3>\n' +
+        '                               <div class="row">' +
+        '                                   <h7 class="infos-right-date infos-right-part ">'+albumInfo["date_parution"]+'</h7>'+
+        '                                   <h7>'+albumInfo[0]['nom_style']+'</h7>'+
+        '                               </div>'+
+        '                           </div>\n' +
+        '                       </div>\n' +
+        '                   </div>');
+        for(let track of albumInfo['tracks']){
+            $('#content').append(track_list(track));
+        }
 }
-
 
 
 

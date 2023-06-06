@@ -25,15 +25,18 @@
         public static function albums_fiche_info($id){
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT alb.image_album,alb.titre_album,art.nom_artiste,s.nom_style
-       FROM album alb
-LEFT JOIN artiste art on art.id_artiste=alb.id_artiste 
-LEFT JOIN style_a s on s.id_style=alb.id_style
-WHERE alb.id_album=?';
+                $sql = 'SELECT alb.image_album,alb.titre_album,art.nom_artiste,s.nom_style, alb.date_parution
+                        FROM album alb
+                        LEFT JOIN artiste art on art.id_artiste=alb.id_artiste 
+                        LEFT JOIN style_a s on s.id_style=alb.id_style
+                        WHERE alb.id_album=?';
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([$id]);
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                $sql = 'SELECT * from track WHERE id_album=?;';
+                $sql = 'SELECT t.*, a.image_album, art.nom_artiste from track t
+                        JOIN album a ON a.id_album = t.id_album
+                        JOIN artiste art ON art.id_artiste = a.id_artiste
+                        WHERE t.id_album=?;';
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([$id]);
                 $tracks = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -32,8 +32,8 @@ function playlist_card(playlist){
         '                            </div>\n' +
         '                        </div>';
 }
-function track_list(infos){
-    console.log(infos);
+function track_list_playlist(infos){
+    //console.log(infos);
     return'<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
@@ -54,7 +54,7 @@ function track_list(infos){
         '                                </div>\n' +
         '                                <div class="infos-right d-flex flex-row align-items-center"  id="track_"'+infos['id_track']+
         '                                   <div class="overflow">\n'+
-        '                                       <h7 class="infos-right-date infos-right-part">'+infos["date_ajout"]+'</h7>\n' +
+        '                                       <h7 class="infos-right-date infos-right-part">'+infos["date_ajout"].slice(0,10)+'</h7>\n' +
         '                                   </div>\n'+
         '                                    <i class="bi bi-trash button button-track infos-right-part del_tarck"></i>\n'+
         '                                    <i class="bi bi-plus-lg button button-track infos-right-part add"></i>\n' +
@@ -65,8 +65,9 @@ function track_list(infos){
 
 
 }
+
 function track_list_search(infos){
-    console.log(infos);
+    //console.log(infos);
     return'<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
@@ -119,7 +120,7 @@ function playlistDetail(playlist){
             '                   </div>');
 
         for(let info of playlist) {
-            $('#liste').append(track_list(info))
+            $('#liste').append(track_list_playlist(info))
         }
     }
 }

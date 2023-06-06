@@ -88,8 +88,9 @@ html .menu .logo-image{
 .menu .links .general .general-link-text{
     margin : -2.5% 0 20px 15px;
 }
-.menu .links .general .moove{
-    vertical-align: +30%!important;
+.menu .links .general .moove {
+    vertical-align: +30% !important;
+}
 
 .playlist{
     padding-left: 25%;

@@ -48,9 +48,6 @@ class User{
             $stmt = $conn->prepare($sql);
             $stmt->execute([$result[0]['id_playlist']]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-
-
 
             if (count($result) > 0) {
                 $playlistId = $result[0]['id_playlist'];

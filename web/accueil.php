@@ -41,7 +41,7 @@ if(!isset($_SESSION['user_id'])){
 
     </head>
     <!-- Simple lecture audio -->
-    <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3   " muted></audio>
+    <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3" muted></audio>
     <body>
         <div class="global d-flex flex-row">
             <!--    Navbar----------------------------------------------------------------------------------->
@@ -115,6 +115,7 @@ if(!isset($_SESSION['user_id'])){
 <!--                    <div id="title-page">-->
 <!--                        <h2 class="nom-page" >Accueil</h2>-->
 <!--                    </div>-->
+
                     <!-- Div avec form de recherche -->
                     <div id="title-page">
                         <input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">
@@ -128,6 +129,7 @@ if(!isset($_SESSION['user_id'])){
                         </div>
                     </div>
                 </div>
+
                 <!--    Contenu----------------------------------------------------------------------------------->
 
                 <div id="content" class="content d-flex flex-column">
@@ -150,7 +152,6 @@ if(!isset($_SESSION['user_id'])){
                                 <button type="button" class="btn btn-primary">Ajouter</button>
                             </div>
                         </div>
-
 
                         <h2 style=" margin: 15px 0">Les titres</h2>
                         <ul class="list-infos list-group justify-content-center">
