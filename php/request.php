@@ -96,12 +96,13 @@ if ($id == '') {
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([$file['name'], $iduser]);
             }
-            if(isset($_POST['idadd'])){
-            if($requestResource == "add_playlist"){
+            if(isset($_POST['idadd'])) {
+                if ($requestResource == "add_playlist") {
 
 //                    echo("test");
-                    $date =Playlist::add_playlist($_POST['nom_playlist'],$_SESSION['user_id']);
+                    $date = Playlist::add_playlist($_POST['nom_playlist'], $_SESSION['user_id']);
 
+                }
             }
             elseif(isset($_POST['idadd'])){
                 $data = Playlist::addtofavoris($_POST['idadd'],$_SESSION['user_id']);
@@ -113,8 +114,7 @@ if ($id == '') {
             }
             break;
 
-
-        case 'DELETE' :
+        case 'DELETE':
             if(isset($_GET['idplaylistdel'])){
                 $data = Playlist::del_playlist($_GET['idplaylistdel']);
             }
