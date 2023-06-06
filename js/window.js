@@ -240,6 +240,8 @@ function display_all(results){
             '      </div>\n' +
             '    </div>\n' +
             '  </div>' +
+            '      <button type="button" style="width: 50%" class="btn btn-danger btn-block decobutton" id="deco" name="submit"><a href="../web/deconnexion.php">deconnexion</a></button>\n'+
+
             '');
         const modifdiv= document.getElementById("modifier");
 
@@ -343,6 +345,10 @@ function display_all(results){
     let attributeValue = $(this).attr('id');
     ajaxRequest('GET', `../php/request.php/track/${attributeValue}`, displaytrackinfo);
 });
+
+
+
+
 
     /////////// INFORMATION ABOUT A TRACK //////////////
 function format_duree(seconde) {
@@ -451,5 +457,4 @@ $(document).on('click', '.bi-heart', function(event) {
 function displayrien(info) {
     $('#content').empty();
 }
-
 

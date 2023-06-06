@@ -32,6 +32,7 @@ function playlist_card(playlist){
         '                            </div>\n' +
         '                        </div>';
 }
+
 function track_list_playlist(infos){
     console.log(infos);
     return'<ul class="list-infos list-group justify-content-center">\n' +
@@ -132,9 +133,6 @@ function open_modal(){
 
 
 
-
-
-
 ///////////////////   PLAYLIST REQUEST   ///////////////////////////
 const divplaylist = document.getElementById('playlist');
 divplaylist.addEventListener('click', function() {
@@ -146,6 +144,8 @@ divplaylist.addEventListener('click', function() {
 //////////////////////////    DIPSLAY PLAYLIST    //////////////////////////////
 function displayListePlaylist(playlists) {
     {
+        console.log('on est censé sup un truc');
+        console.log(playlists);
         $('#title-page').empty();
         $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
         $('#content').html('<h2 style="margin: 15px 0;">Vos playlist</h2>\n');
@@ -180,16 +180,21 @@ $(document).on('click', '.get_playlist', function (event){
 
 
 ///////////////    DELETE A PLAYLIST    ///////////////////
-// PB effectue la fonction affiche détaill en mme temps et ne supprime pas
-$(document).on('click', '.del_playlist', ()=>{
+// PB  ne supprime pas
+$(document).on('click', '.del_playlist', function(event) {
+    event.stopPropagation();
     console.log("delete");
     console.log($(event.target).parent().parent().attr('id'));
-    ajaxRequest('DELETE', '../php/request.php/playlist/' +'?id=' + $(event.target).parent().parent().attr('id') , () => {
-        ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);
-        })
-})
+    let id_playlist = $(event.target).parent().parent().attr('id');
+
+    ajaxRequest('DELETE', '../php/request.php/playlist?id_playlist=' + id_playlist, () => {
+        console.log('Dans le delete');
+        ajaxRequest('GET', '../php/request.php/playlist?id_playlist=' + id_playlist, displayListePlaylist);
+    });
+});
 
 
+/////////////   DELTE A TRACK OF A PLAYLIST ///////////////
 $(document).on('click', '.del_track', function(event) {
     var idplaylist = $(this).attr('id');
     var idtrack = $(this).parent().attr('id');

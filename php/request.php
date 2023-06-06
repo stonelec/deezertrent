@@ -87,8 +87,6 @@ if ($id == '') {
             }
             if(isset($_POST['nom_playlist'])){
                 $data = Playlist::add_playlist($_POST['nom_playlist']);
-            }elseif (isset($_POST['id_playlist']) AND isset($_POST['id_track'])){
-                $data= Track::add_track($_POST['id_track'],$_POST['id_playlist']);
             }
             elseif ($requestResource == "add_track"){
                 $data =  Track::add_track($_GET['id_track'], $_GET['id_playlist']);
@@ -99,11 +97,8 @@ if ($id == '') {
         case 'DELETE' :
             if(isset($_GET['idplaylist']) and isset($_GET['idtrack'])){
                 $data = Playlist::deltrack($_GET['idplaylist'],$_GET['idtrack']);
-            }
-            if(isset($_GET['id'])){
+            }elseif(isset($_GET['id'])){
                 $data = Playlist::del_playlist($_GET['id']);
-            }elseif (isset($_GET['id_playlist']) AND isset($_GET['id_track'])){
-                $data = Track::del_track($_GET['id_track'],$_GET['id_playlist'] );
             }
             break;
 

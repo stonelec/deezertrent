@@ -45,7 +45,12 @@ class User{
             $stmt = $conn->prepare($sql);
             $stmt->execute([$id]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $sql = "SELECT t.* FROM comprendre c LEFT JOIN track t on t.id_track=c.id_track WHERE c.id_playlist=?;";
+            $sql = "SELECT t.* ,a.titre_album, a.image_album, a.date_parution, s.nom_style, ar.nom_artiste, a.id_album, ar.id_artiste FROM comprendre c
+    LEFT JOIN track t on t.id_track=c.id_track
+    LEFT JOIN album a on a.id_album=t.id_album
+    LEFT JOIN style_a s on s.id_style=a.id_style
+    LEFT JOIN artiste ar on ar.id_artiste=a.id_artiste  
+WHERE c.id_playlist=?;";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$result[0]['id_playlist']]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
