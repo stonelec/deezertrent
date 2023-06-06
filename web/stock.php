@@ -32,7 +32,7 @@
                         <div>
                             <img class="music-image infos-left-part " src="images/imaginedragons_nightvisions.png"  alt=".....">
                         </div>
-                            <i class="bi bi-play-fill button button-track infos-left-part infos-left-play" onclick="console.log('play');event.stopPropagation();"></i>
+                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play" onclick="console.log('play');event.stopPropagation();"></i>
                         <div class="d-flex flex-row align-items-center">
                             <div class="overflow">
                                 <h7 class="infos-left-part" style="font-weight: bolder;">Nothing Nothing Nothing Left To Say</h7>
@@ -81,7 +81,7 @@
 
 <!--   titre top-bar    ------------------------------------------------------>
         <div>
-            <a class="nom-page" href="../test.php"><h2>Accueil</h2></a>
+            <a class="nom-page" href="test.php"><h2>Accueil</h2></a>
         </div>
 
 <!-- icon tri bar ------------------------------------------------------>

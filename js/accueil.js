@@ -3,8 +3,9 @@
 ///////////////////   DEFAULT REQUEST   ///////////////////////////
 
 displayAccueil();
-
+// loadHistorique();
 $(document).on('click', '#accueil', displayAccueil);
+
 
 
 function displayAccueil(){
@@ -34,6 +35,11 @@ function historiqueAccueil(playlist) {
     for (let track of playlist)
         $('#content').append(track_list(track));
 }
+///////////////////   LOAD HISTORIQUE   ///////////////////////////
+
+function loadHistorique(){
+
+}
 
 ///////////////////   PLAYLIST MENU   ///////////////////////////
 
@@ -48,10 +54,11 @@ function playlistMenu(result){
 
     for (let playlist of result){
         // console.log('playlist');
-        $('#playlist-menu').append('<div class="playlist-link get_playlist" id="'+playlist['id_playlist']+'"><p>'+playlist['nom_playlist']+'</p></div>\n');
+        if(playlist['nom_playlist'] != 'Historique'){
+            if (playlist['nom_playlist'] != 'Liste de lecture'){
+                $('#playlist-menu').append('<div class="playlist-link get_playlist" id="'+playlist['id_playlist']+'"><p>'+playlist['nom_playlist']+'</p></div>\n');
+            }
+        }
         // console.log(playlist);
-
     }
-
-
 }

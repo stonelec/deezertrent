@@ -52,7 +52,7 @@ function track_list_playlist(infos){
         '                                        </div>\n' +
         '                                    </div>\n' +
         '                                </div>\n' +
-        '                                <div class="infos-right d-flex flex-row align-items-center"  id="track_"'+infos['id_track']+
+        '                                <div class="infos-right d-flex flex-row align-items-center"  id="track_"'+infos['id_track']+'>'+
         '                                   <div class="overflow">\n'+
         '                                       <h7 class="infos-right-date infos-right-part">'+infos["date_ajout"].slice(0,10)+'</h7>\n' +
         '                                   </div>\n'+
@@ -62,6 +62,8 @@ function track_list_playlist(infos){
         '                                </div>\n' +
         '                            </li>\n' +
         '                        </ul>'
+
+
 
 
 }
@@ -100,28 +102,20 @@ function playlistDetail(playlist){
         console.log('playlist est vide');
         $('#content').html('<h4>Votre playlist est vide</h4>');
     }else{
-        $('#content').html('<h2 style="margin: 15px 0">'+playlist[0]['nom_playlist']+'</h2>' +
-            '                   <div class="container">' +
-            '                       <div class="row">' +
-            '                           <div class="col-6">'+
-            '                               <div>' +
-            '                                   <h7>'+playlist[0]['date_creation']+'</h7>' +
-            '                               </div>' +
-            '                                   <div>' +
-            '                                   Résultats'+
-            '                               </div>' +
-            '                            </div>' +
-            '                            <div class="col-6 w-50 infos-right-part d-flex align-self-end ms-auto p-2" style="right: 5em">' +
-            '                               <i class="bi bi-sort-alpha-down infos-right-part button-track" id="sort_playlist"></i>' +
-            '                            </div>'+
-            '                           </div >' +
-            '                       </div>'+
-            '                       <div id="liste">' +
-            '                       </div>'+
-            '                   </div>');
 
+        $('#content').html('<h2 style="margin: 15px 0;">Vos playlist</h2>\n');
+        $('#content').append('<div class="d-flex justify-content-between" style="padding-right: 10%;   height: 4rem">\n' +
+            '                        <div>' +
+            '                            <p style="">'+playlist[0]['date_creation']+'</p>\n' +
+            '                        </div>'+
+            '                        <div class="d-flex flex-row" style="font-size: 2rem;">' +
+            '                           <i class="bi bi-sort-alpha-down button button_sort" style="padding-left: 1%"></i>\n'+
+            '                           <i class="bi bi-file-plus button button_add_playlist"></i>\n' +
+            '                        </div>'+
+
+            '                    </div>');
         for(let info of playlist) {
-            $('#liste').append(track_list_playlist(info))
+            $('#content').append(track_list_playlist(info))
         }
     }
 }
@@ -160,7 +154,6 @@ function displayListePlaylist(playlists) {
         $('#content').append('<div class="d-flex flex-row-reverse" style="padding-right: 10%; font-size: 2rem;  height: 4rem">\n' +
             '                        <i class="bi bi-sort-alpha-down button button_sort" style="padding-left: 1%"></i>\n'+
             '                        <i class="bi bi-file-plus button button_add_playlist"></i>\n' +
-            '\n' +
             '                    </div>');
         for (let playlist of playlists)
             $('#content').append(playlist_list(playlist));
