@@ -15,7 +15,7 @@ function playlist_list(infos){
         '                                   <div class="overflow">\n'+
         '                                       <h7 class="infos-right-date infos-right-part ">'+infos["date_creation"]+'</h7>\n' +
         '                                   </div>\n'+
-        '                                    <i class="bi bi-trash button button-track infos-right-part del_playlist" id="del'+ infos['id_playlist']+'"></i>\n'+
+        '                                    <i class="bi bi-trash button button-track infos-right-part del_playlist" id="'+ infos['id_playlist']+'"></i>\n'+
         '                                </div>\n' +
         '                            </li>\n' +
         '                        </ul>'

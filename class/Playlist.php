@@ -163,9 +163,10 @@ class Playlist{
     public static function del_playlist($id_playlist){
         try {
             $conn = Database::connexionBD();
-            $sql = 'DELETE FROM playlist
-                    WHERE id_playlist = :id
-                    CASCADE';
+            $sql = 'DELETE FROM comprendre
+                    WHERE id_playlist =:id
+                    DELETE FROM playlist
+                    WHERE id_playlist = :id';
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id_playlist);
             $stmt->execute();
