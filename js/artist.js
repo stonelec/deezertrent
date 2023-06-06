@@ -19,7 +19,9 @@ $(document).on('click', '.info_artiste', function(event) {
 });
 
 $(document).on('click', '.get_artist', function(event) {
+
     console.log('get_artist');
+    console.log('ouiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
     let Value = $(this).attr('id');
     ajaxRequest('GET', `../php/request.php/artiste/${Value}`, displayArtisteInfo);
 });

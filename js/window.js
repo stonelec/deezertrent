@@ -375,7 +375,7 @@ function displaytrackinfo(trackinfo){
             '      </div>\n' +
             '      <div class="col-md-8">\n' +
             '        <h1>'+trackinfo[0]['titre_track']+'</h1>\n' +
-            '        <div class="info_album button" id="'+trackinfo[0]['id_album']+'">' +
+            '        <div class="get_album button" id="'+trackinfo[0]['id_album']+'">' +
             '           <h3>'+trackinfo[0]['titre_album']+'</h3>\n' +
             '        </div>'+
             '      </div>\n' +
@@ -403,10 +403,7 @@ function displaytrackinfo(trackinfo){
 
 
     ////////////// INFORMATION ABOUT AN ALBUM //////////////////
-$(document).on('click', '.info_album', function(event) {
-    let Value = $(this).attr('id');
-    ajaxRequest('GET', `../php/request.php/album/${Value}`, displayAlbumInfo);
-});
+
 
 $(document).on('click', '.get_album', function(event) {
     let Value = $(this).attr('id');
@@ -416,7 +413,8 @@ $(document).on('click', '.get_album', function(event) {
 });
 
 function displayAlbumInfo(albumInfo){
-    //console.log(albumInfo);
+    console.log(albumInfo);
+    console.log('info album');
     $('#content').empty();
     $('#content').append('<div class="info_album top-fiche" style="padding: 5%>" ' +
         '                   <div class="container">\n' +
@@ -426,7 +424,7 @@ function displayAlbumInfo(albumInfo){
         '                           </div>\n' +
         '                           <div class="col-md-8">\n' +
         '                               <h1>'+albumInfo[0]['titre_album']+'</h1>\n' +
-        '                               <div class="info_artiste button" id="'+albumInfo[0]['id_artiste']+'">' +
+        '                               <div class="get_artist button" id="'+albumInfo[0]['id_artiste']+'">' +
         '                                   <h3>'+albumInfo[0]['nom_artiste']+'</h3>\n' +
         '                               </div>'+
         '                               <div class="row">' +
