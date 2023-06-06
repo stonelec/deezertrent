@@ -60,6 +60,8 @@ if ($id == '') {
                 $data = User::user_history_id($_SESSION['user_id']);
             }elseif($requestResource == "audio" and isset($_GET['id_track'])){
                 $data = Track::track_info($_GET['id_track']);
+                Track::update_history($_SESSION['user_id'], json_encode($data[0]['id_track']));   // Permet de faire l'historique mais avec
+                                                                                                    // les deux fonction l'audio ne fonctoinne plus
             }
             else {
                 http_response_code(400);

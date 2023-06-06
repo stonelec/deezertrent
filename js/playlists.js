@@ -97,7 +97,7 @@ function track_list_search(infos){
 
 function playlistDetail(playlist){
     console.log(playlist);
-    if (playlist.length == 0){
+    if (playlist.length === 0){
         console.log('playlist est vide');
         $('#content').html('<h4>Votre playlist est vide</h4>');
     }else{
