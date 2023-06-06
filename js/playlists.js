@@ -33,7 +33,7 @@ function playlist_card(playlist){
         '                        </div>';
 }
 function track_list_playlist(infos){
-    //console.log(infos);
+    console.log(infos);
     return'<ul class="list-infos list-group justify-content-center">\n' +
         '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
@@ -50,11 +50,11 @@ function track_list_playlist(infos){
         '                                        </div>\n' +
         '                                    </div>\n' +
         '                                </div>\n' +
-        '                                <div class="infos-right d-flex flex-row align-items-center"  id="track_"'+infos['id_track']+'>'+
+        '                                <div class="infos-right d-flex flex-row align-items-center"  id="'+infos['id_track']+'">'+
         '                                   <div class="overflow">\n'+
         '                                       <h7 class="infos-right-date infos-right-part">'+infos["date_ajout"].slice(0,10)+'</h7>\n' +
-        '                                   </div>\n'+
-        '                                    <i class="bi bi-trash button button-track infos-right-part del_tarck"></i>\n'+
+        '                                   </div id="'+infos['id_track']+'">\n'+
+        '                                    <i class="bi bi-trash button button-track infos-right-part del_track" id="'+infos['id_playlist']+'" ></i>\n'+
         '                                    <i class="bi bi-plus-lg button button-track infos-right-part add"></i>\n' +
         '                                    <i class="bi bi-heart button button-track infos-right-part add_fav" id="'+infos['id_track']+'"></i>\n' +
         '                                </div>\n' +
@@ -187,3 +187,20 @@ $(document).on('click', '.del_playlist', ()=>{
         ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);
         })
 })
+
+
+$(document).on('click', '.del_track', function(event) {
+    var idplaylist = $(this).attr('id');
+    var idtrack = $(this).parent().attr('id');
+    console.log('/');
+    console.log(idtrack);
+    console.log(idplaylist);
+    console.log('/');
+
+    ajaxRequest('DELETE', `../php/request.php/deltrack?idtrack=${idtrack}&idplaylist=${idplaylist}`,affichebien);
+});
+
+
+function affichebien(info){
+    console.log('ca passe'+info)
+}
