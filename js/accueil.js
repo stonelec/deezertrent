@@ -37,8 +37,10 @@ function displayCardPlaylistsAccueil(playlists){
 
 }
 function historyAccueil(playlist) {
-    for (let track of playlist)
-        $('#content').append(track_list(track));
+    for (let track of playlist){
+        console.log(track);
+        // $('#content').append(track_list(track));
+    }
 }
 ///////////////////   LOAD HISTORIQUE   ///////////////////////////
 
