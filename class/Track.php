@@ -24,7 +24,7 @@ require_once ('../php/database.php');
         public static function track_info($id){
             try {
                 $conn = Database::connexionBD();
-                $sql = 'SELECT t.* ,a.titre_album, a.image_album, a.date_parution, s.nom_style, ar.nom_artiste 
+                $sql = 'SELECT t.* ,a.titre_album, a.image_album, a.date_parution, s.nom_style, ar.nom_artiste, a.id_album, ar.id_artiste 
                         FROM track t LEFT JOIN album a on a.id_album=t.id_album
                         LEFT JOIN style_a s on s.id_style=a.id_style
                         LEFT JOIN artiste ar on ar.id_artiste=a.id_artiste 

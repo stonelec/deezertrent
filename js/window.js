@@ -41,7 +41,7 @@ function track_list(infos){
         '                                        <div class="overflow">\n' +
         '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
         '                                        </div>\n' +
-        '                                        <div class="overflow">\n' +
+        '                                        <div class="overflow" id="'+infos['id_artiste']+'">\n' +
         '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
         '                                        </div>\n' +
         '                                    </div>\n' +
@@ -87,7 +87,7 @@ function artist_list(infos){
         '                            <li class="infos d-flex justify-content-between align-items-center get_artist" id="'+infos['id_artiste']+'"   ">\n' +
         '                                <div class="infos-left-part d-flex align-items-center">\n' +
         '                                    <div class="d-flex flex-row align-items-center">\n' +
-        '                                        <div class="overflow">\n' +
+        '                                        <div class="overflow info_artiste">\n' +
         '                                            <h7 class="infos-left-part" style="font-weight: bolder; margin-left: 20px;">'+infos['nom_artiste']+'</h7>\n' +
         '                                        </div>\n' +
         '                                    </div>\n' +
@@ -355,12 +355,12 @@ function format_duree(seconde) {
 
 
 function displaytrackinfo(trackinfo){
-    console.log('info track');
+    //console.log('info track');
 
     var duree= format_duree(parseInt(trackinfo[0]['duree'], 10));
 
         $('#content').empty();
-        console.log(trackinfo);
+        //console.log(trackinfo);
         $('#content').append('<div class="top-fiche" style="padding: 5%>;" ' +
             '<div class="container">\n' +
             '    <div class="row">\n' +
@@ -369,7 +369,9 @@ function displaytrackinfo(trackinfo){
             '      </div>\n' +
             '      <div class="col-md-8">\n' +
             '        <h1>'+trackinfo[0]['titre_track']+'</h1>\n' +
-            '        <h3>'+trackinfo[0]['titre_album']+'</h3>\n' +
+            '        <div class="info_album button" id="'+trackinfo[0]['id_album']+'">' +
+            '           <h3>'+trackinfo[0]['titre_album']+'</h3>\n' +
+            '        </div>'+
             '      </div>\n' +
             '    </div>\n' +
             '  </div>');
@@ -377,33 +379,37 @@ function displaytrackinfo(trackinfo){
         $('#content').append(
             '<div class="container">\n' +
             '    <div class="row">\n' +
-            '      <div class="col-2 col-md-4 offset-1">\n' +
-            '        <h6 style="width: fit-content">'+duree+'</h6>\n' +
-            '</div>' +
-            '      <div class="col-2 col-md-4">\n' +
-            '        <h6 style="width: fit-content">'+trackinfo[0]['date_parution'].slice(0,4)+'</h6>\n' +
-            '</div>' +
-            '      <div class="col-2">\n' +
-            '        <h6 style="width: fit-content">'+trackinfo[0]['nom_style']+'</h6>\n' +
-            '</div>' +
-            '      </div>\n' +
-            '    </div>\n' +
-            '  </div>' +
-            '</div>');
-
-
-
+            '       <div class="col-2 offset-1 info">\n' +
+            '           <h6 style="width: fit-content">Durée: '+duree+'</h6>\n' +
+            '       </div>' +
+            '       <div class="col-1"></div>' +
+            '       <div class="col-2 info">\n' +
+            '           <h6 style="width: fit-content">Parution : '+trackinfo[0]['date_parution'].slice(0,4)+'</h6>\n' +
+            '       </div>' +
+            '       <div class="col-1"></div>' +
+            '       <div class="col-2 info">\n' +
+            '           <h6 style="width: fit-content">Style: '+trackinfo[0]['nom_style']+'</h6>\n' +
+            '       </div>' +
+            '     </div>\n' +
+            '</div>\n' +
+            '</div>' );
     }
 
 
     ////////////// INFORMATION ABOUT AN ALBUM //////////////////
+$(document).on('click', '.info_album', function(event) {
+    let Value = $(this).attr('id');
+    ajaxRequest('GET', `../php/request.php/album/${Value}`, displayAlbumInfo);
+});
+
 $(document).on('click', '.get_album', function(event) {
     let Value = $(this).attr('id');
     ajaxRequest('GET', `../php/request.php/album/${Value}`, displayAlbumInfo);
 });
 
 function displayAlbumInfo(albumInfo){
-    //console.log(albumInfo);
+    console.log('ALBUM INFO');
+    console.log(albumInfo);
     $('#content').empty();
     $('#content').append('<div class="info_album top-fiche" style="padding: 5%>" ' +
         '                   <div class="container">\n' +
@@ -413,7 +419,9 @@ function displayAlbumInfo(albumInfo){
         '                           </div>\n' +
         '                           <div class="col-md-8">\n' +
         '                               <h1>'+albumInfo[0]['titre_album']+'</h1>\n' +
-        '                               <h3>'+albumInfo[0]['nom_artiste']+'</h3>\n' +
+        '                               <div class="info_artiste button" id="'+albumInfo[0]['id_artiste']+'">' +
+        '                                   <h3>'+albumInfo[0]['nom_artiste']+'</h3>\n' +
+        '                               </div>'+
         '                               <div class="row">' +
         '                                   <h7 class="infos-right-date infos-right-part ">'+albumInfo["date_parution"]+'</h7>'+
         '                                   <h7>'+albumInfo[0]['nom_style']+'</h7>'+
@@ -431,8 +439,6 @@ $(document).on('click', '.bi-heart', function(event) {
     ajaxRequest('POST', '../php/request.php/favoris/', () => {
         ajaxRequest('GET', 'php/request.php/favoris/', displayrien);
     }, 'idadd=' + id);
-    event.stopPropagation();
-
 });
 
 function displayrien(info) {

@@ -439,3 +439,13 @@ input{
     -ms-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
 }
+
+.info{
+    border-radius: 15px;
+    background-color: black;
+    color: white;
+}
+
+.album_info:hover{
+    color: #DC3545;
+}
