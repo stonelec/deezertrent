@@ -6,6 +6,8 @@
     require_once ('../class/User.php');
     require_once ('../class/Track.php');
     require_once ('../class/Artiste.php');
+    require_once ('../class/Album.php');
+
 
 
 
@@ -44,7 +46,7 @@ if ($id == '') {
                 $data = Artiste::artist_info($id);
             }
             elseif ($requestResource == "album"){
-                $data =  Album::album_info($_GET['id_album']);
+                $data =  Album::albums_fiche_info($id);
             }elseif($requestResource == "playlist" and isset($_GET['id_playlist']) ){
                 $data = Playlist::playlist_detail($_SESSION['user_id'], $_GET['id_playlist']);
             } elseif ($requestResource == "playlist") {

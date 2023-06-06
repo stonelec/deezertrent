@@ -51,7 +51,7 @@ function track_list(infos){
         '                                </div>\n' +
         '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
         '                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>\n' +
-        '                                    <i class="bi bi-heart button button-track infos-right-part"></i>\n' +
+        '                                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'" ></i>\n' +
         '                                </div>\n' +
         '                            </li>\n' +
         '                        </ul>'
@@ -399,7 +399,7 @@ function displaytrackinfo(trackinfo){
             '                </div>\n' +
             '                <div class="infos-right d-flex flex-row align-items-center">\n' +
             '                   <i class="bi bi-plus-lg button button-track infos-right-part"></i>\n' +
-            '                    <i class="bi bi-heart button button-track infos-right-part"></i>\n' +
+            '                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'"></i>\n' +
             '                </div>\n' +
             '            </li>\n' +
             '        </ul>' +
@@ -441,3 +441,15 @@ function displayArtisteInfo(artisteInfo) {
 }
 
 
+$(document).on('click', '.get_album', function(event) {
+    let Value = $(this).attr('id');
+    ajaxRequest('GET', `../php/request.php/album/${Value}`, displayAlbumInfo);
+});
+
+function displayAlbumInfo(albumInfo){
+    $('#content').empty();
+    console.log('/');
+    console.log(albumInfo);
+    console.log('/');
+
+}
