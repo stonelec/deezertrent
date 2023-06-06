@@ -80,7 +80,6 @@ if ($id == '') {
             break;
 
         case 'POST' :
-
             if(isset($_POST['idadd'])){
                 $data = Playlist::addtofavoris($_POST['idadd'],$_SESSION['user_id']);
             }

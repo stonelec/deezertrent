@@ -193,15 +193,15 @@ $(document).on('click', '.del_playlist', ()=>{
 $(document).on('click', '.del_track', function(event) {
     var idplaylist = $(this).attr('id');
     var idtrack = $(this).parent().attr('id');
+    event.stopPropagation();
     console.log('/');
     console.log(idtrack);
     console.log(idplaylist);
     console.log('/');
 
-    ajaxRequest('DELETE', `../php/request.php/deltrack?idtrack=${idtrack}&idplaylist=${idplaylist}`,affichebien);
+    ajaxRequest('DELETE', `../php/request.php/deltrack?idtrack=${idtrack}&idplaylist=${idplaylist}`,()=>{
+        ajaxRequest('GET', '../php/request.php/playlist/?id_playlist='+ idplaylist, playlistDetail)
+
+    });
 });
 
-
-function affichebien(info){
-    console.log('ca passe'+info)
-}
