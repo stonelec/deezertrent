@@ -14,6 +14,7 @@ function album_card(album){
 $(document).on('click', '.info_artiste', function(event) {
     console.log('get_artist form card');
     let Value = $(this).attr('id');
+    console.log(Value);
     ajaxRequest('GET', `../php/request.php/artiste/${Value}`, displayArtisteInfo);
 });
 
