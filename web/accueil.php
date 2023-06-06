@@ -75,7 +75,7 @@ if(!isset($_SESSION['user_id'])){
                                 <div class="hide">
                                     <span class="material-symbols-outlined moove">history</span>
                                 </div>
-                                <p class="general-link-text">Historique</p>
+                                <p class="general-link-text history get_playlist">Historique</p>
                             </div>
                             <div id="playlist" class="general-link d-flex flex-row" >
                                 <div class="hide">

@@ -56,6 +56,8 @@ if ($id == '') {
                 $data = Playlist::playlist_info($_SESSION['user_id']);
             } elseif ($requestResource == "historique") {
                 $data = User::user_history($_SESSION['user_id']);
+            } elseif ($requestResource == "historique_id") {
+                $data = User::user_history_id($_SESSION['user_id']);
             }
             else {
                 http_response_code(400);
@@ -80,7 +82,6 @@ if ($id == '') {
             break;
 
         case 'POST' :
-
             if(isset($_POST['idadd'])){
                 $data = Playlist::addtofavoris($_POST['idadd'],$_SESSION['user_id']);
             }
