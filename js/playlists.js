@@ -23,7 +23,7 @@ function playlist_list(infos){
 
 // Frame of a list to show the track in a playlist
 function playlist_card(playlist){
-    return '         <div class="card-playlist d-flex flex-column get_playlist id"'+playlist['id_playlist']+'">\n' +
+    return '         <div class="card-playlist d-flex flex-column get_playlist" id="'+playlist['id_playlist']+'">\n' +
         '                            <div style="margin-left: auto; margin-right: auto;">\n' +
         '                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">\n' +
         '                            </div>\n' +
