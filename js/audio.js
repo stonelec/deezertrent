@@ -1,14 +1,36 @@
 'use strict';
 
 function displayAudio(info){
-    $('#audio').html('' +
-        '<audio id="audioPlayer" src="'+info['lien_track']+'"></audio>')
+    console.log(info);
+    $('#musique').html('' +
+        '<audio id="audioPlayer" src="'+info['lien_track']+'"></audio>');
 
-    //Modification de la div qui affiche les infos du morceau en cours
+    //Changed the div that displays info for the current song
+    $('#info_music_played').html('<div class="current-music d-flex justify-content-center">\n' +
+        '           <div class="current-music-center d-flex flex-column click">\n' +
+        '               <div class="text-center">\n' +
+        '                   <img class="current-music-image" src="images/albums/'+info[0]['image_album']+'"  alt="Image du titre en cours">\n' +
+        '               </div>\n' +
+        '               <div class="current-music-infos d-flex justify-content-between">\n' +
+        '                   <div class="d-flex flex-column">\n' +
+        '                       <h6>'+info[0]['titre_track']+'</h6>\n' +
+        '                       <p>'+info[0]['nom_artiste']+'</p>\n' +
+        '                   </div>\n' +
+        '                   <div class="d-flex flex-column " style="font-size : 1.2rem;">\n' +
+        '                       <i class="bi bi-heart button"></i>\n' +
+        '                       <div style="margin-bottom: 10px"></div>\n' +
+        '                       <i class="bi bi-plus-lg button"></i>\n' +
+        '                   </div>\n' +
+        '               </div>\n' +
+        '           </div>\n' +
+        '       </div>')
 }
 
 $(document).on('click', '.bi-play-fill', function (event){
-    var id_track = $(this).attr('id');
-    ajaxRequest('GET', '../php/request.php/audio/?id_track='+ id_track, displayAudio)
+    event.stopPropagation();
+    console.log('AUDIO');
+    var id_track = $(this).parent().parent().attr('id');
+    console.log(id_track);
+    ajaxRequest('GET', '../php/request.php/audio?id_track='+ id_track, displayAudio)
 
 });
