@@ -41,7 +41,7 @@ class User{
     {
         try {
             $conn = Database::connexionBD();
-            $sql = "SELECT id_playlist FROM playlist where id_user=? and nom_playlist='historique';";
+            $sql = "SELECT id_playlist FROM playlist where id_user=? and nom_playlist='Historique';";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$id]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -49,17 +49,8 @@ class User{
             $stmt = $conn->prepare($sql);
             $stmt->execute([$result[0]['id_playlist']]);
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if (count($result) > 0) {
-                $playlistId = $result[0]['id_playlist'];
-                $sql = "SELECT t.* FROM comprendre c LEFT JOIN track t ON t.id_track = c.id_track WHERE c.id_playlist = ?;";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute([$playlistId]);
-                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
-            } else {
-                return [];
-            }
+          
         } catch (PDOException $exception) {
             error_log('Connection error: ' . $exception->getMessage());
             return false;
