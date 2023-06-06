@@ -72,7 +72,8 @@ class Playlist{
     public static function deltrack($idplaylist, $idtrack) {
         try {
             $conn = Database::connexionBD();
-            $sql = 'DELETE FROM comprendre WHERE id_playlist = ? AND id_track = ?;';
+            $sql = 'DELETE FROM comprendre 
+                WHERE id_playlist = ? AND id_track = ?;';
             $stmt = $conn->prepare($sql);
             $stmt->execute([$idplaylist, $idtrack]);
             return true;
