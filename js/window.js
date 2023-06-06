@@ -439,6 +439,8 @@ $(document).on('click', '.bi-heart', function(event) {
     console.log("//")
     console.log(id)
     console.log("//")
+    event.stopPropagation();
+
 
     ajaxRequest('POST', '../php/request.php/favoris/', () => {
         ajaxRequest('GET', 'php/request.php/favoris/', displayrien);
