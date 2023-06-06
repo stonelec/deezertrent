@@ -86,13 +86,18 @@ if ($id == '') {
             break;
 
         case 'POST' :
-            if(isset($_POST['idadd'])){
+            if($requestResource == "add_playlist"){
+
+//                    echo("test");
+                    $date =Playlist::add_playlist($_POST['nom_playlist'],$_SESSION['user_id']);
+
+            }
+            elseif(isset($_POST['idadd'])){
                 $data = Playlist::addtofavoris($_POST['idadd'],$_SESSION['user_id']);
             }
-            if(isset($_POST['nom_playlist'])){
-                $data = Playlist::add_playlist($_POST['nom_playlist']);
-            }
+
             elseif ($requestResource == "add_track"){
+
                 $data =  Track::add_track($_GET['id_track'], $_GET['id_playlist']);
             }
             break;
