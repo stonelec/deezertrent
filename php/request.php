@@ -95,6 +95,9 @@ if ($id == '') {
 
 
         case 'DELETE' :
+            if(isset($_GET['idplaylistdel'])){
+                $data = Playlist::del_playlist($_GET['idplaylistdel']);
+            }
             if(isset($_GET['idplaylist']) and isset($_GET['idtrack'])){
                 $data = Playlist::deltrack($_GET['idplaylist'],$_GET['idtrack']);
             }elseif(isset($_GET['id'])){
