@@ -222,6 +222,12 @@ function display_all(results){
     function displayProfil(profil) {
         let age=calculerAge(profil[0].date_de_naissance)
         $('#content').empty();
+        $('.profil').empty();
+        $('.profil').append('' +
+            '<h3>Deconnexion</h3>\n' +
+            '<span class="material-symbols-outlined" style="font-size: 2.5rem; margin-left: 10px">account_circle</span>\n' +
+            '')
+
         $('#title-page').empty();
         $('#title-page').append('<h2 class="nom-page" >Profil</h2>');
         $('#content').append('' +
