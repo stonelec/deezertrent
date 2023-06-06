@@ -47,7 +47,7 @@ function track_list(infos){
         '                                    </div>\n' +
         '                                </div>\n' +
         '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
-        '                                    <i class="bi bi-plus-lg button button-track infos-right-partZ"></i>\n' +
+        '                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>\n' +
         '                                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'" ></i>\n' +
         '                                </div>\n' +
         '                            </li>\n' +
