@@ -41,6 +41,37 @@ class Playlist{
         }
     }
 
+    public static function addtofavoris($idtrack, $iduser) {
+        try {
+            $conn = Database::connexionBD();
+            $sql = "SELECT id_playlist FROM playlist WHERE nom_playlist='Favoris' and id_user=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$iduser]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+            if (!empty($result)) {
+                $idPlaylist = $result[0]['id_playlist'];
+
+                $sql = "INSERT INTO comprendre (id_track, id_playlist, date_ajout) VALUES (?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $timestamp = date("Y-m-d H:i:s.u");
+
+                $stmt->execute([$idtrack, $idPlaylist, $timestamp]);
+                return true;
+            } else {
+                return false; // Ajoutez ici le code approprié en cas d'absence de playlist "Favoris"
+            }
+        } catch (PDOException $exception) {
+            error_log('Connection error: ' . $exception->getMessage());
+            return false;
+        }
+    }
+
+
+
+
 
     // Get the playlist's name
     public static function name($id){

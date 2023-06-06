@@ -45,6 +45,9 @@ if ($id == '') {
             elseif ($requestResource == "artiste") {
                 $data = Artiste::artist_info($id);
             }
+            elseif ($requestMethod == "favoris"){
+                $data = Playlist::addtofavoris($_POST['idadd'],$_SESSION['user_id']);
+            }
             elseif ($requestResource == "album"){
                 $data =  Album::albums_fiche_info($id);
             }elseif($requestResource == "playlist" and isset($_GET['id_playlist']) ){
@@ -77,6 +80,10 @@ if ($id == '') {
             break;
 
         case 'POST' :
+
+            if(isset($_POST['idadd'])){
+                $data = Playlist::addtofavoris($_POST['idadd'],$_SESSION['user_id']);
+            }
             if(isset($_POST['nom_playlist'])){
                 $data = Playlist::add_playlist($_POST['nom_playlist']);
             }elseif (isset($_POST['id_playlist']) AND isset($_POST['id_track'])){
