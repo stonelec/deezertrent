@@ -27,7 +27,6 @@ if(!isset($_SESSION['user_id'])){
         <script src="../js/progresBar.js" defer></script>
         <script src="../js/playlists.js" defer></script>
         <script src="../js/ajax.js" defer></script>
-        <script src="../js/historique.js" defer></script>
         <script src="../js/modal.js" defer></script>
         <script src="../js/track.js" defer></script>
         <script src="../js/accueil.js" defer></script>
@@ -48,7 +47,7 @@ if(!isset($_SESSION['user_id'])){
     <body>
         <div id="musique">
             <!-- Simple lecture audio -->
-            <audio id="audioPlayer" src="https://cdns-preview-3.dzcdn.net/stream/c-33311499dd8cc31f13f69aeea0ad65c9-3.mp3" muted></audio>
+            <audio id="audioPlayer" src="https://cdns-preview-1.dzcdn.net/stream/c-198ac504cbfa7e1a5fe9d9e115693057-3.mp3" muted></audio>
         </div>
         <div class="global d-flex flex-row">
             <!--    Navbar----------------------------------------------------------------------------------->
@@ -236,9 +235,7 @@ if(!isset($_SESSION['user_id'])){
                     </div>
                 </div>
             </div>
-
         </div>
-
     </body>
 
 </html>

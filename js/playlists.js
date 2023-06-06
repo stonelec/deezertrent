@@ -97,8 +97,7 @@ function track_list_search(infos){
 
 function playlistDetail(playlist){
     // console.log('fonction playlist detail');
-    if (playlist.length == 0){
-        console.log('playlist est vide');
+    if (playlist.length === 0){
         $('#content').html('<h4>Votre playlist est vide</h4>');
     }else{
         // console.log('playlist est pas vide');
@@ -144,7 +143,6 @@ divplaylist.addEventListener('click', function() {
 //////////////////////////    DIPSLAY PLAYLIST    //////////////////////////////
 function displayListePlaylist(playlists) {
     {
-        console.log('on est censé sup un truc');
         console.log(playlists);
         $('#content').empty();
         $('#title-page').empty();

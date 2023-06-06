@@ -47,17 +47,21 @@ VALUES
     (DEFAULT, 'Ya ghali arouah', 246, 'https://cdns-preview-1.dzcdn.net/stream/c-198ac504cbfa7e1a5fe9d9e115693057-3.mp3', 5),
     (DEFAULT, 'Antia Zina', 173, 'https://cdns-preview-1.dzcdn.net/stream/c-152d74f04f3dd6fd1db8c4d6c65959b5-3.mp3', 5);
 
+INSERT INTO playlist (nom_playlist, date_creation, id_user)
+VALUES
+    ('Historique','05-06-2023' , 12),
+    ('Liste de lecture', '05-06-2023', 12 ),
+    ('Favoris', '05-06-2023', 12),
+    ('Historique','05-06-2023' , 13),
+    ('Liste de lecture', '05-06-2023', 13 ),
+    ('Favoris', '05-06-2023', 13);
+
 INSERT INTO comprendre (id_track, id_playlist, date_ajout)
 VALUES
     (3, 2, CURRENT_TIMESTAMP),
     (4, 2, CURRENT_TIMESTAMP),
     (10, 2, CURRENT_TIMESTAMP);
 
-INSERT INTO playlist (nom_playlist, date_creation, id_user)
-VALUES
-    ('Historique','05-06-2023' , 12),
-    ('Liste de lecture', '05-06-2023', 12 ),
-    ('Favoris', '05-06-2023', 12);
 
 INSERT INTO comprendre (id_track, id_playlist, date_ajout)
 VALUES

@@ -112,29 +112,46 @@ require_once ('../php/database.php');
                 $conn = Database::connexionBD();
                 $sql = "INSERT INTO comprendre (id_track, id_playlist, date_ajout)
                         VALUES
-                        (:idT, :idP, CURRENT_TIMESTAMP),";
+                        (:idT, :idP, CURRENT_TIMESTAMP)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(':idT', $id_track);
                 $stmt->bindParam(':idP', $id_playlist);
                 $stmt->execute();
+            }catch (PDOException $exception){
+                error_log('Connection error: ' . $exception->getMessage());
+            }
+            return false;
+        }
+
+        public static function id_history($id_user){
+            try{
+                $conn = Database::connexionBD();
+                $sql ="SELECT id_playlist FROM playlist
+                        WHERE id_user = :id AND nom_playlist = 'Historique'";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':id', $id_user);
+                $stmt->execute();
+                return $stmt->fetch(PDO::FETCH_ASSOC);
             }catch (PDOException $exception){
                 error_log('Connection error: ' . $exception->getMessage());
                 return false;
             }
         }
 
-        public static function del_track($id_track, $id_playlist){
-            try {
+        public static function update_history($id_user, $id_track){
+            try{
+                $id_history = Track::id_history($id_user);
                 $conn = Database::connexionBD();
-                $sql = 'DELETE FROM comprendre
-                    WHERE id_playlist = :idP AND id_track = :idT';
+                $sql = "INSERT INTO comprendre (id_track, id_playlist, date_ajout)
+                        VALUES
+                        (:idT, :idP, CURRENT_TIMESTAMP)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':idP', $id_playlist);
                 $stmt->bindParam(':idT', $id_track);
+                $stmt->bindParam(':idP', $id_history['id_playlist']);
                 $stmt->execute();
             }catch (PDOException $exception){
                 error_log('Connection error: ' . $exception->getMessage());
-                return false;
             }
         }
+
     }

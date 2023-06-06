@@ -6,6 +6,7 @@ let button_laps = document.querySelector(".button_laps");
 let button_on_off = document.querySelector(".button_on_off");
 let slider_volume = document.querySelector(".slider_volume");
 
+
 let audio = document.querySelector('audio')
 
 let is_playing = false;
