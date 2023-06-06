@@ -162,6 +162,7 @@
             }
         }
 
+
         // Get all the albums name
         public static function albums(){
             try {

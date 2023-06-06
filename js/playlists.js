@@ -66,6 +66,7 @@ function track_list_playlist(infos){
 
 }
 
+
 function track_list_search(infos){
     //console.log(infos);
     return'<ul class="list-infos list-group justify-content-center">\n' +

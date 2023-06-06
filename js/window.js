@@ -353,6 +353,7 @@ function format_duree(seconde) {
     return minuteStr + ':' + secondeStr;
 }
 
+
 function displaytrackinfo(trackinfo){
     console.log('info track');
 

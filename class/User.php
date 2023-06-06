@@ -36,6 +36,7 @@ class User{
         return true;
     }
 
+
     public static function user_history($id)
     {
         try {

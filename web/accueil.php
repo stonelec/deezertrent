@@ -173,6 +173,7 @@ if(!isset($_SESSION['user_id'])){
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="infos-right d-flex flex-row align-items-center">
                                     <div class="overflow">
                                         <h7 class="infos-right-date infos-right-part ">28 mai 2023</h7>

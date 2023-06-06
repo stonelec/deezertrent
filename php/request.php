@@ -87,7 +87,7 @@ if ($id == '') {
             if(isset($_POST['nom_playlist'])){
                 $data = Playlist::add_playlist($_POST['nom_playlist']);
             }elseif (isset($_POST['id_playlist']) AND isset($_POST['id_track'])){
-
+                $data= Track::add_track($_POST['id_track'],$_POST['id_playlist']);
             }
             break;
 
