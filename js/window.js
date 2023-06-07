@@ -177,7 +177,7 @@ function show_track(results) {
     if (tracks.length === 0) {
         $('#content').append('<p style="margin: 15px 0">Aucun morceau trouvé</p>');
     } else {
-        var promises = [];
+        let promises = [];
         for (let track of tracks) {
             promises.push(track_list_search(track));
         }
@@ -236,11 +236,10 @@ function show_album(results) {
 function display_all(results){
     $('#content').empty();
     $('#content').append(button_all);
-    // console.log(results);
+    console.log(results);
     show_artist(results);
     show_album(results);
     show_track(results);
-
 }
 
 ///////////////////   PROFIL REQUEST    ////////////////////////////////////////
@@ -263,7 +262,7 @@ function displayProfil(profil) {
         '<div class="container" style="margin: auto;">\n' +
         '    <div class="row">\n' +
         '        <div class="col-md-6">\n' +
-        '            <img src="../web/images/'+profil[0].image_user+'" alt="Profile Picture" class="img-fluid" style="width: 200px;height:200px;border-radius: 100%">\n' +
+        '            <img src="../web/images/'+profil[0].image_user+'" alt="Profile Picture" srcset="../web/images/logo.png 1x" class="img-fluid" style="width: 200px;height:200px;border-radius: 100%">\n' +
         '            <h2>' + profil[0].prenom + '  ' + profil[0].nom + '</h2>\n' +
         '        </div>\n' +
         '        <div class="col-md-6">\n' +

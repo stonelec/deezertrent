@@ -160,6 +160,7 @@ function track_list_search(infos){
 
 function playlistDetail(playlist){
     console.log(playlist);
+    playlist=playlist.reverse();
     if (playlist.length === 0){
         console.log('playlist est vide');
         $('#content').html('<h4>Votre playlist est vide</h4>');
@@ -210,6 +211,7 @@ function displayListePlaylist(playlists) {
     {
         // console.log('on est censé sup un truc');
         console.log(playlists);
+
         $('#content').empty();
         $('#title-page').empty();
         $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')

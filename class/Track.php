@@ -110,6 +110,7 @@ require_once ('../php/database.php');
         public static function add_track($id_track, $id_playlist){
             try {
                 $conn = Database::connexionBD();
+
                 $sql = "INSERT INTO comprendre (id_track, id_playlist, date_ajout)
                         VALUES
                         (:idT, :idP, CURRENT_TIMESTAMP)";
@@ -142,6 +143,9 @@ require_once ('../php/database.php');
             try{
                 $id_history = Track::id_history($id_user);
                 $conn = Database::connexionBD();
+                $sql = "DELETE FROM comprendre WHERE id_track=? and id_playlist=?;";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$id_track,$id_history['id_playlist']]);
                 $sql = "INSERT INTO comprendre (id_track, id_playlist, date_ajout)
                         VALUES
                         (:idT, :idP, CURRENT_TIMESTAMP)";
