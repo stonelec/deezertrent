@@ -258,7 +258,6 @@ function displayProfil(profil) {
         '        </div>\n' +
         '        <div class="col-md-6">\n' +
         '            <p><strong>Email:</strong> ' + profil[0].email + '</p>\n' +
-        '            <p><strong>Date de naissance:</strong> ' + profil[0].date_de_naissance + '</p>\n' +
         '            <p><strong>Age:</strong> ' + age + '</p>\n' +
         '            <p><strong>Autre information:</strong>...</p>\n' +
         '        <button type="button" style="width: 50%" class="btn btn-danger btn-block " id="modifier" name="submit">Modifier</button>'+
@@ -306,19 +305,19 @@ function displayProfil(profil) {
             '    <form method="post" id="profilForm">\n' +
             '        <div class="form-group">\n' +
             '            <label for="nom">Nouveau Nom <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-            '            <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez votre nom" required>\n' +
+            '            <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez votre nom" value="'+profil[0].nom+'" required>\n' +
             '        </div>\n' +
             '        <div class="form-group">\n' +
             '            <label for="prenom">Nouveau Prénom <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-            '            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrez votre prénom" required>\n' +
+            '            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrez votre prénom" value="'+profil[0].prenom+'" required>\n' +
             '        </div>\n' +
             '        <div class="form-group">\n' +
             '            <label for="datenaissance">Nouvelle Date de naissance <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-            '            <input type="date" class="form-control" id="datenaissance" name="datenaissance" placeholder="Entrez votre date de naissance" required>\n' +
+            '            <input type="date" class="form-control" id="datenaissance" name="datenaissance" placeholder="Entrez votre date de naissance" value="'+profil[0].date_de_naissance+'" required>\n' +
             '        </div>\n' +
             '        <div class="form-group">\n' +
             '            <label for="email">Nouveau Email <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-            '            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required>\n' +
+            '            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" value="'+profil[0].email+'"required>\n' +
             '        </div>\n' +
             '        <div class="form-group">\n' +
             '            <label for="password">Mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
