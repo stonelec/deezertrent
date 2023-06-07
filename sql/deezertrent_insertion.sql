@@ -49,12 +49,8 @@ VALUES
 
 INSERT INTO playlist (nom_playlist, date_creation, id_user)
 VALUES
-    ('Historique','05-06-2023' , 12),
-    ('Liste de lecture', '05-06-2023', 12 ),
-    ('Favoris', '05-06-2023', 12),
-    ('Historique','05-06-2023' , 13),
-    ('Liste de lecture', '05-06-2023', 13 ),
-    ('Favoris', '05-06-2023', 13);
+    ('Historique','05-06-2023' , 12);
+
 
 INSERT INTO comprendre (id_track, id_playlist, date_ajout)
 VALUES
