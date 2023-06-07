@@ -248,7 +248,6 @@ $(document).on('click', '.get_playlist', function (event){
 
 
 ///////////////    DELETE A PLAYLIST    ///////////////////
-// PB  ne supprime pas
 $(document).on('click', '.del_playlist', function(event) {
     event.stopPropagation();
     console.log("delete");

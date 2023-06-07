@@ -13,6 +13,7 @@ $(document).on('click', '.btn-close', () =>  {
     modal.classList.remove("show");
     modal.style.display = "none";
 });
+
 $(document).on('submit', '#add_playlist', function(e) {
     e.preventDefault(); // Empêcher la soumission du formulaire
     titre = document.getElementById("titre-add").value;
@@ -33,6 +34,4 @@ $(document).on('submit', '#add_playlist', function(e) {
             ajaxRequest('GET', '../php/request.php/playlist/', playlistMenu);
             }, 'nom_playlist=' + titre);
     }
-
-
 });
