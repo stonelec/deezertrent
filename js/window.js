@@ -262,10 +262,12 @@ function displayProfil(profil) {
         '            <p><strong>Age:</strong> ' + age + '</p>\n' +
         '            <p><strong>Autre information:</strong>...</p>\n' +
         '        <button type="button" style="width: 50%" class="btn btn-danger btn-block " id="modifier" name="submit">Modifier</button>'+
-        '            <form method="post" id="imageForm" enctype="multipart/form-data">\n' +
-        '                <input type="file" name="imageuser" id="imageuser" accept="image/*">\n' +
+        '            <form method="post" id="imageForm" enctype="multipart/form-data">' +
+        '<div class="custom-file">\n' +
+        '                <input type="file" class="custom-file-input" name="imageuser" id="imageuser" accept="image/*" placeholder="photo">\n' +
         '                <input hidden type="text" name="iduserimage" id="iduserimage" value="' + profil[0]['id_user'] + '">\n' +
-        '                <input type="submit" value="Envoyer">\n' +
+        '                <input type="submit" value="Enregistrer Image">' +
+        '</div>\n' +
         '            </form>\n' +
         '        </div>\n' +
         '    </div>\n' +
