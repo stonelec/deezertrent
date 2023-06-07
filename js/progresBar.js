@@ -33,9 +33,14 @@ function updateProgressBar(event) {
 }
 
 audioPlayer.addEventListener("timeupdate", function() {
+    console.log("timeupdate");
     progress.style.width = (audioPlayer.currentTime / audioPlayer.duration) * 100 + "%";
     track_current_time.textContent = formatTime(audioPlayer.currentTime);
-    track_lenght.textContent = formatTime(audioPlayer.duration);
+    if (formatTime(audioPlayer.duration) !== "NaN:NaN"){
+        track_lenght.textContent = formatTime(audioPlayer.duration);
+    }else {
+        track_lenght.textContent = "0:00";
+    }
 
 });
 function formatTime(time) {

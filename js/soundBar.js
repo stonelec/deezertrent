@@ -10,9 +10,6 @@ let slider_volume = document.querySelector(".slider_volume");
 let audio = document.querySelector('audio')
 
 let is_playing = false;
-let track_id;
-
-let track_now = document.createElement('audio');
 
 function playPauseTrack(){
     if(is_playing){

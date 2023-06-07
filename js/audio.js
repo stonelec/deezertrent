@@ -1,8 +1,7 @@
 'use strict';
 
 function displayAudio(info){
-    $('#musique').html('' +
-        '<audio id="audioPlayer" src="'+info[0]['lien_track']+'" autoplay></audio>');
+    $('#audioPlayer').attr('src', info[0]['lien_track']);
 
     //Changed the div that displays info for the current song
     $('#info_music_played').html('<div class="current-music d-flex justify-content-center">\n' +
@@ -34,4 +33,16 @@ $(document).on('click', '.bi-play-fill', function (event){
     event.stopPropagation();
     var id_track = $(this).parent().parent().attr('id');
     ajaxRequest('GET', '../php/request.php/audio?id_track='+ id_track, displayAudio)
+});
+$(document).on('click', '.button_next', function (event){
+    event.stopPropagation();
+    console.log("next");
+});
+$(document).on('click', '.button_previous', function (event){
+    event.stopPropagation();
+    console.log("previous");
+});
+$(document).on('dblclick', '.get_track', function (event){
+    event.stopPropagation();
+    console.log("add wait-list");
 });
