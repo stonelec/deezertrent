@@ -93,29 +93,29 @@ if(!isset($_SESSION['user_id'])){
                 <!--    playlist----------------------------------------------------------------------------------->
                 <div id="playlist-menu" class="playlist d-flex flex-column">
 
-                    </div>
+                </div>
                 <!--    current music----------------------------------------------------------------------------------->
                 <div id="info_music_played">
-                    <div class="current-music d-flex justify-content-center">
-                        <div class="current-music-center d-flex flex-column click">
-                            <div class="text-center">
-
-                                <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
-                            </div>
-                            <div class="current-music-infos d-flex justify-content-between">
-                                <div class="d-flex flex-column">
-                                    <h6>Nothing Left To Say</h6>
-                                    <p>Imagines Dragons</p>
-                                </div>
-                                <div class="d-flex flex-column " style="font-size : 1.2rem;">
-                                    <i class="bi bi-heart button"></i>
-                                    <div style="margin-bottom: 10px"></div>
-                                    <i class="bi bi-plus-lg button"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                </div>
+<!--                    <div class="current-music d-flex justify-content-center">-->
+<!--                        <div class="current-music-center d-flex flex-column click">-->
+<!--                            <div class="text-center">-->
+<!---->
+<!--                                <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">-->
+<!--                            </div>-->
+<!--                            <div class="current-music-infos d-flex justify-content-between">-->
+<!--                                <div class="d-flex flex-column">-->
+<!--                                    <h6>Nothing Left To Say</h6>-->
+<!--                                    <p>Imagines Dragons</p>-->
+<!--                                </div>-->
+<!--                                <div class="d-flex flex-column " style="font-size : 1.2rem;">-->
+<!--                                    <i class="bi bi-heart button"></i>-->
+<!--                                    <div style="margin-bottom: 10px"></div>-->
+<!--                                    <i class="bi bi-plus-lg button"></i>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                     </div>-->
 
                 </div>
             </div>

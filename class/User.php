@@ -75,9 +75,11 @@ WHERE c.id_playlist=?;";
     {
         try {
             $conn = Database::connexionBD();
-            $sql = "SELECT id_playlist FROM playlist where id_user=? and nom_playlist='Historique';";
+            $sql = "SELECT id_playlist FROM playlist
+                    WHERE id_user = :id AND nom_playlist = 'Historique'";
             $stmt = $conn->prepare($sql);
-            $stmt->execute([$id]);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
 
