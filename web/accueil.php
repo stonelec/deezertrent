@@ -93,28 +93,30 @@ if(!isset($_SESSION['user_id'])){
                 <!--    playlist----------------------------------------------------------------------------------->
                 <div id="playlist-menu" class="playlist d-flex flex-column">
 
-                </div>
+                    </div>
                 <!--    current music----------------------------------------------------------------------------------->
                 <div id="info_music_played">
-                    <div class="current-music d-flex justify-content-center">
-                        <div class="current-music-center d-flex flex-column click">
-                            <div class="text-center">
+<!--                    <div class="current-music d-flex justify-content-center">-->
+<!--                        <div class="current-music-center d-flex flex-column click">-->
+<!--                            <div class="text-center">-->
+<!---->
+<!--                                <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">-->
+<!--                            </div>-->
+<!--                            <div class="current-music-infos d-flex justify-content-between">-->
+<!--                                <div class="d-flex flex-column">-->
+<!--                                    <h6>Nothing Left To Say</h6>-->
+<!--                                    <p>Imagines Dragons</p>-->
+<!--                                </div>-->
+<!--                                <div class="d-flex flex-column " style="font-size : 1.2rem;">-->
+<!--                                    <i class="bi bi-heart button"></i>-->
+<!--                                    <div style="margin-bottom: 10px"></div>-->
+<!--                                    <i class="bi bi-plus-lg button"></i>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                </div>-->
 
-                                <img class="current-music-image" src="images/imaginedragons_nightvisions.png"  alt="Image du titre en cours">
-                            </div>
-                            <div class="current-music-infos d-flex justify-content-between">
-                                <div class="d-flex flex-column">
-                                    <h6>Nothing Left To Say</h6>
-                                    <p>Imagines Dragons</p>
-                                </div>
-                                <div class="d-flex flex-column " style="font-size : 1.2rem;">
-                                    <i class="bi bi-heart button"></i>
-                                    <div style="margin-bottom: 10px"></div>
-                                    <i class="bi bi-plus-lg button"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="right d-flex flex-column" >
@@ -151,10 +153,10 @@ if(!isset($_SESSION['user_id'])){
                 <div class="sound d-flex flex-row">
                     <div class="edit d-flex flex-column align-items-center">
                         <div class="play d-flex justify-content-around align-items-center">
-                            <span class="material-symbols-outlined play-icon-third button button_random">shuffle</span>
-                            <span class="material-symbols-outlined play-icon-second button button_previous">skip_previous</span>
+                            <span class="material-symbols-outlined play-icon-third" title="Fonctionnalité à venir !">shuffle</span>
+                            <span class="material-symbols-outlined play-icon-second" title="Fonctionnalité à venir !">skip_previous</span>
                             <span class="material-symbols-outlined play-icon-first button button_play_pause" onclick="playPauseTrack();">play_circle</span>
-                            <span class="material-symbols-outlined play-icon-second button button_next" >skip_next</span>
+                            <span class="material-symbols-outlined play-icon-second" title="Fonctionnalité à venir !">skip_next</span>
                             <div class="button button_laps" onclick="onOffLoop();">
                                 <span class="material-symbols-outlined button play-icon-third ">laps</span>
                             </div>

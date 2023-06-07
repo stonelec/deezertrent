@@ -37,16 +37,16 @@ function displayCardPlaylistsAccueil(playlists){
 
 }
 function historyAccueil(playlist) {
-    let i=0;
-    for (let track of playlist){
-        if (i<10){
-            track_list(track).then((result)=>{
-                $('#content').append(result);
+    let i = 0;
+        Promise.all(playlist.map(info => track_list(info)))
+            .then(results => {
+                results.forEach(result => {
+                    if (i < 10) {
+                        $('#content').append(result);
+                    }
+                    i++;
+                });
             });
-            i++;
-        }
-    }
-
 }
 ///////////////////   LOAD HISTORIQUE   ///////////////////////////
 

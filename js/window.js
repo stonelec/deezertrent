@@ -177,13 +177,21 @@ function show_track(results) {
     if (tracks.length === 0) {
         $('#content').append('<p style="margin: 15px 0">Aucun morceau trouvé</p>');
     } else {
+        let promises = [];
         for (let track of tracks) {
-            track_list_search(track).then((result)=>{
-                $('#content').append(result);
-            });
+            promises.push(track_list_search(track));
         }
+
+        Promise.all(promises).then((results) => {
+            let stock = "";
+            for (let result of results) {
+                stock += result;
+            }
+            $('#content').append(stock);
+        });
     }
 }
+
 
 // For artists
 function display_artist(results) {
@@ -229,8 +237,8 @@ function display_all(results){
     $('#content').empty();
     $('#content').append(button_all);
     console.log(results);
-    show_album(results);
     show_artist(results);
+    show_album(results);
     show_track(results);
 }
 
@@ -250,27 +258,27 @@ function displayProfil(profil) {
     $('#title-page').empty();
     $('#title-page').append('<h2 class="nom-page">Profil</h2>');
     $('#content').append('' +
+        '        <div class="d-flex flex-row-reverse" ><button type="button" class="btn btn-danger btn-block decobutton" id="deco" name="submit"><a href="../web/deconnexion.php" class="d-flex flex-row" style="height: 100%"><h7>deconnexion</h7><i class="bi bi-box-arrow-right" style="margin-right: 10px; margin-top: 5px "></i></a></button></div> \n' +
         '<div class="container" style="margin: auto;">\n' +
         '    <div class="row">\n' +
         '        <div class="col-md-6">\n' +
-        '            <img src="../web/images/'+profil[0].image_user+'" alt="Profile Picture" class="img-fluid" style="width: 200px;height:200px;border-radius: 100%">\n' +
+        '            <img src="../web/images/'+profil[0].image_user+'" alt="Profile Picture" srcset="../web/images/logo.png 1x" class="img-fluid" style="width: 200px;height:200px;border-radius: 100%">\n' +
         '            <h2>' + profil[0].prenom + '  ' + profil[0].nom + '</h2>\n' +
         '        </div>\n' +
         '        <div class="col-md-6">\n' +
         '            <p><strong>Email:</strong> ' + profil[0].email + '</p>\n' +
-        '            <p><strong>Date de naissance:</strong> ' + profil[0].date_de_naissance + '</p>\n' +
         '            <p><strong>Age:</strong> ' + age + '</p>\n' +
         '            <p><strong>Autre information:</strong>...</p>\n' +
         '        <button type="button" style="width: 50%" class="btn btn-danger btn-block " id="modifier" name="submit">Modifier</button>'+
-        '            <form method="post" id="imageForm" enctype="multipart/form-data">\n' +
-        '                <input type="file" name="imageuser" id="imageuser" accept="image/*">\n' +
+        '            <form method="post" id="imageForm" enctype="multipart/form-data" class="d-flex flex-column " style="width: 50%; margin-top: 20px" >\n' +
+        '                <label for="formFile" class="form-label" style="color: #DC3545">Editer votre photo de profil :</label>' +
+        '                <input type="file" name="imageuser" id="imageuser" accept="image/*" class="form-control">\n' +
         '                <input hidden type="text" name="iduserimage" id="iduserimage" value="' + profil[0]['id_user'] + '">\n' +
-        '                <input type="submit" value="Envoyer">\n' +
+        '                <input class="btn btn-danger" type="submit" value="Editer " style="width: 50%; margin-top: 10px">\n' +
         '            </form>\n' +
         '        </div>\n' +
         '    </div>\n' +
-        '</div>' +
-        '<button type="button" style="width: 50%;" class="btn btn-danger btn-block decobutton" id="deco" name="submit"><a href="../web/deconnexion.php">deconnexion</a></button>\n');
+        '</div>');
 
     const imageForm = document.getElementById("imageForm");
     imageForm.addEventListener('submit', function(e) {
@@ -304,19 +312,19 @@ function displayProfil(profil) {
             '    <form method="post" id="profilForm">\n' +
             '        <div class="form-group">\n' +
             '            <label for="nom">Nouveau Nom <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-            '            <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez votre nom" required>\n' +
+            '            <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez votre nom" value="'+profil[0].nom+'" required>\n' +
             '        </div>\n' +
             '        <div class="form-group">\n' +
             '            <label for="prenom">Nouveau Prénom <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-            '            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrez votre prénom" required>\n' +
+            '            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrez votre prénom" value="'+profil[0].prenom+'" required>\n' +
             '        </div>\n' +
             '        <div class="form-group">\n' +
             '            <label for="datenaissance">Nouvelle Date de naissance <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-            '            <input type="date" class="form-control" id="datenaissance" name="datenaissance" placeholder="Entrez votre date de naissance" required>\n' +
+            '            <input type="date" class="form-control" id="datenaissance" name="datenaissance" placeholder="Entrez votre date de naissance" value="'+profil[0].date_de_naissance+'" required>\n' +
             '        </div>\n' +
             '        <div class="form-group">\n' +
             '            <label for="email">Nouveau Email <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +
-            '            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" required>\n' +
+            '            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre email" value="'+profil[0].email+'"required>\n' +
             '        </div>\n' +
             '        <div class="form-group">\n' +
             '            <label for="password">Mot de passe <i class="fas fa-star-of-life fa-xs textColor-DC3545"></i></label>\n' +

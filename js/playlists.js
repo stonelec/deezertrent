@@ -25,7 +25,7 @@ function playlist_list(infos){
 function playlist_card(playlist){
     return '         <div class="card-playlist d-flex flex-column get_playlist" id="'+playlist['id_playlist']+'">\n' +
         '                            <div style="margin-left: auto; margin-right: auto;">\n' +
-        '                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">\n' +
+        '                                <img class="card-playlist-image " src="images/image_playlis.png"  alt=".....">\n' +
         '                            </div>\n' +
         '                            <div class="card-playlist-text">\n' +
         '                                <p >'+playlist["nom_playlist"]+'</p>\n' +
@@ -160,6 +160,7 @@ function track_list_search(infos){
 
 function playlistDetail(playlist){
     console.log(playlist);
+    playlist=playlist.reverse();
     if (playlist.length === 0){
         console.log('playlist est vide');
         $('#content').html('<h4>Votre playlist est vide</h4>');
@@ -171,16 +172,15 @@ function playlistDetail(playlist){
             '                        <div>' +
             '                            <p style="">'+playlist[0]['date_creation']+'</p>\n' +
             '                        </div>'+
-            '                        <div class="d-flex flex-row" style="font-size: 2rem;">' +
-            '                           <i class="bi bi-sort-alpha-down button button_sort"></i>\n'+
-            '                        </div>'+
 
             '                    </div>');
-        for(let info of playlist) {
-            track_list_playlist(info).then((result)=>{
-                $('#content').append(result);
+        Promise.all(playlist.map(info => track_list_playlist(info)))
+            .then(results => {
+                results.forEach(result => {
+                    $('#content').append(result);
+                });
             });
-        }
+
     }
 }
 
@@ -211,13 +211,13 @@ function displayListePlaylist(playlists) {
     {
         // console.log('on est censé sup un truc');
         console.log(playlists);
+
         $('#content').empty();
         $('#title-page').empty();
         $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
         $('#content').html('<h2 style="margin: 15px 0;">Vos playlist</h2>\n');
         $('#content').append('<div class="d-flex flex-row-reverse" style="padding-right: 10%; font-size: 2rem;  height: 4rem">\n' +
-            '                        <i class="bi bi-sort-alpha-down button button_sort" style="padding-left: 1%"></i>\n'+
-            '                        <i class="bi bi-file-plus button button_add_playlist"></i>\n' +
+                '                        <i class="bi bi-file-plus button button_add_playlist"></i>\n' +
             '                    </div>');
         for (let playlist of playlists) {
             // console.log(playlist['nom_playlist']);
