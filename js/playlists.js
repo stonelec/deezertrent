@@ -173,11 +173,13 @@ function playlistDetail(playlist){
             '                        </div>'+
 
             '                    </div>');
-        for(let info of playlist) {
-            track_list_playlist(info).then((result)=>{
-                $('#content').append(result);
+        Promise.all(playlist.map(info => track_list_playlist(info)))
+            .then(results => {
+                results.forEach(result => {
+                    $('#content').append(result);
+                });
             });
-        }
+
     }
 }
 

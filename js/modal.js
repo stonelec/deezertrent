@@ -5,6 +5,7 @@ $(document).on('click', '.bi-file-plus', function(event) {
     modal.style.display = "block";
     console.log("open");
     event.stopPropagation();
+
 });
 
 $(document).on('click', '.btn-close', () =>  {
