@@ -171,9 +171,6 @@ function playlistDetail(playlist){
             '                        <div>' +
             '                            <p style="">'+playlist[0]['date_creation']+'</p>\n' +
             '                        </div>'+
-            '                        <div class="d-flex flex-row" style="font-size: 2rem;">' +
-            '                           <i class="bi bi-sort-alpha-down button button_sort"></i>\n'+
-            '                        </div>'+
 
             '                    </div>');
         for(let info of playlist) {
@@ -216,8 +213,7 @@ function displayListePlaylist(playlists) {
         $('#title-page').append('<input type="text" class="bar" id="bar" name="bar" placeholder="&#61442; Recherche">')
         $('#content').html('<h2 style="margin: 15px 0;">Vos playlist</h2>\n');
         $('#content').append('<div class="d-flex flex-row-reverse" style="padding-right: 10%; font-size: 2rem;  height: 4rem">\n' +
-            '                        <i class="bi bi-sort-alpha-down button button_sort" style="padding-left: 1%"></i>\n'+
-            '                        <i class="bi bi-file-plus button button_add_playlist"></i>\n' +
+                '                        <i class="bi bi-file-plus button button_add_playlist"></i>\n' +
             '                    </div>');
         for (let playlist of playlists) {
             // console.log(playlist['nom_playlist']);

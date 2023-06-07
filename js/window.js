@@ -229,8 +229,8 @@ function display_all(results){
     $('#content').empty();
     $('#content').append(button_all);
     console.log(results);
-    show_album(results);
     show_artist(results);
+    show_album(results);
     show_track(results);
 }
 
