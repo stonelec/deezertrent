@@ -30,31 +30,52 @@ let button_artiste = '<div class="btn-group" style="width:30%;"   >\n' +
 
 ///////////////////   DISPLAY LISTES   ///////////////////////////
 function track_list(infos){
-    return'<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'"   ">\n' +
-        '                                <div class="infos-left-part d-flex align-items-center">\n' +
-        '                                    <div>\n' +
-        '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
-        '                                    </div>\n' +
-        '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
-        '                                    <div class="d-flex flex-row align-items-center">\n' +
-        '                                        <div class="overflow">\n' +
-        '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
-        '                                        </div>\n' +
-        '                                        <div class="overflow" id="'+infos['id_artiste']+'">\n' +
-        '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
-        '                                        </div>\n' +
-        '                                    </div>\n' +
-        '                                </div>\n' +
-        '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
-        '                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>\n' +
-        '                                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'" ></i>\n' +
-        '                                </div>\n' +
-        '                            </li>\n' +
-        '                        </ul>'
+    return new Promise((resolve, reject) => {
+        ajaxRequest('GET', '../php/request.php/playlist/', (playlists)=>{
+            let result;
+            result = '<ul class="list-infos list-group justify-content-center">\n' +
+                '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'"   ">\n' +
+                '                                <div class="infos-left-part d-flex align-items-center">\n' +
+                '                                    <div>\n' +
+                '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
+                '                                    </div>\n' +
+                '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
+                '                                    <div class="d-flex flex-row align-items-center">\n' +
+                '                                        <div class="overflow">\n' +
+                '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
+                '                                        </div>\n' +
+                '                                        <div class="overflow" id="'+infos['id_artiste']+'">\n' +
+                '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
+                '                                        </div>\n' +
+                '                                    </div>\n' +
+                '                                </div>\n' +
+                '                                <div class="infos-right d-flex flex-row align-items-center">\n'+
+                '                                   <div class="dropdown" onclick="event.stopPropagation();" style=" margin-top: 8px">\n' +
+                '                                       <div data-bs-toggle="dropdown" aria-expanded="false">\n' +
+                '                                          <i class="bi bi-plus-lg button button-track infos-right-part add" id="'+infos['id_track']+'"></i>\n' +
+                '                                       </div>\n' +
+                '                                       <ul class="dropdown-menu">\n';;
 
+            for(let playlist of playlists){
+                if(playlist['nom_playlist'] !== "Historique" && playlist['nom_playlist'] !== "Favoris" && playlist['nom_playlist'] !== "Liste de lecture"){
+                    result += '                                         <li><a class="dropdown-item add-track" onclick="addTrack('+infos["id_track"]+","+playlist["id_playlist"]+')" id="'+playlist['id_playlist']+'">'+playlist['nom_playlist']+'</a></li>\n';
 
+                }
+            }
+
+            result += '                              </ul>\n' +
+                '                                   </div>\n'+
+                '                                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'" ></i>\n' +
+                '                                </div>\n' +
+                '                            </li>\n' +
+                '                        </ul>';
+            // console.log(result);
+            resolve(result);
+
+        });
+    });
 }
+
 
 function album_list(infos){
     return    '<ul class="list-infos list-group justify-content-center">\n' +
@@ -157,7 +178,9 @@ function show_track(results) {
         $('#content').append('<p style="margin: 15px 0">Aucun morceau trouvé</p>');
     } else {
         for (let track of tracks) {
-            $('#content').append(track_list_search(track));
+            track_list_search(track).then((result)=>{
+                $('#content').append(result);
+            });
         }
     }
 }
@@ -205,9 +228,10 @@ function show_album(results) {
 function display_all(results){
     $('#content').empty();
     $('#content').append(button_all);
-    show_track(results);
-    show_artist(results);
+    console.log(results);
     show_album(results);
+    show_artist(results);
+    show_track(results);
 }
 
 ///////////////////   PROFIL REQUEST    ////////////////////////////////////////
@@ -373,10 +397,10 @@ function handleUpdateResponse(response) {
 
     /////////// INFORMATION ABOUT A TRACK //////////////
 function format_duree(seconde) {
-    var minutes = Math.floor(seconde / 60);
-    var secondes = seconde % 60;
-    var minuteStr = minutes.toString().padStart(2, '0');
-    var secondeStr = secondes.toString().padStart(2, '0');
+    let minutes = Math.floor(seconde / 60);
+    let secondes = seconde % 60;
+    let minuteStr = minutes.toString().padStart(2, '0');
+    let secondeStr = secondes.toString().padStart(2, '0');
     return minuteStr + ':' + secondeStr;
 }
 
@@ -384,7 +408,7 @@ function format_duree(seconde) {
 function displaytrackinfo(trackinfo){
     //console.log('info track');
 
-    var duree= format_duree(parseInt(trackinfo[0]['duree'], 10));
+    let duree= format_duree(parseInt(trackinfo[0]['duree'], 10));
 
         $('#content').empty();
         //console.log(trackinfo);
@@ -456,7 +480,9 @@ function displayAlbumInfo(albumInfo){
         '                       </div>\n' +
         '                   </div>');
         for(let track of albumInfo['tracks']){
-            $('#content').append(track_list(track));
+            track_list(track).then((result)=>{
+                $('#content').append(result);
+            });
         }
 }
 

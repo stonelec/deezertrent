@@ -57,7 +57,9 @@ function displayArtisteInfo(artisteInfo) {
     $('#content').append('<h2 style="margin: 15px 0;">Tracks</h2>\n');
     let tracks = artisteInfo['titre'];
     for (let track of tracks)
-        $('#content').append(track_list(track));
+        track_list(track).then((result)=>{
+            $('#content').append(result);
+        });
 }
 
 

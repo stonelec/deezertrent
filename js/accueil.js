@@ -40,7 +40,9 @@ function historyAccueil(playlist) {
     let i=0;
     for (let track of playlist){
         if (i<10){
-            $('#content').append(track_list(track));
+            track_list(track).then((result)=>{
+                $('#content').append(result);
+            });
             i++;
         }
     }
@@ -56,11 +58,7 @@ function loadHistory(result){
 
 ///////////////////   PLAYLIST MENU   ///////////////////////////
 
-showPlaylistMusic();
-
-function showPlaylistMusic(){
-    ajaxRequest('GET', '../php/request.php/playlist/', playlistMenu);
-}
+ajaxRequest('GET', '../php/request.php/playlist/', playlistMenu);
 function playlistMenu(result){
     $('#playlist-menu').empty();
     // console.log('playlistMenu');

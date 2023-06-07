@@ -20,9 +20,10 @@
     <script src="../js/soundBar.js" defer></script>
     <script src="../js/ajax.js" defer></script>
     <script src="../js/window.js" defer></script>
+    <script src="../js/track.js" defer></script>
 </head>
 <body>
-    <div class="global" style="background-color: aquamarine">
+    <div class="global" style="background-color: grey">
 
         <!--   list-infos     ------------------------------------------------------>
             <ul class="list-infos list-group justify-content-center">
@@ -42,12 +43,27 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="infos-right d-flex flex-row align-items-center">
+
                         <div class="overflow">
                             <h7 class="infos-right-date infos-right-part ">28 mai 2023</h7>
                         </div>
                         <i class="bi bi-trash button button-track infos-right-part"></i>
-                        <i class="bi bi-plus-lg button button-track infos-right-part"></i>
+
+
+
+                        <div class="dropdown">
+
+                            <div data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-plus-lg button button-track infos-right-part"></i>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item add-track">Action</a></li>
+                                <li><a class="dropdown-item add-track">Another action</a></li>
+                                <li><a class="dropdown-item add-track">Something else here</a></li>
+                            </ul>
+                        </div>
                         <i class="bi bi-heart button button-track infos-right-part"></i>
                     </div>
                 </li>

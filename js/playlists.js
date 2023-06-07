@@ -34,66 +34,129 @@ function playlist_card(playlist){
 }
 
 function track_list_playlist(infos){
-    console.log(infos);
-    return'<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
-        '                                <div class="infos-left-part d-flex align-items-center">\n' +
-        '                                    <div>\n' +
-        '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
-        '                                    </div>\n' +
-        '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
-        '                                    <div class="d-flex flex-row align-items-center">\n' +
-        '                                        <div class="overflow">\n' +
-        '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
-        '                                        </div>\n' +
-        '                                        <div class="overflow">\n' +
-        '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
-        '                                        </div>\n' +
-        '                                    </div>\n' +
-        '                                </div>\n' +
-        '                                <div class="infos-right d-flex flex-row align-items-center"  id="'+infos['id_track']+'">'+
-        '                                   <div class="overflow">\n'+
-        '                                       <h7 class="infos-right-date infos-right-part">'+infos["date_ajout"].slice(0,10)+'</h7>\n' +
-        '                                   </div id="'+infos['id_track']+'">\n'+
-        '                                    <i class="bi bi-trash button button-track infos-right-part del_track" id="'+infos['id_playlist']+'" ></i>\n'+
-        '                                    <i class="bi bi-plus-lg button button-track infos-right-part add"></i>\n' +
-        '                                    <i class="bi bi-heart button button-track infos-right-part add_fav" id="'+infos['id_track']+'"></i>\n' +
-        '                                </div>\n' +
-        '                            </li>\n' +
-        '                        </ul>'
+    return new Promise((resolve, reject) => {
+        ajaxRequest('GET', '../php/request.php/playlist/', (playlists)=>{
+            let result;
+            result = '<ul class="list-infos list-group justify-content-center">\n' +
+                '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
+                '                                <div class="infos-left-part d-flex align-items-center">\n' +
+                '                                    <div>\n' +
+                '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
+                '                                    </div>\n' +
+                '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
+                '                                    <div class="d-flex flex-row align-items-center">\n' +
+                '                                        <div class="overflow">\n' +
+                '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
+                '                                        </div>\n' +
+                '                                        <div class="overflow">\n' +
+                '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
+                '                                        </div>\n' +
+                '                                    </div>\n' +
+                '                                </div>\n' +
+                '                                <div class="infos-right d-flex flex-row align-items-center align-self-center"  id="'+infos['id_playlist']+'">'+
+                '                                   <div class="overflowr">\n'+
+                '                                       <h7 class="infos-right-date infos-right-part">'+infos["date_ajout"].slice(0,10)+'</h7>\n' +
+                '                                   </div id="'+infos['id_track']+'">\n'+
+                '                                   <i class="bi bi-trash button button-track infos-right-part del_track" id="'+infos['id_track']+'" ></i>\n'+
+                '                                   <div class="dropdown" onclick="event.stopPropagation();" style=" margin-top: 8px">\n' +
+                '                                       <div data-bs-toggle="dropdown" aria-expanded="false">\n' +
+                '                                          <i class="bi bi-plus-lg button button-track infos-right-part add" id="'+infos['id_track']+'"></i>\n' +
+                '                                       </div>\n' +
+                '                                       <ul class="dropdown-menu">\n';
 
+                for(let playlist of playlists){
+                    if(playlist['nom_playlist'] !== "Historique" && playlist['nom_playlist'] !== "Favoris" && playlist['nom_playlist'] !== "Liste de lecture"){
+                        result += '                                         <li><a class="dropdown-item add-track" onclick="addTrack('+infos["id_track"]+","+playlist["id_playlist"]+')" id="'+playlist['id_playlist']+'">'+playlist['nom_playlist']+'</a></li>\n';
 
+                    }
+                }
 
+                result += '                              </ul>\n' +
+                '                                   </div>\n'+
+                '                                   <i class="bi bi-heart button button-track infos-right-part add_fav" id="'+infos['id_track']+'"></i>\n' +
+                '                                </div>\n' +
+                '                            </li>\n' +
+                '                        </ul>';
+                // console.log(result);
+            resolve(result);
 
+        });
+    });
 }
-
 
 function track_list_search(infos){
-    //console.log(infos);
-    return'<ul class="list-infos list-group justify-content-center">\n' +
-        '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
-        '                                <div class="infos-left-part d-flex align-items-center">\n' +
-        '                                    <div>\n' +
-        '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
-        '                                    </div>\n' +
-        '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
-        '                                    <div class="d-flex flex-row align-items-center">\n' +
-        '                                        <div class="overflow">\n' +
-        '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
-        '                                        </div>\n' +
-        '                                        <div class="overflow">\n' +
-        '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
-        '                                        </div>\n' +
-        '                                    </div>\n' +
-        '                                </div>\n' +
-        '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
-        '                                    <i class="bi bi-plus-lg button button-track infos-right-part"></i>\n' +
-        '                                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'"></i>\n' +
-        '                                </div>\n' +
-        '                            </li>\n' +
-        '                        </ul>'
+    // console.log(infos);
+    return new Promise((resolve, reject) => {
+        ajaxRequest('GET', '../php/request.php/playlist/', (playlists)=>{
+            let result;
+            result = '<ul class="list-infos list-group justify-content-center">\n' +
+                '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
+                '                                <div class="infos-left-part d-flex align-items-center">\n' +
+                '                                    <div>\n' +
+                '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
+                '                                    </div>\n' +
+                '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
+                '                                    <div class="d-flex flex-row align-items-center">\n' +
+                '                                        <div class="overflow">\n' +
+                '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
+                '                                        </div>\n' +
+                '                                        <div class="overflow">\n' +
+                '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
+                '                                        </div>\n' +
+                '                                    </div>\n' +
+                '                                </div>\n' +
+                '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
+                '                                   <div class="dropdown" onclick="event.stopPropagation();" style=" margin-top: 8px">\n' +
+                '                                       <div data-bs-toggle="dropdown" aria-expanded="false">\n' +
+                '                                          <i class="bi bi-plus-lg button button-track infos-right-part add" id="'+infos['id_track']+'"></i>\n' +
+                '                                       </div>\n' +
+                '                                       <ul class="dropdown-menu">\n';
 
+            for(let playlist of playlists){
+                if(playlist['nom_playlist'] !== "Historique" && playlist['nom_playlist'] !== "Favoris" && playlist['nom_playlist'] !== "Liste de lecture"){
+                    result += '                                         <li><a class="dropdown-item add-track" onclick="addTrack('+infos["id_track"]+","+playlist["id_playlist"]+')" id="'+playlist['id_playlist']+'">'+playlist['nom_playlist']+'</a></li>\n';
+
+                }
+            }
+
+            result += '                                </ul>\n' +
+                '                                   </div>\n'+
+                '                                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'"></i>\n' +
+                '                                </div>\n' +
+                '                            </li>\n' +
+                '                        </ul>';
+            // console.log(result);
+            resolve(result);
+
+        });
+    });
 }
+
+// function track_list_search(infos){
+//     //console.log(infos);
+//     return'<ul class="list-infos list-group justify-content-center">\n' +
+//         '                            <li class="infos d-flex justify-content-between align-items-center get_track" id="'+infos['id_track']+'" >\n' +
+//         '                                <div class="infos-left-part d-flex align-items-center">\n' +
+//         '                                    <div>\n' +
+//         '                                        <img class="music-image infos-left-part " src="images/albums/'+infos['image_album']+'"  alt=".....">\n' +
+//         '                                    </div>\n' +
+//         '                                        <i class="bi bi-play-fill button button-track infos-left-part infos-left-play"></i>\n' +
+//         '                                    <div class="d-flex flex-row align-items-center">\n' +
+//         '                                        <div class="overflow">\n' +
+//         '                                            <h7 class="infos-left-part" style="font-weight: bolder;">'+infos['titre_track']+'</h7>\n' +
+//         '                                        </div>\n' +
+//         '                                        <div class="overflow">\n' +
+//         '                                            <h7 class="infos-left-part">'+infos["nom_artiste"]+'</h7>\n' +
+//         '                                        </div>\n' +
+//         '                                    </div>\n' +
+//         '                                </div>\n' +
+//         '                                <div class="infos-right d-flex flex-row align-items-center">\n' +
+//         '                                    <i class="bi bi-plus-lg button button-track infos-right-part" id="'+infos['id_track']+'"></i>\n' +
+//         '                                    <i class="bi bi-heart button button-track infos-right-part" id="'+infos['id_track']+'"></i>\n' +
+//         '                                </div>\n' +
+//         '                            </li>\n' +
+//         '                        </ul>'
+// }
 
 function playlistDetail(playlist){
     console.log(playlist);
@@ -114,7 +177,9 @@ function playlistDetail(playlist){
 
             '                    </div>');
         for(let info of playlist) {
-            $('#content').append(track_list_playlist(info))
+            track_list_playlist(info).then((result)=>{
+                $('#content').append(result);
+            });
         }
     }
 }
@@ -197,14 +262,15 @@ $(document).on('click', '.del_playlist', function(event) {
     ajaxRequest('DELETE', '../php/request.php/playlist?id_playlist=' + id_playlist, () => {
         console.log('Dans le delete');
         ajaxRequest('GET', '../php/request.php/playlist?id_playlist=' + id_playlist, displayListePlaylist);
+        ajaxRequest('GET', '../php/request.php/playlist/', playlistMenu);
     });
 });
 
 
 /////////////   DELTE A TRACK OF A PLAYLIST ///////////////
 $(document).on('click', '.del_track', function(event) {
-    var idplaylist = $(this).attr('id');
-    var idtrack = $(this).parent().attr('id');
+    let idplaylist = $(this).parent().attr('id');
+    let idtrack = $(this).attr('id');
     event.stopPropagation();
     console.log('/');
     console.log(idtrack);
@@ -219,7 +285,7 @@ $(document).on('click', '.del_track', function(event) {
 
 
 $(document).on('click', '.del_playlist',function (event){
-    var idplaylist = $(this).attr('id');
+    let idplaylist = $(this).attr('id');
 
     ajaxRequest('DELETE', `../php/request.php/delplaylist?idplaylistdel=${idplaylist}`,()=>{
         ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);

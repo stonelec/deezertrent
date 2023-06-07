@@ -98,7 +98,7 @@ if ($id == '') {
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([$file['name'], $iduser]);
             }
-            if(isset($_POST['idadd'])) {
+            if(isset($_POST['nom_playlist'])) {
                 if ($requestResource == "add_playlist") {
 
 //                    echo("test");
@@ -112,7 +112,7 @@ if ($id == '') {
 
             elseif ($requestResource == "add_track"){
 
-                $data =  Track::add_track($_GET['id_track'], $_GET['id_playlist']);
+                $data =  Track::add_track($_POST['id_track'], $_POST['id_playlist']);
             }
             break;
 

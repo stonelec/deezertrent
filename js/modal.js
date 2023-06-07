@@ -14,13 +14,13 @@ $(document).on('click', '.btn-close', () =>  {
     modal.style.display = "none";
 });
 $(document).on('submit', '#add_playlist', function(e) {
-    console.log("submit");
     e.preventDefault(); // Empêcher la soumission du formulaire
     titre = document.getElementById("titre-add").value;
     if (titre === "" || titre === null || titre === undefined || titre === " " || titre === "Historique" || titre === "Favoris" || titre==="Liste de lecture") {
         alert("titre invalide");
         return;
     }else{
+        console.log("submit");
         let modal = document.getElementById("addPlaylist");
         modal.classList.remove("show");
         modal.style.display = "none";
@@ -28,9 +28,10 @@ $(document).on('submit', '#add_playlist', function(e) {
         console.log(titre);
         // Exécuter la requête AJAX pour mettre à jour le profil
 
-        ajaxRequest('POST', '../php/request.php/add_playlist', ()=>{}, 'nom_playlist=' + titre);
-        ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);
-
+        ajaxRequest('POST', '../php/request.php/add_playlist', ()=>{
+            ajaxRequest('GET', '../php/request.php/playlist/', displayListePlaylist);
+            ajaxRequest('GET', '../php/request.php/playlist/', playlistMenu);
+            }, 'nom_playlist=' + titre);
     }
 
 
