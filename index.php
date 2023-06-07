@@ -107,10 +107,12 @@ if (isset($_POST['submit'])) {
             header("Location: web/accueil.php");
             exit;
         } else {
-            echo "Mot de passe incorrect.";
+            echo '<div class="alert alert-danger" role="alert"> Email ou mot de passe incorrect!</div>';
+
         }
     } else {
-        echo "Email incorrect.";
+        echo '<div class="alert alert-danger" role="alert"> Email ou mot de passe incorrect!</div>';
+
     }
 }
 ?>
