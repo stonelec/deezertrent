@@ -177,13 +177,21 @@ function show_track(results) {
     if (tracks.length === 0) {
         $('#content').append('<p style="margin: 15px 0">Aucun morceau trouvé</p>');
     } else {
+        let promises = [];
         for (let track of tracks) {
-            track_list_search(track).then((result)=>{
-                $('#content').append(result);
-            });
+            promises.push(track_list_search(track));
         }
+
+        Promise.all(promises).then((results) => {
+            let stock = "";
+            for (let result of results) {
+                stock += result;
+            }
+            $('#content').append(stock);
+        });
     }
 }
+
 
 // For artists
 function display_artist(results) {
@@ -250,6 +258,7 @@ function displayProfil(profil) {
     $('#title-page').empty();
     $('#title-page').append('<h2 class="nom-page">Profil</h2>');
     $('#content').append('' +
+        '        <div class="d-flex flex-row-reverse" ><button type="button" class="btn btn-danger btn-block decobutton" id="deco" name="submit"><a href="../web/deconnexion.php" class="d-flex flex-row" style="height: 100%"><h7>deconnexion</h7><i class="bi bi-box-arrow-right" style="margin-right: 10px; margin-top: 5px "></i></a></button></div> \n' +
         '<div class="container" style="margin: auto;">\n' +
         '    <div class="row">\n' +
         '        <div class="col-md-6">\n' +
@@ -261,17 +270,15 @@ function displayProfil(profil) {
         '            <p><strong>Age:</strong> ' + age + '</p>\n' +
         '            <p><strong>Autre information:</strong>...</p>\n' +
         '        <button type="button" style="width: 50%" class="btn btn-danger btn-block " id="modifier" name="submit">Modifier</button>'+
-        '            <form method="post" id="imageForm" enctype="multipart/form-data">' +
-        '<div class="custom-file">\n' +
-        '                <input type="file" class="custom-file-input" name="imageuser" id="imageuser" accept="image/*" placeholder="photo">\n' +
+        '            <form method="post" id="imageForm" enctype="multipart/form-data" class="d-flex flex-column " style="width: 50%; margin-top: 20px" >\n' +
+        '                <label for="formFile" class="form-label" style="color: #DC3545">Editer votre photo de profil :</label>' +
+        '                <input type="file" name="imageuser" id="imageuser" accept="image/*" class="form-control">\n' +
         '                <input hidden type="text" name="iduserimage" id="iduserimage" value="' + profil[0]['id_user'] + '">\n' +
-        '                <input type="submit" value="Enregistrer Image">' +
-        '</div>\n' +
+        '                <input class="btn btn-danger" type="submit" value="Editer " style="width: 50%; margin-top: 10px">\n' +
         '            </form>\n' +
         '        </div>\n' +
         '    </div>\n' +
-        '</div>' +
-        '<button type="button" style="width: 50%;" class="btn btn-danger btn-block decobutton" id="deco" name="submit"><a href="../web/deconnexion.php">deconnexion</a></button>\n');
+        '</div>');
 
     const imageForm = document.getElementById("imageForm");
     imageForm.addEventListener('submit', function(e) {

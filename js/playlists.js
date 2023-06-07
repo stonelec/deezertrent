@@ -25,7 +25,7 @@ function playlist_list(infos){
 function playlist_card(playlist){
     return '         <div class="card-playlist d-flex flex-column get_playlist" id="'+playlist['id_playlist']+'">\n' +
         '                            <div style="margin-left: auto; margin-right: auto;">\n' +
-        '                                <img class="card-playlist-image " src="images/imaginedragons_nightvisions.png"  alt=".....">\n' +
+        '                                <img class="card-playlist-image " src="images/image_playlis.png"  alt=".....">\n' +
         '                            </div>\n' +
         '                            <div class="card-playlist-text">\n' +
         '                                <p >'+playlist["nom_playlist"]+'</p>\n' +
@@ -174,11 +174,13 @@ function playlistDetail(playlist){
             '                        </div>'+
 
             '                    </div>');
-        for(let info of playlist) {
-            track_list_playlist(info).then((result)=>{
-                $('#content').append(result);
+        Promise.all(playlist.map(info => track_list_playlist(info)))
+            .then(results => {
+                results.forEach(result => {
+                    $('#content').append(result);
+                });
             });
-        }
+
     }
 }
 
