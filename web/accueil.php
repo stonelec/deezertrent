@@ -93,7 +93,7 @@ if(!isset($_SESSION['user_id'])){
                 <!--    playlist----------------------------------------------------------------------------------->
                 <div id="playlist-menu" class="playlist d-flex flex-column">
 
-                    </div>
+                </div>
                 <!--    current music----------------------------------------------------------------------------------->
                 <div id="info_music_played">
                     <div class="current-music d-flex justify-content-center">
@@ -114,9 +114,7 @@ if(!isset($_SESSION['user_id'])){
                                 </div>
                             </div>
                         </div>
-
-                </div>
-
+                    </div>
                 </div>
             </div>
             <div class="right d-flex flex-column" >
